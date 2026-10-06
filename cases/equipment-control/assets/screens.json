@@ -1,0 +1,292 @@
+[
+  {
+    "id": "control",
+    "title": "焊接主控界面",
+    "category": "control",
+    "width": 1920,
+    "height": 1080,
+    "source": "系统主控界面.png",
+    "src": "assets/screens/control.webp",
+    "thumb": "assets/thumbs/control.webp"
+  },
+  {
+    "id": "normal",
+    "title": "主控界面 · 常态",
+    "category": "control",
+    "width": 1920,
+    "height": 1080,
+    "source": "上位机/常态.png",
+    "src": "assets/screens/normal.webp",
+    "thumb": "assets/thumbs/normal.webp"
+  },
+  {
+    "id": "editor",
+    "title": "工艺参数 · 查看模式",
+    "category": "control",
+    "width": 1920,
+    "height": 1080,
+    "source": "上位机/非编辑模式.png",
+    "src": "assets/screens/editor.webp",
+    "thumb": "assets/thumbs/editor.webp"
+  },
+  {
+    "id": "editor-alt",
+    "title": "工艺参数 · 展开状态",
+    "category": "control",
+    "width": 1908,
+    "height": 1071,
+    "source": "微信图片_202307131542083.png",
+    "src": "assets/screens/editor-alt.webp",
+    "thumb": "assets/thumbs/editor-alt.webp"
+  },
+  {
+    "id": "control-alt",
+    "title": "主控界面 · 参数查询",
+    "category": "control",
+    "width": 1915,
+    "height": 1064,
+    "source": "微信图片_202307131542084.png",
+    "src": "assets/screens/control-alt.webp",
+    "thumb": "assets/thumbs/control-alt.webp"
+  },
+  {
+    "id": "control-compact",
+    "title": "主控界面 · 紧凑布局",
+    "category": "control",
+    "width": 1392,
+    "height": 777,
+    "source": "设备的链接者.png",
+    "src": "assets/screens/control-compact.webp",
+    "thumb": "assets/thumbs/control-compact.webp"
+  },
+  {
+    "id": "servo",
+    "title": "平移伺服与工件信息",
+    "category": "control",
+    "width": 1920,
+    "height": 1080,
+    "source": "上位机/平移伺服&工件信息.png",
+    "src": "assets/screens/servo.webp",
+    "thumb": "assets/thumbs/servo.webp"
+  },
+  {
+    "id": "hydraulic",
+    "title": "翻转液压缸控制",
+    "category": "control",
+    "width": 1920,
+    "height": 1080,
+    "source": "上位机/翻转液压缸.png",
+    "src": "assets/screens/hydraulic.webp",
+    "thumb": "assets/thumbs/hydraulic.webp"
+  },
+  {
+    "id": "axis",
+    "title": "多轴操作与参数配置",
+    "category": "control",
+    "width": 1920,
+    "height": 1080,
+    "source": "上位机/新修改20221125.psd",
+    "src": "assets/screens/axis.webp",
+    "thumb": "assets/thumbs/axis.webp"
+  },
+  {
+    "id": "welding",
+    "title": "云焊系统 · 运行控制",
+    "category": "control",
+    "width": 2048,
+    "height": 1536,
+    "source": "上位机/云焊系统.psd",
+    "src": "assets/screens/welding.webp",
+    "thumb": "assets/thumbs/welding.webp"
+  },
+  {
+    "id": "running",
+    "title": "运行控制 · 参数与动作",
+    "category": "control",
+    "width": 2048,
+    "height": 1536,
+    "source": "上位机/运行2.png",
+    "src": "assets/screens/running.webp",
+    "thumb": "assets/thumbs/running.webp"
+  },
+  {
+    "id": "teach",
+    "title": "示教与调试",
+    "category": "control",
+    "width": 2048,
+    "height": 1536,
+    "source": "上位机/示教调试.png",
+    "src": "assets/screens/teach.webp",
+    "thumb": "assets/thumbs/teach.webp"
+  },
+  {
+    "id": "parameters",
+    "title": "工艺参数配置",
+    "category": "control",
+    "width": 2048,
+    "height": 1535,
+    "source": "上位机/工艺参数配置.png",
+    "src": "assets/screens/parameters.webp",
+    "thumb": "assets/thumbs/parameters.webp"
+  },
+  {
+    "id": "settings",
+    "title": "设备连接设置",
+    "category": "control",
+    "width": 2048,
+    "height": 1536,
+    "source": "上位机/设置.png",
+    "src": "assets/screens/settings.webp",
+    "thumb": "assets/thumbs/settings.webp"
+  },
+  {
+    "id": "startup",
+    "title": "ArcCtrl · 启动画面",
+    "category": "control",
+    "width": 603,
+    "height": 379,
+    "source": "上位机/开机图片.png",
+    "src": "assets/screens/startup.webp",
+    "thumb": "assets/thumbs/startup.webp"
+  },
+  {
+    "id": "station",
+    "title": "加工工位 · 任务看板",
+    "category": "control",
+    "width": 3840,
+    "height": 2164,
+    "source": "加工工位看板-最新2_副本.png",
+    "src": "assets/screens/station.webp",
+    "thumb": "assets/thumbs/station.webp"
+  },
+  {
+    "id": "overview",
+    "title": "灵犀云控 · 设备总览",
+    "category": "data",
+    "width": 3840,
+    "height": 2170,
+    "source": "灵犀云控管理平台1.png",
+    "src": "assets/screens/overview.webp",
+    "thumb": "assets/thumbs/overview.webp"
+  },
+  {
+    "id": "matrix",
+    "title": "灵犀云控 · 设备列表",
+    "category": "data",
+    "width": 3840,
+    "height": 2160,
+    "source": "灵犀云控管理平台2.png",
+    "src": "assets/screens/matrix.webp",
+    "thumb": "assets/thumbs/matrix.webp"
+  },
+  {
+    "id": "tower",
+    "title": "C 塔设备监测",
+    "category": "data",
+    "width": 3840,
+    "height": 2170,
+    "source": "C塔项目1.png",
+    "src": "assets/screens/tower.webp",
+    "thumb": "assets/thumbs/tower.webp"
+  },
+  {
+    "id": "line",
+    "title": "产线布局与运行趋势",
+    "category": "data",
+    "width": 3840,
+    "height": 2160,
+    "source": "生产首页2.png",
+    "src": "assets/screens/line.webp",
+    "thumb": "assets/thumbs/line.webp"
+  },
+  {
+    "id": "expo",
+    "title": "装备展示 · 设备与状态",
+    "category": "data",
+    "width": 3840,
+    "height": 2160,
+    "source": "展会大屏.png",
+    "src": "assets/screens/expo.webp",
+    "thumb": "assets/thumbs/expo.webp"
+  },
+  {
+    "id": "expo-overview",
+    "title": "装备展示 · 产线总览",
+    "category": "data",
+    "width": 3840,
+    "height": 2184,
+    "source": "展会装备展示UI-最新修改20231031_副本.png",
+    "src": "assets/screens/expo-overview.webp",
+    "thumb": "assets/thumbs/expo-overview.webp"
+  },
+  {
+    "id": "detail",
+    "title": "柔性焊接机器人 · 设备详情",
+    "category": "data",
+    "width": 3842,
+    "height": 2160,
+    "source": "设备详情.png",
+    "src": "assets/screens/detail.webp",
+    "thumb": "assets/thumbs/detail.webp"
+  },
+  {
+    "id": "detail-light",
+    "title": "设备详情 · 浅色方案",
+    "category": "data",
+    "width": 3840,
+    "height": 2160,
+    "source": "设备详情1.png",
+    "src": "assets/screens/detail-light.webp",
+    "thumb": "assets/thumbs/detail-light.webp"
+  },
+  {
+    "id": "detail-robot",
+    "title": "协作焊接机器人 · 设备详情",
+    "category": "data",
+    "width": 3842,
+    "height": 2160,
+    "source": "设备详情2.png",
+    "src": "assets/screens/detail-robot.webp",
+    "thumb": "assets/thumbs/detail-robot.webp"
+  },
+  {
+    "id": "robot",
+    "title": "协作焊接机器人 · 运行监测",
+    "category": "data",
+    "width": 3842,
+    "height": 2160,
+    "source": "大屏2.png",
+    "src": "assets/screens/robot.webp",
+    "thumb": "assets/thumbs/robot.webp"
+  },
+  {
+    "id": "monitor",
+    "title": "柔性焊接机器人 · 数据看板",
+    "category": "data",
+    "width": 3842,
+    "height": 2160,
+    "source": "黑背景.png",
+    "src": "assets/screens/monitor.webp",
+    "thumb": "assets/thumbs/monitor.webp"
+  },
+  {
+    "id": "bevel",
+    "title": "智能坡口切割单元 · 生产统计",
+    "category": "data",
+    "width": 3840,
+    "height": 2160,
+    "source": "上位机/智能坡口切割单元.jpg",
+    "src": "assets/screens/bevel.webp",
+    "thumb": "assets/thumbs/bevel.webp"
+  },
+  {
+    "id": "bevel-data",
+    "title": "智能坡口切割单元 · 数据总览",
+    "category": "data",
+    "width": 1920,
+    "height": 1080,
+    "source": "上位机/智能坡口切割单元生产数据.png",
+    "src": "assets/screens/bevel-data.webp",
+    "thumb": "assets/thumbs/bevel-data.webp"
+  }
+]

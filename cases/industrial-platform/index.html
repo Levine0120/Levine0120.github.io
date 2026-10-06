@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>工业互联网 · 系统入口</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#0b2033;color:#e8f2fa;font-family:-apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif}button,a{font:inherit}
+.viewer{min-height:100dvh;display:grid;grid-template-rows:56px minmax(0,1fr) 46px}.top,.bottom{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:0 24px;background:#0c263d}.top{border-bottom:1px solid #25445a}.bottom{border-top:1px solid #25445a}.identity{display:flex;align-items:baseline;gap:18px;min-width:0}.eyebrow,.bottom span{font:600 12px ui-monospace,SFMono-Regular,monospace;letter-spacing:.15em;color:#8db5cb}.identity strong{font-size:19px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.close{display:grid;place-items:center;width:36px;height:36px;border:1px solid #7895aa;border-radius:50%;color:#fff;text-decoration:none;font-size:26px;line-height:1;flex:none}
+.content{position:relative;display:grid;grid-template-columns:minmax(0,1.55fr) minmax(320px,.8fr);align-items:center;gap:clamp(28px,3vw,56px);width:min(1740px,calc(100% - 144px));margin:auto;padding:36px 0}.image-wrap{display:flex;align-items:center;justify-content:center;min-width:0}.image-wrap img{display:block;max-width:100%;max-height:calc(100dvh - 175px);object-fit:contain;box-shadow:0 18px 50px #030d1880;background:#eaf2f8;cursor:zoom-in}.info{max-width:540px}.index{display:block;margin-bottom:22px;color:#7eb4d3;font:600 13px ui-monospace,SFMono-Regular,monospace;letter-spacing:.18em}.info h1{font-size:clamp(30px,2.6vw,49px);line-height:1.18;margin:0 0 20px}.intro{font-size:clamp(16px,1.08vw,19px);line-height:1.9;color:#b9cfdd;margin:0 0 34px}.detail{border-top:1px solid #3a586d;padding:22px 0}.detail b{display:block;font-size:12px;letter-spacing:.14em;color:#79acd0;margin-bottom:10px}.detail p{font-size:15px;line-height:1.85;color:#c0d2dd;margin:0}.original{display:inline-block;color:#d4e9fa;text-decoration:none;border-bottom:1px solid #6e91a6;padding:7px 0;margin-top:12px;font-size:14px}.original:hover{color:#fff}
+.nav{position:absolute;top:50%;transform:translateY(-50%);border:0;background:transparent;color:#acd0e5;font-size:48px;line-height:1;width:52px;height:68px;cursor:pointer}.nav:hover,.close:hover{background:#173b56}.nav.prev{left:-68px}.nav.next{right:-68px}.nav:disabled{opacity:.25;cursor:default;background:transparent}
+@media(max-width:900px){.content{width:calc(100% - 80px);grid-template-columns:1fr;gap:28px;align-content:start}.image-wrap img{max-height:none}.info{max-width:none}.nav.prev{left:-42px}.nav.next{right:-42px}.bottom .hint{display:none}.intro{margin-bottom:14px}.detail{padding:15px 0}}
+@media(max-width:600px){.eyebrow,.bottom .label{display:none}.identity strong{font-size:16px}.content{width:calc(100% - 36px);padding:20px 0 54px}.info{padding:0 8px}.info h1{font-size:28px}.nav{top:auto;bottom:5px;transform:none;width:42px;height:40px;font-size:34px}.nav.prev{left:0}.nav.next{right:0}.bottom span{margin:auto}.index{margin-bottom:10px}}
+</style>
+</head>
+<body>
+<div class="viewer">
+<header class="top"><div class="identity"><span class="eyebrow">WEB DESIGN / INDUSTRIAL PLATFORM</span><strong>工业互联网 · 系统入口</strong></div><a class="close" href="../../index.html" aria-label="返回作品集">×</a></header>
+<main class="content">
+<button class="nav prev" type="button" aria-label="上一页">‹</button>
+<div class="image-wrap"><img id="image" src="page-1.jpg" alt="统一系统入口" title="查看原图"></div>
+<article class="info" aria-live="polite"><span class="index" id="index"></span><h1 id="title"></h1><p class="intro" id="intro"></p><div class="detail"><b>设计重点</b><p id="focus"></p></div><div class="detail"><b>页面呈现</b><p id="result"></p></div><a class="original" id="original" href="page-1.jpg" target="_blank" rel="noopener">查看原图 ↗</a></article>
+<button class="nav next" type="button" aria-label="下一页">›</button>
+</main>
+<footer class="bottom"><span class="label">INDUSTRIAL PLATFORM</span><span id="counter"></span><span class="hint">← → 翻页 · 点击图片查看原图</span></footer>
+</div>
+<script>
+const pages=[
+{group:'系统导航',title:'统一系统入口',intro:'面向钢结构制造业务，将多个专业系统汇集到同一个清晰的工作起点。用户可以先判断业务方向，再进入具体系统处理任务。',focus:'在入口层区分产品数据、生产制造、能源、设备和质量等业务，降低多系统并列时的查找成本。',result:'采用稳定的卡片网格，结合图标、名称与分组色彩建立识别线索，让导航信息一目了然。'},
+{group:'能源管理',title:'首页总览',intro:'把用能情况、变化趋势与待关注事项汇总在首页，帮助管理人员快速掌握当前运行状态。',focus:'按照日、月、年组织关键指标，同时保留用电曲线、分时趋势与异常入口，使概览能够自然延伸到分析。',result:'主区域展示用电变化，侧栏集中呈现用电排名、监测点在线情况和预警，兼顾整体判断与重点追踪。'},
+{group:'能源管理',title:'有功电量',intro:'从区域和设备两个层级查看有功电量，支持对不同时间范围的用电变化进行定位和追溯。',focus:'把对象选择、时间条件、关键数值、趋势图和历史记录组织成由上至下的分析路径。',result:'用户先确定分析对象，再比较变化趋势，最后查阅明细，减少在图表与数据表之间反复寻找信息。'},
+{group:'能源管理',title:'峰平谷用电',intro:'围绕尖、峰、平、谷四类时段展开用电分析，帮助理解电量在不同时段的分布。',focus:'让时段颜色贯穿指标、堆叠柱图与环形图，建立一致的视觉对应关系。',result:'总量、占比与每日变化并列呈现，既能看出整体结构，也便于发现时段用电的波动。'},
+{group:'电费管理',title:'电度电费',intro:'将电量、分时单价和费用放在同一分析框架里，连接用能表现与成本结果。',focus:'同时展示各时段的电量与费用，支持比较分时结构、趋势和历史数据。',result:'图表与明细相互对应，为费用核查和后续用电安排提供更直观的信息依据。'},
+{group:'设备效率',title:'单日利用率',intro:'通过停机、空载、运行三种状态描述设备在一天中的使用情况。',focus:'把状态时长和占比放在页面上方，再用时间曲线呈现运行节奏与低效区间。',result:'分区背景与颜色提示帮助定位状态变化，历史记录则保留进一步核查所需的明细。'},
+{group:'生产管理',title:'三维构件视图',intro:'将三维模型与生产业务数据放在同一工作区，让构件信息从列表走向可视化定位。',focus:'整合构件树、数量重量统计、类别图例和模型视角，建立对象与业务状态之间的对应关系。',result:'用户可围绕构件查看生产、采购、发运和现场安装等维度，形成连续的查询路径。'},
+{group:'设备管理',title:'设备与运行入口',intro:'按照客户和设备组织管理对象，让设备状态与后续操作保持连接。',focus:'提供搜索筛选、在线状态和设备卡片，优先帮助用户找到需要查看的具体设备。',result:'生产统计与运行记录紧邻设备信息，缩短从识别对象到查看业务详情的操作路径。'}
+];
+let current=0;const get=id=>document.getElementById(id);
+function show(index){current=Math.max(0,Math.min(pages.length-1,index));const p=pages[current],n=String(current+1).padStart(2,'0'),src='page-'+(current+1)+'.jpg';get('image').src=src;get('image').alt=p.title;get('index').textContent=n+' / '+p.group;get('title').textContent=p.title;get('intro').textContent=p.intro;get('focus').textContent=p.focus;get('result').textContent=p.result;get('original').href=src;get('counter').textContent=n+' / 08';document.querySelector('.prev').disabled=current===0;document.querySelector('.next').disabled=current===pages.length-1}
+document.querySelector('.prev').onclick=()=>show(current-1);document.querySelector('.next').onclick=()=>show(current+1);
+document.addEventListener('keydown',e=>{if(e.key==='ArrowLeft')show(current-1);if(e.key==='ArrowRight')show(current+1)});
+get('image').onclick=()=>get('original').click();show(0);
+if(window.parent!==window){document.querySelector('.close').addEventListener('click',e=>{e.preventDefault();window.parent.postMessage({type:'industrial-close'},location.origin)});document.addEventListener('keydown',e=>{if(e.key==='Escape')window.parent.postMessage({type:'industrial-close'},location.origin)})}
+</script>
+<script defer src="../../assets/site-cursor.js?v=2"></script></body></html>

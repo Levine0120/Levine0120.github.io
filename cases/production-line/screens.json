@@ -1,0 +1,108 @@
+[
+  {
+    "id": "login",
+    "title": "登录界面",
+    "cat": "design",
+    "width": 3840,
+    "height": 2160
+  },
+  {
+    "id": "workspace",
+    "title": "产线设计工作台",
+    "cat": "design",
+    "width": 3866,
+    "height": 2170
+  },
+  {
+    "id": "scene",
+    "title": "三维场景 · 设备列表",
+    "cat": "design",
+    "width": 3840,
+    "height": 2160
+  },
+  {
+    "id": "model",
+    "title": "设备位置与调整",
+    "cat": "design",
+    "width": 3840,
+    "height": 2160
+  },
+  {
+    "id": "project",
+    "title": "项目管理",
+    "cat": "design",
+    "width": 1924,
+    "height": 1088
+  },
+  {
+    "id": "ai",
+    "title": "工作台 · 智能辅助",
+    "cat": "design",
+    "width": 3866,
+    "height": 2170
+  },
+  {
+    "id": "integration",
+    "title": "设备连接关系",
+    "cat": "integration",
+    "width": 3866,
+    "height": 2170
+  },
+  {
+    "id": "process",
+    "title": "生产步骤与执行条件",
+    "cat": "integration",
+    "width": 3866,
+    "height": 2170
+  },
+  {
+    "id": "categories",
+    "title": "设备分类",
+    "cat": "design",
+    "width": 3848,
+    "height": 2190,
+    "full": "assets/screens/categories.webp"
+  },
+  {
+    "id": "map",
+    "title": "设备地图 · 总览",
+    "cat": "data",
+    "width": 3840,
+    "height": 2160
+  },
+  {
+    "id": "map-detail",
+    "title": "设备地图 · 状态详情",
+    "cat": "data",
+    "width": 3850,
+    "height": 2162
+  },
+  {
+    "id": "board-1",
+    "title": "产线流程看板",
+    "cat": "data",
+    "width": 3840,
+    "height": 2160
+  },
+  {
+    "id": "device",
+    "title": "设备详情 · 运行数据",
+    "cat": "data",
+    "width": 3842,
+    "height": 2160
+  },
+  {
+    "id": "device-2",
+    "title": "单台设备 · 数据变化",
+    "cat": "data",
+    "width": 3842,
+    "height": 2160
+  },
+  {
+    "id": "exhibit",
+    "title": "展会看板 · 设备状态",
+    "cat": "data",
+    "width": 3842,
+    "height": 2160
+  }
+]

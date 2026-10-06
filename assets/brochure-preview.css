@@ -1,0 +1,77 @@
+.work-card[data-mode="brochure"]{color:#1d2528;background:linear-gradient(135deg,#e5f1f8 0%,#d8eaf4 55%,#c8ddea 100%)}
+.work-card[data-mode="brochure"]:after{display:none}
+.work-card[data-mode="brochure"] .subtitle{color:#485f6c;opacity:1}
+.work-card[data-mode="brochure"] .card-arrow{color:#24373d;border-color:#34464b83;background:#ffffff60}
+.work-card[data-mode="brochure"] .card-media{left:15%;right:-5%;top:168px;bottom:-7px;display:block;overflow:hidden}
+.brochure-card-art{display:block;width:100%;height:100%;padding:9px 0 0 9px;background:#fff;border-radius:9px 0 0 0;box-shadow:0 13px 27px #17303f30;overflow:hidden}
+.brochure-card-art img{clip-path:inset(3px 0 0);display:block;width:100%;height:100%;max-width:none;max-height:none;object-fit:cover;object-position:center center;filter:none;transition:transform .45s ease}
+.work-card[data-mode="brochure"]:hover .brochure-card-art img{transform:scale(1.025)}
+
+.brochure-viewer{position:fixed;inset:0;z-index:80;background:#071827ef;display:none;color:#f1f6fa}
+.brochure-viewer.open{display:block}
+.brochure-shell{width:100%;height:100dvh;display:grid;grid-template-rows:auto minmax(0,1fr) auto;background:#0b2238;overflow:hidden}
+.brochure-header{position:relative;display:flex;align-items:center;gap:20px;min-height:58px;padding:10px 156px 10px 28px;border-bottom:1px solid #8cbeda2d}.brochure-eyebrow{font:10px/1.4 ui-monospace,SFMono-Regular,monospace;letter-spacing:.18em;color:#83b4d1}.brochure-header h2{font-size:17px;font-weight:500;letter-spacing:.03em;margin:0}.brochure-tools{position:absolute;right:76px;top:11px;display:flex;align-items:center;gap:7px;color:#b7d6e7;font:11px/1 ui-monospace,SFMono-Regular,monospace}.brochure-tools span{min-width:40px;text-align:center}.brochure-zoom{width:28px;height:28px;border:1px solid #8cbeda88;border-radius:50%;background:transparent;color:#e4f4ff;font-size:18px;line-height:1}.brochure-zoom:disabled{opacity:.3;cursor:default}.brochure-zoom:hover:not(:disabled){background:#ffffff23}.brochure-close{position:absolute;right:23px;top:11px;border:1px solid #ffffff55;border-radius:50%;width:35px;height:35px;background:transparent;color:#fff;font-size:25px;line-height:1}.brochure-close:hover{background:#ffffff25}
+.brochure-stage{min-height:0;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;padding:12px 60px;background:radial-gradient(circle at center,#1b3a54,#0a1c2d 78%)}
+.brochure-book{position:relative;width:min(calc(100vw - 120px),calc((100dvh - 150px)*var(--book-ratio,2.652)));aspect-ratio:var(--book-ratio,2.652);max-height:100%;filter:drop-shadow(0 18px 24px #0007);transform:translate(0,0) scale(1);transform-origin:center center;touch-action:none;cursor:zoom-in;will-change:transform}
+.brochure-book.is-zoomed{cursor:grab}.brochure-book.is-dragging{cursor:grabbing}
+.brochure-page,.brochure-turn{display:block;position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#fff;max-width:none;max-height:none;user-select:none;-webkit-user-drag:none}
+.brochure-turn{visibility:hidden;opacity:0;pointer-events:none}.brochure-turn.is-turning{visibility:visible;animation:brochure-reveal .42s cubic-bezier(.22,1,.36,1) both}.brochure-turn.to-prev{animation-name:brochure-reveal-prev}
+@keyframes brochure-reveal{from{opacity:0;clip-path:inset(0 100% 0 0);transform:translateX(2.5%)}to{opacity:1;clip-path:inset(0 0 0 0);transform:translateX(0)}}
+@keyframes brochure-reveal-prev{from{opacity:0;clip-path:inset(0 0 0 100%);transform:translateX(-2.5%)}to{opacity:1;clip-path:inset(0 0 0 0);transform:translateX(0)}}
+.brochure-edge{position:absolute;z-index:2;top:0;bottom:0;width:52px;border:0;background:transparent;color:#bdd6e7;font-size:46px;font-weight:200;transition:background .2s,color .2s}.brochure-edge:hover:not(:disabled){background:#ffffff12;color:#fff}.brochure-edge:disabled{opacity:.18;cursor:default}.brochure-prev{left:0}.brochure-next{right:0}
+.brochure-footer{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:24px;min-height:46px;padding:9px 28px;border-top:1px solid #8cbeda2d;color:#86abc4;font:10px/1.4 ui-monospace,SFMono-Regular,monospace;letter-spacing:.12em}.brochure-footer .brochure-hint{text-align:right}.brochure-progress{min-width:150px;text-align:center;color:#fff}.brochure-track{height:2px;background:#55758a;margin-top:7px}.brochure-track span{display:block;width:6.25%;height:100%;background:#70c5fa;transition:width .4s}
+@media(max-width:900px){.brochure-stage{padding:8px 45px}.brochure-book{width:min(calc(100vw - 90px),calc((100dvh - 145px)*var(--book-ratio,2.652)))}.brochure-edge{width:40px;font-size:36px}.brochure-footer{grid-template-columns:1fr auto}.brochure-hint{display:none}}
+@media(max-width:620px){.work-card[data-mode="brochure"] .card-media{top:147px}.brochure-header{min-height:85px;display:block;padding:12px 90px 42px 16px}.brochure-eyebrow{font-size:9px}.brochure-header h2{font-size:14px;margin-top:5px;white-space:nowrap}.brochure-tools{left:15px;right:auto;top:auto;bottom:8px}.brochure-close{right:12px;top:15px}.brochure-stage{padding:8px 26px}.brochure-book{width:calc(100vw - 52px)}.brochure-edge{width:26px;font-size:29px}.brochure-footer{padding:9px 16px}.brochure-footer>span:first-child{font-size:8px;max-width:155px}.brochure-progress{min-width:88px}}
+@media(prefers-reduced-motion:reduce){.brochure-turn.is-turning{animation-duration:.01ms}}
+
+.brochure-back{flex:none;border:0;background:transparent;color:#9ec7df;font-size:12px;padding:8px 9px 8px 0}.brochure-back:hover{color:#fff}.brochure-back[hidden]{display:none}
+.work-card[data-mode="flyers"]{color:#1d2528;background:linear-gradient(135deg,#e8f1f3 0%,#dbeaf0 52%,#cedfe8 100%)}
+.work-card[data-mode="flyers"]:after{display:none}
+.work-card[data-mode="flyers"] .subtitle{color:#485f6c;opacity:1}
+.work-card[data-mode="flyers"] .card-media{left:15%;right:-5%;top:168px;bottom:-7px;display:block;overflow:hidden}
+.flyer-card-art{display:block;position:relative;width:100%;height:100%;padding:9px 0 0 9px;background:#fff;border-radius:9px 0 0 0;box-shadow:0 13px 27px #17303f30;overflow:hidden}
+.flyer-card-art img{display:block;width:100%;height:100%;max-width:none;max-height:none;object-fit:cover;object-position:center center;filter:none;transition:transform .45s ease}
+.work-card[data-mode="flyers"]:hover .flyer-card-art img{transform:scale(1.025)}
+.flyer-collection{position:fixed;inset:0;z-index:78;display:none;background:#081827ec;align-items:center;justify-content:center;padding:22px;color:#eff7fa}.flyer-collection.open{display:flex}
+.flyer-collection-shell{width:min(100%,1200px);max-height:min(94dvh,980px);overflow:auto;background:#f2f7fa;color:#153149;box-shadow:0 26px 90px #0007}
+.flyer-collection-head{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;padding:31px 36px 26px;border-bottom:1px solid #bed3df}.flyer-collection-head span{font:10px/1 ui-monospace,SFMono-Regular,monospace;letter-spacing:.2em;color:#3b86ac}.flyer-collection-head h2{font-size:32px;letter-spacing:-.04em;margin:11px 0 6px}.flyer-collection-head p{color:#6c8594;font-size:13px;margin:0}.flyer-collection-head button{width:38px;height:38px;flex:none;border:1px solid #86a1b2;border-radius:50%;background:transparent;color:#17364e;font-size:24px;line-height:1}.flyer-collection-head button:hover{background:#d9e9f1}
+.flyer-collection-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;padding:28px 36px 36px}
+.flyer-item{display:block;text-align:left;border:1px solid #d3e1e9;background:#fff;padding:0;color:#1b3445;min-width:0;transition:transform .22s,box-shadow .22s,border-color .22s}.flyer-item:hover{transform:translateY(-4px);box-shadow:0 15px 26px #17456220;border-color:#88b7ce}.flyer-item:focus-visible{outline:3px solid #177cb1;outline-offset:3px}
+.flyer-item img{width:100%;aspect-ratio:1.47;object-fit:cover;max-width:none;display:block;background:#ecf2f6}.flyer-item-meta{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 16px 15px}.flyer-item-meta strong{font-size:15px;font-weight:600;line-height:1.3}.flyer-item-meta small{font:10px/1.3 ui-monospace,SFMono-Regular,monospace;white-space:nowrap;color:#7f99a7}
+@media(max-width:900px){.flyer-collection-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.brochure-header:has(.brochure-back:not([hidden])){gap:12px}.brochure-header:has(.brochure-back:not([hidden])) .brochure-eyebrow{display:none}}
+@media(max-width:620px){.work-card[data-mode="flyers"] .card-media{top:147px}.flyer-collection{padding:0}.flyer-collection-shell{width:100%;max-height:100dvh;height:100dvh}.flyer-collection-head{padding:25px 20px 20px}.flyer-collection-head h2{font-size:27px}.flyer-collection-grid{grid-template-columns:1fr;gap:14px;padding:20px}.brochure-header:has(.brochure-back:not([hidden])){padding-left:16px}.brochure-back{display:inline-block;padding:0 0 3px;font-size:11px}.brochure-header:has(.brochure-back:not([hidden])) h2{font-size:13px;margin-top:0}}
+
+.work-card[data-mode="printfiles"]{color:#1d2528;background:#dcebf6}
+.work-card[data-mode="exhibition"]{color:#1d2528;background:linear-gradient(135deg,#e9edf6 0%,#dfe8f3 53%,#d0dfee 100%)}
+.work-card[data-mode="printfiles"]:after,.work-card[data-mode="exhibition"]:after{display:none}
+.work-card[data-mode="printfiles"] .subtitle,.work-card[data-mode="exhibition"] .subtitle{color:#485f6c;opacity:1}
+.work-card[data-mode="printfiles"] .card-media,.work-card[data-mode="exhibition"] .card-media{left:15%;right:-5%;top:168px;bottom:-7px;display:block;overflow:hidden}
+.exhibition-card-art{display:block;position:relative;width:100%;height:100%;padding:9px 0 0 9px;background:#fff;border-radius:9px 0 0 0;box-shadow:0 13px 27px #17303f30;overflow:hidden}
+.exhibition-card-art img{display:block;width:100%;height:100%;max-width:none;max-height:none;object-fit:cover;object-position:center center;filter:none;transition:transform .45s ease}
+.work-card[data-mode="exhibition"]:hover .exhibition-card-art img{transform:scale(1.025)}
+@media(max-width:620px){.work-card[data-mode="printfiles"] .card-media,.work-card[data-mode="exhibition"] .card-media{top:147px}}
+
+.work-card[data-mode="magazines"]{color:#1d2528;background:linear-gradient(135deg,#e9eef4 0%,#dee8f1 54%,#d1e0eb 100%)}
+.work-card[data-mode="magazines"]:after{display:none}
+.work-card[data-mode="magazines"] .subtitle{color:#485f6c;opacity:1}
+.work-card[data-mode="magazines"] .card-media{left:15%;right:-5%;top:168px;bottom:-7px;display:block;overflow:hidden}
+.magazine-card-art{display:block;position:relative;width:100%;height:100%;padding:9px 0 0 9px;background:#fff;border-radius:9px 0 0 0;box-shadow:0 13px 27px #17303f30;overflow:hidden}
+.magazine-card-art img{display:block;width:100%;height:100%;max-width:none;max-height:none;object-fit:cover;object-position:center center;filter:none;transition:transform .45s ease}
+.work-card[data-mode="magazines"]:hover .magazine-card-art img{transform:scale(1.025)}
+.flyer-collection-grid.is-magazines .flyer-item img{aspect-ratio:1.3;object-fit:contain;padding:8px;background:#e8f0f5}
+@media(max-width:620px){.work-card[data-mode="magazines"] .card-media{top:147px}}
+
+.work-card[data-mode="standards"]{color:#1d2528;background:linear-gradient(135deg,#e6f2f0 0%,#d8ebe8 54%,#cae1de 100%)}
+.work-card[data-mode="standards"]:after{display:none}
+.work-card[data-mode="standards"] .subtitle{color:#485f6c;opacity:1}
+.work-card[data-mode="standards"] .card-media{left:15%;right:-5%;top:168px;bottom:-7px;display:block;overflow:hidden}
+.standards-card-art{display:block;position:relative;width:100%;height:100%;padding:9px 0 0 9px;background:#fff;border-radius:9px 0 0 0;box-shadow:0 13px 27px #17303f30;overflow:hidden}
+.standards-card-art img{display:block;width:100%;height:100%;max-width:none;max-height:none;object-fit:cover;object-position:center center;filter:none;transition:transform .45s ease}
+.work-card[data-mode="standards"]:hover .standards-card-art img{transform:scale(1.025)}
+.flyer-collection-grid.is-standards{grid-template-columns:repeat(3,minmax(0,1fr))}
+.flyer-collection-grid.is-standards .flyer-item img{aspect-ratio:16/9;object-fit:contain;background:#e8f0f5}
+@media(max-width:620px){.work-card[data-mode="standards"] .card-media{top:147px}.flyer-collection-grid.is-standards{grid-template-columns:1fr}}
+
+.flyer-collection-grid.is-brochures{grid-template-columns:repeat(2,minmax(0,1fr));max-width:1000px;margin:0 auto}
+.flyer-collection-grid.is-brochures .flyer-item img{aspect-ratio:2.66;object-fit:contain;background:#fff}
+@media(max-width:620px){.flyer-collection-grid.is-brochures{grid-template-columns:1fr}}

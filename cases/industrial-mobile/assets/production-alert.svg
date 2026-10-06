@@ -1,0 +1,107 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1206" height="2622" viewBox="0 0 402 874" role="img" aria-labelledby="title desc">
+<title id="title">生产异常协同移动端设计</title>
+<desc id="desc">聚合异常预警、设备状态、报工偏差和跨班组协同进度的关键设计界面。</desc>
+<defs>
+  <linearGradient id="hero" x1="24" y1="130" x2="386" y2="307" gradientUnits="userSpaceOnUse">
+    <stop stop-color="#1556B0"/>
+    <stop offset="1" stop-color="#1686B7"/>
+  </linearGradient>
+  <filter id="shadow" x="-20%" y="-25%" width="140%" height="160%">
+    <feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#2B567F" flood-opacity=".06"/>
+  </filter>
+  <style>
+    text{font-family:Inter,"PingFang SC","Microsoft YaHei",Arial,sans-serif}
+    .ink{fill:#182F49}.muted{fill:#72859A}.blue{fill:#1769EB}.white{fill:#fff}
+    .bold{font-weight:700}.medium{font-weight:600}
+  </style>
+</defs>
+<rect width="402" height="874" fill="#F5F8FC"/>
+
+<!-- Status bar and navigation -->
+<text x="20" y="30" class="ink bold" font-size="16">9:41</text>
+<rect x="332" y="21" width="3" height="8" rx="1.5" fill="#182F49"/>
+<rect x="338" y="17" width="3" height="12" rx="1.5" fill="#182F49"/>
+<rect x="344" y="13" width="3" height="16" rx="1.5" fill="#182F49"/>
+<rect x="362" y="15" width="25" height="14" rx="3" fill="none" stroke="#182F49" stroke-width="2"/>
+<rect x="365" y="18" width="19" height="8" rx="1.5" fill="#182F49"/>
+<path d="M27 71l-9 9 9 9" fill="none" stroke="#182F49" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="201" y="87" text-anchor="middle" class="ink bold" font-size="20">生产异常协同</text>
+<text x="370" y="85" text-anchor="end" class="blue medium" font-size="12">筛选</text>
+
+<!-- Summary -->
+<rect x="16" y="112" width="370" height="202" rx="18" fill="url(#hero)"/>
+<path d="M249 112h137v202H214c41-52 58-122 35-202Z" fill="#FFF" opacity=".035"/>
+<text x="32" y="144" class="white medium" font-size="12" opacity=".86">今日生产态势</text>
+<rect x="270" y="126" width="100" height="25" rx="12.5" fill="#FFFFFF" opacity=".17"/>
+<circle cx="284" cy="138.5" r="3" fill="#FFD58A"/>
+<text x="294" y="143" class="white medium" font-size="10">需优先处置 1</text>
+<text x="30" y="218" class="white bold" font-size="57">03</text>
+<text x="113" y="211" class="white medium" font-size="14">项异常待处理</text>
+<text x="33" y="241" class="white" font-size="11" opacity=".78">设备 · 进度 · 现场</text>
+<circle cx="317" cy="220" r="44" fill="none" stroke="#FFF" stroke-opacity=".16" stroke-width="1"/>
+<circle cx="317" cy="220" r="30" fill="#FFF" opacity=".13"/>
+<circle cx="317" cy="220" r="15" fill="#FFF" opacity=".24"/>
+<path d="M317 210v12m0 7v1" stroke="#FFF" stroke-width="3" stroke-linecap="round"/>
+<circle cx="271" cy="200" r="4" fill="#8BE0E7"/>
+<circle cx="357" cy="190" r="4" fill="#FFD58A"/>
+<path d="M275 201l15 8m52-7 12-10" stroke="#FFF" stroke-opacity=".48" stroke-width="1.5"/>
+<path d="M32 262h338" stroke="#FFF" stroke-opacity=".22"/>
+<text x="32" y="290" class="white medium" font-size="11">已协同 12 项</text>
+<text x="370" y="290" text-anchor="end" class="white" font-size="11" opacity=".8">覆盖 3 个现场场景</text>
+
+<!-- Task list -->
+<text x="18" y="348" class="ink bold" font-size="17">待处理异常</text>
+<text x="384" y="347" text-anchor="end" class="muted" font-size="11">查看全部 ›</text>
+<rect x="16" y="361" width="370" height="170" rx="16" fill="#FFF" filter="url(#shadow)"/>
+<rect x="16" y="377" width="4" height="137" rx="2" fill="#F09B45"/>
+<rect x="31" y="378" width="24" height="24" rx="7" fill="#FFF0E0"/>
+<path d="M43 383v8m0 4v.5" stroke="#C97724" stroke-width="2" stroke-linecap="round"/>
+<text x="64" y="396" class="ink medium" font-size="12">设备告警</text>
+<rect x="301" y="378" width="68" height="23" rx="11.5" fill="#FFF0E0"/>
+<text x="335" y="393" text-anchor="middle" fill="#B96B22" font-size="10" font-weight="600">高优先级</text>
+<text x="32" y="431" class="ink bold" font-size="16">抛丸线 02 · 温度超限</text>
+<text x="32" y="452" class="muted" font-size="10">连续 12 分钟高于安全阈值</text>
+<rect x="31" y="466" width="340" height="35" rx="8" fill="#F4F8FC"/>
+<text x="43" y="488" class="muted" font-size="10">当前</text>
+<text x="74" y="488" fill="#C97724" font-size="14" font-weight="700">38.6°C</text>
+<path d="M204 473v21" stroke="#DCE6F0"/>
+<text x="219" y="488" class="muted" font-size="10">安全阈值</text>
+<text x="282" y="488" class="ink medium" font-size="12">35°C</text>
+<text x="32" y="519" class="muted" font-size="10">2 号抛丸机 · 09:26 更新</text>
+<text x="370" y="519" text-anchor="end" class="blue medium" font-size="11">立即处理 →</text>
+
+<rect x="16" y="544" width="370" height="133" rx="16" fill="#FFF" filter="url(#shadow)"/>
+<rect x="16" y="560" width="4" height="101" rx="2" fill="#1769EB"/>
+<rect x="31" y="559" width="24" height="24" rx="7" fill="#EAF3FF"/>
+<path d="M37 576v-6m5 6v-10m5 10v-4" stroke="#1769EB" stroke-width="1.8" stroke-linecap="round"/>
+<text x="64" y="577" class="ink medium" font-size="12">进度偏差</text>
+<rect x="313" y="559" width="56" height="23" rx="11.5" fill="#EAF3FF"/>
+<text x="341" y="574" text-anchor="middle" class="blue medium" font-size="10">待协调</text>
+<text x="32" y="609" class="ink bold" font-size="15">焊接一班 · 报工进度落后</text>
+<text x="32" y="631" class="muted" font-size="10">已完成 72%</text>
+<text x="370" y="631" text-anchor="end" class="muted" font-size="10">计划目标 90%</text>
+<rect x="32" y="645" width="338" height="7" rx="3.5" fill="#E6EEF8"/>
+<rect x="32" y="645" width="243" height="7" rx="3.5" fill="#1769EB"/>
+<circle cx="275" cy="648.5" r="5" fill="#FFF" stroke="#1769EB" stroke-width="2"/>
+
+<!-- Distinct three-step collaboration strip -->
+<text x="18" y="707" class="ink bold" font-size="16">协同处理进度</text>
+<rect x="16" y="720" width="370" height="79" rx="15" fill="#FFF" filter="url(#shadow)"/>
+<path d="M69 745h264" stroke="#DBE5EF" stroke-width="2"/>
+<path d="M69 745h132" stroke="#008E82" stroke-width="2"/>
+<circle cx="69" cy="745" r="7" fill="#008E82"/>
+<circle cx="201" cy="745" r="7" fill="#008E82"/>
+<circle cx="333" cy="745" r="7" fill="#FFF" stroke="#AABDD0" stroke-width="2"/>
+<path d="m65 745 3 3 5-6m124 3 3 3 5-6" fill="none" stroke="#FFF" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="69" y="772" text-anchor="middle" class="ink medium" font-size="10">08:34 触发</text>
+<text x="201" y="772" text-anchor="middle" class="ink medium" font-size="10">08:39 已通知</text>
+<text x="333" y="772" text-anchor="middle" class="muted" font-size="10">待现场确认</text>
+
+<!-- Fixed action -->
+<rect x="0" y="813" width="402" height="61" fill="#FFF"/>
+<path d="M0 813h402" stroke="#E0E8F1"/>
+<rect x="16" y="822" width="370" height="40" rx="10" fill="#1769EB"/>
+<path d="M135 842a6 6 0 0 1 10-4m-10 4-3-1m3 1 1-3m12 2a6 6 0 0 1-10 5m10-5 3 1m-3-1-1 3" fill="none" stroke="#FFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="201" y="848" text-anchor="middle" class="white medium" font-size="14">发起协同处理</text>
+<rect x="150" y="868" width="102" height="4" rx="2" fill="#182F49"/>
+</svg>

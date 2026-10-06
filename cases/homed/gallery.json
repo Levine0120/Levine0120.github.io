@@ -1,0 +1,331 @@
+[
+  {
+    "group": "opening",
+    "group_title": "开场视觉",
+    "label": "启动画面",
+    "src": "assets/opening-6cd3319642db.png",
+    "original": "01启动页及广告页/750x1334.png"
+  },
+  {
+    "group": "opening",
+    "group_title": "开场视觉",
+    "label": "看视频",
+    "src": "assets/opening-4f42f2018a9f.jpg",
+    "original": "01启动页及广告页/看视频.jpg"
+  },
+  {
+    "group": "opening",
+    "group_title": "开场视觉",
+    "label": "智能家居",
+    "src": "assets/opening-9c2c051b576b.jpg",
+    "original": "01启动页及广告页/智能家居.jpg"
+  },
+  {
+    "group": "opening",
+    "group_title": "开场视觉",
+    "label": "开直播",
+    "src": "assets/opening-6f4b1bae3344.jpg",
+    "original": "01启动页及广告页/开直播.jpg"
+  },
+  {
+    "group": "discover",
+    "group_title": "内容发现",
+    "label": "电影列表",
+    "src": "assets/discover-5772dc79d408.jpg",
+    "original": "03推荐/02列表筛选页/01电影列表.jpg"
+  },
+  {
+    "group": "discover",
+    "group_title": "内容发现",
+    "label": "点播详情",
+    "src": "assets/discover-f4bc200222a8.jpg",
+    "original": "03推荐/04点播详情页/点播详情-电影.jpg"
+  },
+  {
+    "group": "discover",
+    "group_title": "内容发现",
+    "label": "精选专题",
+    "src": "assets/discover-6f6500f88f5e.jpg",
+    "original": "03推荐/03专题/001.jpg"
+  },
+  {
+    "group": "discover",
+    "group_title": "内容发现",
+    "label": "内容排行",
+    "src": "assets/discover-392d521c24a0.jpg",
+    "original": "03推荐/点播排行榜.jpg"
+  },
+  {
+    "group": "channels",
+    "group_title": "直播频道",
+    "label": "频道分类",
+    "src": "assets/channels-d4296f54ac12.jpg",
+    "original": "04频道/1.分类列表海报尺寸.jpg"
+  },
+  {
+    "group": "channels",
+    "group_title": "直播频道",
+    "label": "频道详情",
+    "src": "assets/channels-b5b4b887f8c0.jpg",
+    "original": "04频道/2.直播频道详情页.jpg"
+  },
+  {
+    "group": "channels",
+    "group_title": "直播频道",
+    "label": "节目预约",
+    "src": "assets/channels-71d64733585b.jpg",
+    "original": "04频道/4.直播频道详情页――预定.jpg"
+  },
+  {
+    "group": "channels",
+    "group_title": "直播频道",
+    "label": "频道节目单",
+    "src": "assets/channels-5b9e5f9fbd72.jpg",
+    "original": "04频道/6.频道列表.jpg"
+  },
+  {
+    "group": "community",
+    "group_title": "智慧圈",
+    "label": "智慧圈首页",
+    "src": "assets/community-d93ee167bf53.jpg",
+    "original": "05智慧圈/智慧圈首页20171222.jpg"
+  },
+  {
+    "group": "community",
+    "group_title": "智慧圈",
+    "label": "便民服务",
+    "src": "assets/community-a223dd297dff.jpg",
+    "original": "05智慧圈/智慧圈二级/便民.jpg"
+  },
+  {
+    "group": "community",
+    "group_title": "智慧圈",
+    "label": "社区服务",
+    "src": "assets/community-14ed756c69c8.jpg",
+    "original": "05智慧圈/智慧圈二级/社区.jpg"
+  },
+  {
+    "group": "bo",
+    "group_title": "Bo 直播",
+    "label": "Bo 首页",
+    "src": "assets/bo-0749a3a7d80f.jpg",
+    "original": "06Bo/03-直播首页/01-Bo首页.jpg"
+  },
+  {
+    "group": "bo",
+    "group_title": "Bo 直播",
+    "label": "正在直播",
+    "src": "assets/bo-9da2c701f0f2.jpg",
+    "original": "06Bo/03-直播首页/02-正在直播.jpg"
+  },
+  {
+    "group": "bo",
+    "group_title": "Bo 直播",
+    "label": "直播准备",
+    "src": "assets/bo-7209e968c4dd.jpg",
+    "original": "06Bo/01-直播前参数设置/01直播前.jpg"
+  },
+  {
+    "group": "bo",
+    "group_title": "Bo 直播",
+    "label": "开始直播",
+    "src": "assets/bo-36246909f7b0.jpg",
+    "original": "06Bo/02-开始直播/01开始直播.jpg"
+  },
+  {
+    "group": "bo",
+    "group_title": "Bo 直播",
+    "label": "直播控制",
+    "src": "assets/bo-a6c2da2820b9.jpg",
+    "original": "06Bo/02-开始直播/09直播控制.jpg"
+  },
+  {
+    "group": "home",
+    "group_title": "家与设备",
+    "label": "设备主页",
+    "src": "assets/home-fd62cb352a6b.jpg",
+    "original": "07家/智能家居/非新增的需要修改页面jpg/2-0_主页有设备.jpg"
+  },
+  {
+    "group": "home",
+    "group_title": "家与设备",
+    "label": "空调遥控",
+    "src": "assets/home-03e2da8b5205.jpg",
+    "original": "07家/智能家居/遥控页面/空调/01空调遥控.jpg"
+  },
+  {
+    "group": "home",
+    "group_title": "家与设备",
+    "label": "电视遥控",
+    "src": "assets/home-74109e4ee843.jpg",
+    "original": "07家/智能家居/遥控页面/电视/01电视遥控器.jpg"
+  },
+  {
+    "group": "home",
+    "group_title": "家与设备",
+    "label": "按空间管理设备",
+    "src": "assets/home-9e6eb9f571cf.jpg",
+    "original": "07家/智能家居/非新增的需要修改页面jpg/18-0_设备按空间分类.jpg"
+  },
+  {
+    "group": "home",
+    "group_title": "家与设备",
+    "label": "电风扇遥控",
+    "src": "assets/home-428efb7b0f0c.jpg",
+    "original": "07家/智能家居/遥控页面/电风扇/01电风扇遥控.jpg"
+  },
+  {
+    "group": "stars",
+    "group_title": "明星百科",
+    "label": "明星百科入口",
+    "src": "assets/stars-944d398b827c.jpg",
+    "original": "10明星百科/01明星百科入口.jpg"
+  },
+  {
+    "group": "stars",
+    "group_title": "明星百科",
+    "label": "人物详情",
+    "src": "assets/stars-5414ed7515e5.jpg",
+    "original": "10明星百科/05明星详情页01.jpg"
+  },
+  {
+    "group": "stars",
+    "group_title": "明星百科",
+    "label": "人物排行",
+    "src": "assets/stars-749c420bf825.jpg",
+    "original": "10明星百科/13排行版.jpg"
+  },
+  {
+    "group": "playback",
+    "group_title": "播放控件",
+    "label": "点播全屏播放",
+    "src": "assets/playback-9c8e52f320c8.jpg",
+    "original": "03推荐/05全屏播放/04-2全屏播放（点播）.jpg"
+  },
+  {
+    "group": "playback",
+    "group_title": "播放控件",
+    "label": "手势提示",
+    "src": "assets/playback-fe93996aa303.jpg",
+    "original": "03推荐/05全屏播放/04-1手势提示.jpg"
+  },
+  {
+    "group": "playback",
+    "group_title": "播放控件",
+    "label": "全屏播放",
+    "src": "assets/playback-06bd50c8934f.jpg",
+    "original": "04频道/直播全屏播放/1.jpg"
+  },
+  {
+    "group": "playback",
+    "group_title": "播放控件",
+    "label": "时移预览",
+    "src": "assets/playback-7ae7359a500e.jpg",
+    "original": "04频道/直播全屏播放/2.左滑时移――seek图.jpg"
+  },
+  {
+    "group": "playback",
+    "group_title": "播放控件",
+    "label": "频道切换",
+    "src": "assets/playback-926ec075fd1a.jpg",
+    "original": "04频道/直播全屏播放/4.频道.jpg"
+  },
+  {
+    "group": "playback",
+    "group_title": "播放控件",
+    "label": "锁定状态",
+    "src": "assets/playback-ca905a9b6efa.jpg",
+    "original": "04频道/直播全屏播放/5.锁定.jpg"
+  },
+  {
+    "group": "playback",
+    "group_title": "播放控件",
+    "label": "分享面板",
+    "src": "assets/playback-d668bd85cc29.jpg",
+    "original": "04频道/直播全屏播放/3分享.jpg"
+  },
+  {
+    "group": "playback",
+    "group_title": "播放控件",
+    "label": "加载状态",
+    "src": "assets/playback-7b7736b08e5a.jpg",
+    "original": "04频道/直播全屏播放/6.全力加载.jpg"
+  },
+  {
+    "group": "media-layouts",
+    "group_title": "媒资排列方式",
+    "label": "图文列表",
+    "src": "assets/media-layouts-97bbbf998eed.jpg",
+    "original": "03推荐/07APP CMS/媒资列表/01统一样式图文列表页.jpg"
+  },
+  {
+    "group": "media-layouts",
+    "group_title": "媒资排列方式",
+    "label": "首图＋列表",
+    "src": "assets/media-layouts-6f4e94166933.jpg",
+    "original": "03推荐/07APP CMS/媒资列表/02大海报+图文列表页.jpg"
+  },
+  {
+    "group": "media-layouts",
+    "group_title": "媒资排列方式",
+    "label": "单图与多图混排",
+    "src": "assets/media-layouts-5771253173f2.jpg",
+    "original": "03推荐/07APP CMS/媒资列表/03左文右图混排可关闭样式.jpg"
+  },
+  {
+    "group": "media-layouts",
+    "group_title": "媒资排列方式",
+    "label": "大海报＋摘要",
+    "src": "assets/media-layouts-991259184e5d.jpg",
+    "original": "03推荐/07APP CMS/媒资列表/04统一大海报+文字描述.jpg"
+  },
+  {
+    "group": "media-layouts",
+    "group_title": "媒资排列方式",
+    "label": "海报＋专题分组",
+    "src": "assets/media-layouts-7f1135c1068a.jpg",
+    "original": "03推荐/07APP CMS/媒资列表/05大海报+各小专题.jpg"
+  },
+  {
+    "group": "media-layouts",
+    "group_title": "媒资排列方式",
+    "label": "直播海报列表",
+    "src": "assets/media-layouts-8ca92951e318.jpg",
+    "original": "03推荐/07APP CMS/媒资列表/06直播用统一大海报版式.jpg"
+  },
+  {
+    "group": "search-design",
+    "group_title": "搜索页设计",
+    "label": "历史与热门搜索",
+    "src": "assets/search-design-43f3e4e93a19.jpg",
+    "original": "08搜索/搜索1.jpg"
+  },
+  {
+    "group": "search-design",
+    "group_title": "搜索页设计",
+    "label": "输入联想",
+    "src": "assets/search-design-cfa2a98963bb.jpg",
+    "original": "08搜索/搜索2-输入联想.jpg"
+  },
+  {
+    "group": "search-design",
+    "group_title": "搜索页设计",
+    "label": "语音输入反馈",
+    "src": "assets/search-design-56068ff899db.jpg",
+    "original": "08搜索/搜索-语音.jpg"
+  },
+  {
+    "group": "search-design",
+    "group_title": "搜索页设计",
+    "label": "按内容组织结果",
+    "src": "assets/search-design-2dcd50c920fb.jpg",
+    "original": "08搜索/搜索3.jpg"
+  },
+  {
+    "group": "search-design",
+    "group_title": "搜索页设计",
+    "label": "结果筛选",
+    "src": "assets/search-design-2cacbe7d2b51.jpg",
+    "original": "08搜索/搜索4.jpg"
+  }
+]

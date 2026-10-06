@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>RDS · 研发管理系统</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#0b2033;color:#e8f2fa;font-family:-apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif}button,a{font:inherit}
+.viewer{min-height:100dvh;display:grid;grid-template-rows:56px minmax(0,1fr) 46px}.top,.bottom{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:0 24px;background:#0c263d}.top{border-bottom:1px solid #25445a}.bottom{border-top:1px solid #25445a}.identity{display:flex;align-items:baseline;gap:18px;min-width:0}.eyebrow,.bottom span{font:600 12px ui-monospace,SFMono-Regular,monospace;letter-spacing:.15em;color:#8db5cb}.identity strong{font-size:19px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.close{display:grid;place-items:center;width:36px;height:36px;border:1px solid #7895aa;border-radius:50%;color:#fff;text-decoration:none;font-size:26px;line-height:1;flex:none}
+.content{position:relative;display:grid;grid-template-columns:minmax(0,1.55fr) minmax(320px,.8fr);align-items:center;gap:clamp(28px,3vw,56px);width:min(1740px,calc(100% - 144px));margin:auto;padding:36px 0}.image-wrap{display:flex;align-items:center;justify-content:center;min-width:0}.image-wrap img{display:block;max-width:100%;max-height:calc(100dvh - 175px);object-fit:contain;box-shadow:0 18px 50px #030d1880;background:#eaf2f8;cursor:zoom-in}.info{max-width:540px}.index{display:block;margin-bottom:22px;color:#7eb4d3;font:600 13px ui-monospace,SFMono-Regular,monospace;letter-spacing:.18em}.info h1{font-size:clamp(30px,2.6vw,49px);line-height:1.18;margin:0 0 20px}.intro{font-size:clamp(16px,1.08vw,19px);line-height:1.9;color:#b9cfdd;margin:0 0 34px}.detail{border-top:1px solid #3a586d;padding:22px 0}.detail b{display:block;font-size:12px;letter-spacing:.14em;color:#79acd0;margin-bottom:10px}.detail p{font-size:15px;line-height:1.85;color:#c0d2dd;margin:0}.original{display:inline-block;color:#d4e9fa;text-decoration:none;border-bottom:1px solid #6e91a6;padding:7px 0;margin-top:12px;font-size:14px}.original:hover{color:#fff}
+.nav{position:absolute;top:50%;transform:translateY(-50%);border:0;background:transparent;color:#acd0e5;font-size:48px;line-height:1;width:52px;height:68px;cursor:pointer}.nav:hover,.close:hover{background:#173b56}.nav.prev{left:-68px}.nav.next{right:-68px}.nav:disabled{opacity:.25;cursor:default;background:transparent}
+@media(max-width:900px){.content{width:calc(100% - 80px);grid-template-columns:1fr;gap:28px;align-content:start}.image-wrap img{max-height:none}.info{max-width:none}.nav.prev{left:-42px}.nav.next{right:-42px}.bottom .hint{display:none}.intro{margin-bottom:14px}.detail{padding:15px 0}}
+@media(max-width:600px){.eyebrow,.bottom .label{display:none}.identity strong{font-size:16px}.content{width:calc(100% - 36px);padding:20px 0 54px}.info{padding:0 8px}.info h1{font-size:28px}.nav{top:auto;bottom:5px;transform:none;width:42px;height:40px;font-size:34px}.nav.prev{left:0}.nav.next{right:0}.bottom span{margin:auto}.index{margin-bottom:10px}}
+</style>
+</head>
+<body>
+<div class="viewer">
+<header class="top"><div class="identity"><span class="eyebrow">WEB DESIGN / RDS MANAGEMENT</span><strong>RDS · 研发管理系统</strong></div><a class="close" href="../../index.html" aria-label="返回作品集">×</a></header>
+<main class="content">
+<button class="nav prev" type="button" aria-label="上一页">‹</button>
+<div class="image-wrap"><img id="image" src="page-1.jpg" alt="交付仪表盘" title="查看原图"></div>
+<article class="info" aria-live="polite"><span class="index" id="index"></span><h1 id="title"></h1><p class="intro" id="intro"></p><div class="detail"><b>设计重点</b><p id="focus"></p></div><div class="detail"><b>页面呈现</b><p id="result"></p></div><a class="original" id="original" href="page-1.jpg" target="_blank" rel="noopener">查看原图 ↗</a></article>
+<button class="nav next" type="button" aria-label="下一页">›</button>
+</main>
+<footer class="bottom"><span class="label">RDS MANAGEMENT</span><span id="counter"></span><span class="hint">← → 翻页 · 点击图片查看原图</span></footer>
+</div>
+<script>
+const pages=[{"group": "交付概览", "title": "交付仪表盘", "intro": "面向项目交付管理，将项目规模、阶段分布、完成情况与延期风险汇总在一个总览页面。阅读路径从整体态势延伸到具体提醒，帮助管理人员确定需要优先关注的工作。", "focus": "用在手项目、准备阶段、实施阶段和延期项目建立第一层指标；再以项目类型、生产漏斗和完成率补充结构与进度信息。", "result": "卡片分区对应不同管理问题，底部集中展示任务提醒、交付产品统计和合同金额，让进度、风险与交付规模形成连续的阅读层级。"}, {"group": "计划管理", "title": "一体化计划管理", "intro": "把多个项目的交付计划集中到统一列表，连接策划、设计、采购、生产、发运和实施等节点，便于跨项目查看当前推进情况。", "focus": "围绕项目阶段提供筛选，并将关键时间节点与各业务负责人放在同一行，让时间安排和责任分工可以直接对照。", "result": "搜索、星标与阶段筛选位于列表上方；项目名称、状态和节点日期形成稳定列结构，支持从总体计划进一步进入具体项目。"}, {"group": "任务协同", "title": "项目任务", "intro": "将个人与项目相关的任务集中呈现，帮助成员明确当前待办、参与范围和截止要求，把项目计划落实为可跟进的工作项。", "focus": "通过“分配给我的、我创建的、我参与的”区分任务关系，并突出优先级、任务状态、处理人和截止日期。", "result": "任务表格关联所属项目与产品，日期提示强化临近截止事项；创建任务和高级筛选提供清晰操作入口，便于查找和维护工作。"}, {"group": "跨项目排期", "title": "生产总览甘特图", "intro": "以项目为单位展开整体排期，将项目基本信息与时间轴并列展示，方便比较不同项目的启动、制造和交付安排。", "focus": "左侧保留项目名称、关键节点与当前状态，右侧用时间条表达周期；列表与时间轴保持行级对应，减少两种信息之间的查找。", "result": "通过搜索、查看维度与周视图控制阅读范围，支持在多个项目之间扫描时间分布、识别排期重叠并核查节点安排。"}, {"group": "项目详情", "title": "多产品任务维护", "intro": "进入单个项目后，按产品组织详细任务，将交付过程拆分为策划、设计、采购、制造、发运、安装调试和验收等工作阶段。", "focus": "用父子任务层级保留阶段与具体工作项的关系，同时展示负责人、参与人、状态、起止时间和工期，使责任与计划可以逐项核对。", "result": "产品标签帮助切换维护对象，状态颜色支持快速扫描；任务与甘特图保持相邻入口，让明细维护与时间查看连续衔接。"}, {"group": "项目详情", "title": "多产品维护甘特图", "intro": "把项目中的产品任务映射到日历时间轴，以可视化排期补充任务列表，帮助理解每项工作的持续时间和前后安排。", "focus": "左侧任务信息与右侧时间条逐行对齐，保留起止日期、任务状态和处理人；将临近截止日期与状态提示放在容易扫描的位置。", "result": "产品切换和时间视图控制保持在上方，列表负责精确信息，甘特图负责时间关系，形成从任务内容到排期检查的双视角。"}];
+let current=0;const get=id=>document.getElementById(id);
+function show(index){current=Math.max(0,Math.min(pages.length-1,index));const p=pages[current],n=String(current+1).padStart(2,'0'),src='page-'+(current+1)+'.jpg';get('image').src=src;get('image').alt=p.title;get('index').textContent=n+' / '+p.group;get('title').textContent=p.title;get('intro').textContent=p.intro;get('focus').textContent=p.focus;get('result').textContent=p.result;get('original').href=src;get('counter').textContent=n+' / 06';document.querySelector('.prev').disabled=current===0;document.querySelector('.next').disabled=current===pages.length-1}
+document.querySelector('.prev').onclick=()=>show(current-1);document.querySelector('.next').onclick=()=>show(current+1);
+document.addEventListener('keydown',e=>{if(e.key==='ArrowLeft')show(current-1);if(e.key==='ArrowRight')show(current+1)});
+get('image').onclick=()=>get('original').click();show(0);
+if(window.parent!==window){document.querySelector('.close').addEventListener('click',e=>{e.preventDefault();window.parent.postMessage({type:'rds-close'},location.origin)});document.addEventListener('keydown',e=>{if(e.key==='Escape')window.parent.postMessage({type:'rds-close'},location.origin)})}
+</script>
+<script defer src="../../assets/site-cursor.js?v=2"></script></body></html>

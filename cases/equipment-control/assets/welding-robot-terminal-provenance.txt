@@ -1,0 +1,4 @@
+Asset: welding-robot-terminal.png
+Created with built-in imagegen from user supplied welding robot reference (codex-clipboard-66c2e7c6). Generative high-resolution reconstruction and transparent cutout, not an engineering-accurate model.
+Prompt: preserve white articulated arm, blue track, gray beam and camera angle; remove UI/background; add a front-facing pedestal terminal.
+Screen overlay: user-provided codex-clipboard-855a83e9, unchanged 1920x1080 PNG.

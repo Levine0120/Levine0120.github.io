@@ -1,0 +1,733 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="工业互联网与小钢制造移动端 UI 设计案例：复杂信息整理、数据可视化与组件化设计。">
+<meta name="theme-color" content="#0a1828">
+<title>工业互联网 · 小钢制造 — UI Design Case Study</title>
+<link rel="stylesheet" href="style.css?v=20260926-gradient">
+</head>
+<body>
+<a class="skip" href="#overview">跳至项目内容</a>
+<svg class="icon-sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><symbol id="i-layers" viewBox="0 0 24 24"><path d="m12 3 9 5-9 5-9-5 9-5Zm-9 9 9 5 9-5M3 16l9 5 9-5"/></symbol><symbol id="i-status" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m8 12 2.5 2.5L16 9"/></symbol><symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></symbol><symbol id="i-factory" viewBox="0 0 24 24"><path d="M3 21V9l6 3V9l6 3V4h4v17H3Z"/><path d="M7 17h1m5 0h1m4 0h1"/></symbol><symbol id="i-warehouse" viewBox="0 0 24 24"><path d="M3 21V8l9-5 9 5v13H3Z M3 9l9-5 9 5 M8 21v-9h8v9 M8 16h8"/></symbol><symbol id="i-truck" viewBox="0 0 24 24"><path d="M2 6h12v11H2V6Zm12 4h4l4 4v3h-8v-7Z"/><circle cx="6" cy="18" r="2"/><circle cx="18" cy="18" r="2"/></symbol><symbol id="i-chart" viewBox="0 0 24 24"><path d="M3 20h18M6 17v-6m6 6V5m6 12V9"/></symbol><symbol id="i-checklist" viewBox="0 0 24 24"><path d="M9 5h12M9 12h12M9 19h12M3 5l1 1 2-2m-3 8 1 1 2-2m-3 8 1 1 2-2"/></symbol><symbol id="i-position" viewBox="0 0 24 24"><path d="M12 21s7-6 7-12a7 7 0 1 0-14 0c0 6 7 12 7 12Z"/><circle cx="12" cy="9" r="2.5"/></symbol></svg>
+<header class="site-header">
+<a href="#top" class="brand">
+<span class="brand-mark brand-logo" aria-hidden="true"></span><span>小钢制造-工业互联网平台</span></a>
+<nav aria-label="章节导航">
+<a href="#overview">项目概览</a>
+<a href="#scenarios">核心场景</a>
+<a href="#system">设计系统</a>
+<a href="#showcase">最终展示</a>
+</nav>
+</header>
+<main>
+<section class="hero" id="top">
+<div class="hero-grid">
+</div>
+<div class="hero-copy">
+<p class="eyebrow">INDUSTRIAL INTERNET · MOBILE EXPERIENCE</p>
+<h1>复杂制造，<br>清晰呈现<span>。</span>
+</h1>
+<p class="hero-sub">工业互联网 / 小钢制造<br>
+<span>移动端 UI 设计与视觉体系优化</span>
+</p>
+<a class="hero-link" href="#overview">探索设计案例 <span>↓</span>
+</a>
+</div>
+<div class="hero-art" aria-label="优化后的移动端核心界面">
+<figure class="screen hero-phone one">
+<button class="zoom" data-image="assets/optimized/07-latest.webp" data-title="堆场管控" aria-label="放大查看：堆场管控">
+<img src="assets/optimized/07-latest.webp" alt="堆场管控优化设计稿" loading="lazy" width="402" height="874">
+</button>
+<figcaption>堆场管控<span>↗</span>
+</figcaption>
+</figure>
+<figure class="screen hero-phone two">
+<button class="zoom" data-image="assets/optimized/01.svg" data-title="工业互联网工作台" aria-label="放大查看：工业互联网工作台">
+<img src="assets/optimized/01.svg" alt="工业互联网工作台优化设计稿" loading="lazy" width="402" height="874">
+</button>
+<figcaption>工业互联网工作台<span>↗</span>
+</figcaption>
+</figure>
+<figure class="screen hero-phone three">
+<button class="zoom" data-image="assets/optimized/A07.svg" data-title="车间生产管控" aria-label="放大查看：车间生产管控">
+<img src="assets/optimized/A07.svg" alt="车间生产管控优化设计稿" loading="lazy" width="402" height="874">
+</button>
+<figcaption>车间生产管控<span>↗</span>
+</figcaption>
+</figure>
+</div>
+<div class="hero-bottom">
+<span>从现场任务到数据洞察</span>
+</div>
+</section>
+<div class="chapter-strip">
+<span>工业互联网</span>
+<span>柔性制造</span>
+<span>物联云仓</span>
+<span>抛丸喷涂</span>
+</div>
+<section id="overview" class="section wrap">
+<div class="section-head">
+<p class="eyebrow">PROJECT OVERVIEW</p>
+<h2>让现场信息，<br>成为可读、可用的界面。</h2>
+</div>
+<div class="overview-body">
+<p class="large-copy">围绕钢结构制造现场的生产、库存、发运与报工，将多模块、高密度的业务信息，整理为一套清晰、一致的移动端体验。</p>
+<p>设计重点落在用户每一次阅读与操作：先看到什么、如何判断状态、在哪里完成任务。以已有业务页面为基础，重组视觉层级，并建立可复用的组件语言。</p>
+<dl class="facts">
+<div>
+<dt>项目类型</dt>
+<dd>工业互联网 / 移动端</dd>
+</div>
+<div>
+<dt>设计职责</dt>
+<dd>UI 视觉 · 信息层级 · 组件规范</dd>
+</div>
+<div>
+<dt>核心场景</dt>
+<dd>生产 / 库存 / 发运 / 报工</dd>
+</div>
+<div>
+<dt>项目呈现</dt>
+<dd>原项目基础上的 UI 优化方案</dd>
+</div>
+</dl>
+</div>
+</section>
+<section id="challenge" class="section soft">
+<div class="wrap">
+<div class="section-head">
+<p class="eyebrow">CHALLENGE & OBJECTIVES</p>
+<h2>小屏幕，承载复杂现场。</h2>
+<p class="intro">将业务的复杂度留在系统里，把清晰的阅读顺序交给用户。</p>
+</div>
+<div class="challenge-grid">
+<article>
+<span class="feature-icon"><svg><use href="#i-layers"/></svg></span>
+<h3>信息多，重点容易被淹没</h3>
+<p>编号、工序、数量与状态同时出现，阅读优先级不清晰。</p>
+<div class="goal">建立层级<span>对象 → 状态 → 明细 → 操作</span>
+</div>
+</article>
+<article>
+<span class="feature-icon"><svg><use href="#i-status"/></svg></span>
+<h3>状态多，判断需要反复确认</h3>
+<p>待处理、退回、催办等状态并存，需要稳定的视觉语义。</p>
+<div class="goal">统一反馈<span>颜色 + 文字，明确任务状态</span>
+</div>
+</article>
+<article>
+<span class="feature-icon"><svg><use href="#i-grid"/></svg></span>
+<h3>模块多，界面语言不统一</h3>
+<p>跨业务切换时，卡片、筛选和按钮需要保持一致的使用逻辑。</p>
+<div class="goal">沉淀组件<span>统一结构，保留场景差异</span>
+</div>
+</article>
+</div>
+</div>
+</section>
+<section id="structure" class="section wrap">
+<div class="section-head">
+<p class="eyebrow">INFORMATION STRUCTURE</p>
+<h2>以任务为线索，<br>重新组织信息。</h2>
+<p class="intro">把业务入口、对象信息与执行动作分层表达，让概览、查找和处理各有位置。</p>
+</div>
+<div class="architecture">
+<div class="arch-root">
+<svg class="arch-icon"><use href="#i-grid"/></svg>
+<span>统一入口</span>
+<strong>工业互联网工作台</strong>
+<small>常用操作 · 今日待办 · 业务应用</small>
+</div>
+<div class="arch-branches">
+<article>
+<svg class="arch-icon"><use href="#i-factory"/></svg>
+<span>PRODUCTION</span>
+<h3>生产 / 车间</h3>
+<p>生产概览 → 工序产量<br>构件任务 → 完成确认</p>
+</article>
+<article>
+<svg class="arch-icon"><use href="#i-warehouse"/></svg>
+<span>WAREHOUSE</span>
+<h3>堆场 / 库存</h3>
+<p>库存总览 → 库存分析<br>库存作业 → 盘点核对</p>
+</article>
+<article>
+<svg class="arch-icon"><use href="#i-truck"/></svg>
+<span>LOGISTICS</span>
+<h3>发运 / 物流</h3>
+<p>发运列表 → 任务详情<br>运输信息 → 状态追踪</p>
+</article>
+<article>
+<svg class="arch-icon"><use href="#i-chart"/></svg>
+<span>REPORTING</span>
+<h3>统计 / 报工</h3>
+<p>岗位工作台 → 新建报工<br>周期筛选 → 指标明细</p>
+</article>
+</div>
+<p class="fine">界面信息组织示意 · 不表示四个系统已完成数据接口互通</p>
+</div>
+</section>
+<section id="strategy" class="section dark">
+<div class="wrap">
+<div class="section-head">
+<p class="eyebrow">DESIGN STRATEGY</p>
+<h2>让每一层信息，<br>都有自己的视觉权重。</h2>
+</div>
+<div class="strategy-layout">
+<div class="strategy-list">
+<article>
+<span class="strategy-icon"><svg><use href="#i-position"/></svg></span>
+<div>
+<h3>先识别对象，再展开明细</h3>
+<p>构件编号成为卡片锚点；工号、件号与工序退为辅助信息，减少同一层级的视觉竞争。</p>
+</div>
+</article>
+<article>
+<span class="strategy-icon"><svg><use href="#i-status"/></svg></span>
+<div>
+<h3>让状态可识别，也可读</h3>
+<p>常规、提醒、异常采用统一语义色，并保留文字标签，避免只依赖颜色判断。</p>
+</div>
+</article>
+<article>
+<span class="strategy-icon"><svg><use href="#i-checklist"/></svg></span>
+<div>
+<h3>将高频操作放在稳定位置</h3>
+<p>筛选集中在列表上方；页面主操作固定于底部；确认面板再次呈现对象和工序。</p>
+</div>
+</article>
+<article>
+<span class="strategy-icon"><svg><use href="#i-chart"/></svg></span>
+<div>
+<h3>图形看趋势，数字看细节</h3>
+<p>统计页通过选中态连接图表与数据，重量、件数、面积各自保留单位与口径。</p>
+</div>
+</article>
+</div>
+<div class="strategy-demo">
+<div class="object-card">
+<div class="card-top">
+<span class="tag warning">催办</span>
+<span>JBYZ–GZ3–04</span>
+</div>
+<strong>C1–3aGGKZ3a–17</strong>
+<p>件号 01　·　当前工序：埋弧焊</p>
+<div class="card-actions">
+<span>查看构件详情</span>
+<span>进入操作 →</span>
+</div>
+</div>
+<div class="annotation">
+<span>对象身份</span>
+<span>状态与上下文</span>
+<span>操作入口</span>
+</div>
+<div class="state-row">
+<span class="tag normal">待处理</span>
+<span class="tag success">已完成</span>
+<span class="tag warning">催办</span>
+<span class="tag danger">已退回</span>
+</div>
+<p class="fine">从已优化构件任务页提取的组件表达</p>
+</div>
+</div>
+</div>
+</section>
+<section id="scenarios" class="section wrap scenes">
+<div class="section-head">
+<p class="eyebrow">KEY SCENARIOS</p>
+<h2>四个现场，同一种清晰。</h2>
+<p class="intro">以典型任务串联页面，用真实设计稿展示信息组织与视觉决策。</p>
+</div>
+<article class="scene">
+<div class="scene-title">
+<span class="scene-icon"><svg><use href="#i-factory"/></svg></span>
+<div>
+<p class="eyebrow">生产 / 车间管理</p>
+<h3>让产量、设备与任务各就其位。</h3>
+</div>
+</div>
+<div class="scene-notes">
+<div>
+<span>场景问题</span>
+<p>同一页面内既要掌握生产概况，也要进入具体构件任务。</p>
+</div>
+<div>
+<span>设计处理</span>
+<p>顶部汇总关键产量，工序数据与设备状态分组呈现；任务列表采用对象卡片，突出编号、当前工序和处理入口。</p>
+</div>
+<div class="pills">
+<span>指标分层</span>
+<span>对象卡片</span>
+<span>操作核对</span>
+</div>
+</div>
+<div class="screen-stage ">
+<figure class="screen ">
+<button class="zoom" data-image="assets/optimized/A07.svg" data-title="车间生产管控" aria-label="放大查看：车间生产管控">
+<img src="assets/optimized/A07.svg" alt="车间生产管控优化设计稿" loading="lazy" width="402" height="874">
+</button>
+<figcaption>车间生产管控<span>↗</span>
+</figcaption>
+</figure>
+<figure class="screen ">
+<button class="zoom" data-image="assets/optimized/03-latest.png" data-title="构件任务列表" aria-label="放大查看：构件任务列表">
+<img src="assets/optimized/03-latest.png" alt="构件任务列表优化设计稿" loading="lazy" width="402" height="874">
+</button>
+<figcaption>构件任务列表<span>↗</span>
+</figcaption>
+</figure>
+<figure class="screen ">
+<button class="zoom" data-image="assets/optimized/06.svg" data-title="打砂完成确认" aria-label="放大查看：打砂完成确认">
+<img src="assets/optimized/06.svg" alt="打砂完成确认优化设计稿" loading="lazy" width="402" height="874">
+</button>
+<figcaption>打砂完成确认<span>↗</span>
+</figcaption>
+</figure>
+</div>
+</article>
+<article class="scene">
+<div class="scene-title">
+<span class="scene-icon"><svg><use href="#i-warehouse"/></svg></span>
+<div>
+<p class="eyebrow">堆场 / 库存</p>
+<h3>从库存总量，逐层读到结构。</h3>
+</div>
+</div>
+<div class="scene-notes">
+<div>
+<span>场景问题</span>
+<p>重量、件数、趋势和库存构成需要并列查看，却不能混为一种数据。</p>
+</div>
+<div>
+<span>设计处理</span>
+<p>总览优先显示库存和出入库信息；分析页用图表呈现变化，选中态关联具体数值，分开标注重量与件数。</p>
+</div>
+<div class="pills">
+<span>数据口径</span>
+<span>图表选中态</span>
+<span>作业与分析分区</span>
+</div>
+</div>
+<div class="screen-stage two-up">
+<figure class="screen ">
+<button class="zoom" data-image="assets/optimized/07-latest.webp" data-title="堆场管控概览" aria-label="放大查看：堆场管控概览">
+<img src="assets/optimized/07-latest.webp" alt="堆场管控概览优化设计稿" loading="lazy" width="402" height="874">
+</button>
+<figcaption>堆场管控概览<span>↗</span>
+</figcaption>
+</figure>
+<figure class="screen ">
+<button class="zoom" data-image="assets/optimized/08.svg" data-title="库存趋势分析" aria-label="放大查看：库存趋势分析">
+<img src="assets/optimized/08.svg" alt="库存趋势分析优化设计稿" loading="lazy" width="402" height="874">
+</button>
+<figcaption>库存趋势分析<span>↗</span>
+</figcaption>
+</figure>
+</div>
+</article>
+<article class="scene">
+<div class="scene-title">
+<span class="scene-icon"><svg><use href="#i-truck"/></svg></span>
+<div>
+<p class="eyebrow">发运 / 物流</p>
+<h3>把流转状态，放回任务上下文。</h3>
+</div>
+</div>
+<div class="scene-notes">
+<div>
+<span>场景问题</span>
+<p>发运单、运输状态与地点信息分散时，用户难以快速确认当前任务。</p>
+</div>
+<div>
+<span>设计处理</span>
+<p>列表突出单号与状态；详情页将线路、阶段进度与运输信息串联，底部保留明确的下一步操作。</p>
+</div>
+<div class="pills">
+<span>单号优先</span>
+<span>进度表达</span>
+<span>信息核对</span>
+</div>
+</div>
+<div class="screen-stage two-up">
+<figure class="screen ">
+<button class="zoom" data-image="assets/optimized/09.svg" data-title="发运任务管理" aria-label="放大查看：发运任务管理">
+<img src="assets/optimized/09.svg" alt="发运任务管理优化设计稿" loading="lazy" width="402" height="874">
+</button>
+<figcaption>发运任务管理<span>↗</span>
+</figcaption>
+</figure>
+<figure class="screen ">
+<button class="zoom" data-image="assets/optimized/10.svg" data-title="发运任务详情" aria-label="放大查看：发运任务详情">
+<img src="assets/optimized/10.svg" alt="发运任务详情优化设计稿" loading="lazy" width="402" height="874">
+</button>
+<figcaption>发运任务详情<span>↗</span>
+</figcaption>
+</figure>
+</div>
+</article>
+<article class="scene">
+<div class="scene-title">
+<span class="scene-icon"><svg><use href="#i-chart"/></svg></span>
+<div>
+<p class="eyebrow">数据统计 / 报工</p>
+<h3>让数据阅读与现场填报更有条理。</h3>
+</div>
+</div>
+<div class="scene-notes">
+<div>
+<span>场景问题</span>
+<p>不同岗位关注点不同；密集字段与统计图表也需要各自的阅读节奏。</p>
+</div>
+<div>
+<span>设计处理</span>
+<p>组员工作台突出填报入口与任务，表单按作业信息和完成情况分组；统计页以周期和计量单位组织数据。</p>
+</div>
+<div class="pills">
+<span>岗位入口</span>
+<span>表单分组</span>
+<span>周期与单位</span>
+</div>
+</div>
+<div class="screen-stage ">
+<figure class="screen ">
+<button class="zoom" data-image="assets/optimized/02.svg" data-title="组员报工作业" aria-label="放大查看：组员报工作业">
+<img src="assets/optimized/02.svg" alt="组员报工作业优化设计稿" loading="lazy" width="402" height="874">
+</button>
+<figcaption>组员报工作业<span>↗</span>
+</figcaption>
+</figure>
+<figure class="screen ">
+<button class="zoom" data-image="assets/optimized/04.svg" data-title="新建焊工报工" aria-label="放大查看：新建焊工报工">
+<img src="assets/optimized/04.svg" alt="新建焊工报工优化设计稿" loading="lazy" width="402" height="874">
+</button>
+<figcaption>新建焊工报工<span>↗</span>
+</figcaption>
+</figure>
+<figure class="screen ">
+<button class="zoom" data-image="assets/optimized/A03.svg" data-title="月度入库统计" aria-label="放大查看：月度入库统计">
+<img src="assets/optimized/A03.svg" alt="月度入库统计优化设计稿" loading="lazy" width="402" height="874">
+</button>
+<figcaption>月度入库统计<span>↗</span>
+</figcaption>
+</figure>
+</div>
+</article>
+</section>
+<section id="system" class="section soft">
+<div class="wrap">
+<div class="section-head">
+<p class="eyebrow">UI SYSTEM</p>
+<h2>一套规则，贯穿每个业务界面。</h2>
+<p class="intro">从颜色与字体到卡片与间距，把单页设计沉淀为可复用的视觉语言。</p>
+</div>
+<div class="system-title">
+<span>COLOR</span>
+<h3>用颜色表达含义</h3>
+<p>蓝色承担核心操作；语义色帮助识别状态；中性色稳定信息层级。</p>
+</div>
+<div class="palette">
+<div>
+<div class="swatch" style="--swatch:#1769EB">
+</div>
+<strong>Industrial Blue</strong>
+<span>#1769EB</span>
+<p>核心操作 / 选中</p>
+</div>
+<div>
+<div class="swatch" style="--swatch:#008E82">
+</div>
+<strong>Success Teal</strong>
+<span>#008E82</span>
+<p>完成 / 正常</p>
+</div>
+<div>
+<div class="swatch" style="--swatch:#B86B12">
+</div>
+<strong>Warning Amber</strong>
+<span>#B86B12</span>
+<p>催办 / 需关注</p>
+</div>
+<div>
+<div class="swatch" style="--swatch:#CD4650">
+</div>
+<strong>Error Red</strong>
+<span>#CD4650</span>
+<p>退回 / 异常</p>
+</div>
+<div>
+<div class="swatch" style="--swatch:#142A43">
+</div>
+<strong>Ink Navy</strong>
+<span>#142A43</span>
+<p>标题 / 关键数据</p>
+</div>
+</div>
+<div class="system-pair">
+<article class="type-board">
+<div class="system-title">
+<span>TYPOGRAPHY</span>
+<h3>建立稳定的阅读顺序</h3>
+</div>
+<div class="type-sample">
+<strong>工业互联网</strong>
+<span>24 / 关键标题</span>
+</div>
+<div class="type-sample">
+<b>生产管控 · 构件任务</b>
+<span>18 / 页面标题</span>
+</div>
+<div class="type-sample">
+<span>作业信息与完成情况</span>
+<span>14 / 业务正文</span>
+</div>
+<div class="number-sample">9,204 <small>吨</small>
+</div>
+<p>中文：苹方 / 微软雅黑<br>数字强调量级，单位保留在视线范围内。</p>
+</article>
+<article class="spacing-board">
+<div class="system-title">
+<span>LAYOUT & SPACING</span>
+<h3>用间距划清信息边界</h3>
+</div>
+<div class="spacing-scale">
+<div style="--space:4">
+<span>4</span>
+</div>
+<div style="--space:8">
+<span>8</span>
+</div>
+<div style="--space:12">
+<span>12</span>
+</div>
+<div style="--space:16">
+<span>16</span>
+</div>
+<div style="--space:24">
+<span>24</span>
+</div>
+<div style="--space:32">
+<span>32</span>
+</div>
+</div>
+<div class="layout-example">
+<span>页面边距</span>
+<div>
+<b>分组容器</b>
+<div>对象信息</div>
+<div>辅助信息</div>
+</div>
+</div>
+<p>以 4 为基础的间距节奏，结合信息分组使用；主要底部按钮高度为 48 个逻辑单位。</p>
+</article>
+</div>
+<div class="system-title">
+<span>COMPONENTS IN CONTEXT</span>
+<h3>从一个组件，到多个真实场景</h3>
+<p>保留相同的骨架，让内容、状态与业务动作形成变化。</p>
+</div>
+<div class="component-grid">
+<article>
+<span class="component-id">CARD</span>
+<h4>对象卡片</h4>
+<div class="mini-card">
+<span class="tag normal">待处理</span>
+<strong>C1–3aGGKZ3a–17</strong>
+<p>工号 · 当前工序 · 处理入口</p>
+</div>
+<p class="component-use">应用于：构件任务 / 发运列表</p>
+</article>
+<article>
+<span class="component-id">METRIC</span>
+<h4>指标卡片</h4>
+<div class="mini-card">
+<span>库存重量</span>
+<strong class="blue">9,204 <small>吨</small>
+</strong>
+<p>与构件数量分开展示</p>
+</div>
+<p class="component-use">应用于：库存趋势 / 生产概览</p>
+</article>
+<article>
+<span class="component-id">ACTION</span>
+<h4>底部操作区</h4>
+<div class="mini-card">
+<span>页面主要动作</span>
+<div class="sample-button">提交报工</div>
+<p>固定位置 · 明确动作名称</p>
+</div>
+<p class="component-use">应用于：报工表单 / 完成确认</p>
+</article>
+</div>
+</div>
+</section>
+<section id="comparison" class="section wrap">
+<div class="section-head">
+<p class="eyebrow">BEFORE & AFTER</p>
+<h2>从字段堆叠，到对象优先。</h2>
+<p class="intro">精选构件任务这一处变化，说明信息层级如何影响阅读顺序。</p>
+</div>
+<div class="compare-grid">
+<article class="before">
+<p class="eyebrow">BEFORE / 原信息结构示意</p>
+<div class="wire-table">
+<div>工号　　构件编号　　工序　　状态</div>
+<div>JBYZ…　C1–3a…　埋弧焊　催办</div>
+<div>JBYZ…　C1–3a…　组立　　待处理</div>
+<div>JBYZ…　C1–3a…　埋弧焊　待处理</div>
+</div>
+<h3>字段并列，阅读缺少锚点</h3>
+<p>在有限宽度中，编号、状态和工序竞争注意力，长编号也更难完整呈现。</p>
+</article>
+<article class="after">
+<p class="eyebrow">AFTER / 优化后结构</p>
+<div class="object-card">
+<div class="card-top">
+<span class="tag warning">催办</span>
+<span>JBYZ–GZ3–04</span>
+</div>
+<strong>C1–3aGGKZ3a–17</strong>
+<p>件号 01　·　当前工序：埋弧焊</p>
+<div class="card-actions">
+<span>查看构件详情</span>
+<span>进入操作 →</span>
+</div>
+</div>
+<h3>先看到对象，再判断行动</h3>
+<p>完整编号建立主层级，状态标签辅助定位，工序与操作各自占据稳定位置。</p>
+</article>
+</div>
+<p class="fine">对比为依据原稿与优化说明重绘的信息结构示意，并非原版界面截图；完整优化稿见上方「构件任务列表」。</p>
+</section>
+<section id="showcase" class="section dark final-showcase">
+<div class="wrap">
+<div class="section-head">
+<p class="eyebrow">FINAL SHOWCASE</p>
+<h2>由细节，形成整体。</h2>
+<p class="intro">一套视觉语言，连接每一次查找、判断与操作。</p>
+</div>
+<div class="showcase-grid">
+<figure class="screen ">
+<button class="zoom" data-image="assets/optimized/01.svg" data-title="统一工作台" aria-label="放大查看：统一工作台">
+<img src="assets/optimized/01.svg" alt="统一工作台优化设计稿" loading="lazy" width="402" height="874">
+</button>
+<figcaption>统一工作台<span>↗</span>
+</figcaption>
+</figure>
+<figure class="screen ">
+<button class="zoom" data-image="assets/optimized/02.svg" data-title="组员报工" aria-label="放大查看：组员报工">
+<img src="assets/optimized/02.svg" alt="组员报工优化设计稿" loading="lazy" width="402" height="874">
+</button>
+<figcaption>组员报工<span>↗</span>
+</figcaption>
+</figure>
+<figure class="screen ">
+<button class="zoom" data-image="assets/optimized/03-latest.png" data-title="构件任务" aria-label="放大查看：构件任务">
+<img src="assets/optimized/03-latest.png" alt="构件任务优化设计稿" loading="lazy" width="402" height="874">
+</button>
+<figcaption>构件任务<span>↗</span>
+</figcaption>
+</figure>
+<figure class="screen ">
+<button class="zoom" data-image="assets/optimized/04.svg" data-title="新建报工" aria-label="放大查看：新建报工">
+<img src="assets/optimized/04.svg" alt="新建报工优化设计稿" loading="lazy" width="402" height="874">
+</button>
+<figcaption>新建报工<span>↗</span>
+</figcaption>
+</figure>
+<figure class="screen ">
+<button class="zoom" data-image="assets/optimized/07-latest.webp" data-title="堆场管控" aria-label="放大查看：堆场管控">
+<img src="assets/optimized/07-latest.webp" alt="堆场管控优化设计稿" loading="lazy" width="402" height="874">
+</button>
+<figcaption>堆场管控<span>↗</span>
+</figcaption>
+</figure>
+<figure class="screen ">
+<button class="zoom" data-image="assets/optimized/08.svg" data-title="库存趋势" aria-label="放大查看：库存趋势">
+<img src="assets/optimized/08.svg" alt="库存趋势优化设计稿" loading="lazy" width="402" height="874">
+</button>
+<figcaption>库存趋势<span>↗</span>
+</figcaption>
+</figure>
+<figure class="screen ">
+<button class="zoom" data-image="assets/optimized/09.svg" data-title="发运管理" aria-label="放大查看：发运管理">
+<img src="assets/optimized/09.svg" alt="发运管理优化设计稿" loading="lazy" width="402" height="874">
+</button>
+<figcaption>发运管理<span>↗</span>
+</figcaption>
+</figure>
+<figure class="screen ">
+<button class="zoom" data-image="assets/optimized/10.svg" data-title="发运详情" aria-label="放大查看：发运详情">
+<img src="assets/optimized/10.svg" alt="发运详情优化设计稿" loading="lazy" width="402" height="874">
+</button>
+<figcaption>发运详情<span>↗</span>
+</figcaption>
+</figure>
+<figure class="screen ">
+<button class="zoom" data-image="assets/optimized/A03.svg" data-title="月度统计" aria-label="放大查看：月度统计">
+<img src="assets/optimized/A03.svg" alt="月度统计优化设计稿" loading="lazy" width="402" height="874">
+</button>
+<figcaption>月度统计<span>↗</span>
+</figcaption>
+</figure>
+<figure class="screen ">
+<button class="zoom" data-image="assets/optimized/A12.svg" data-title="作业工作台" aria-label="放大查看：作业工作台">
+<img src="assets/optimized/A12.svg" alt="作业工作台优化设计稿" loading="lazy" width="402" height="874">
+</button>
+<figcaption>作业工作台<span>↗</span>
+</figcaption>
+</figure>
+<figure class="screen ">
+<button class="zoom" data-image="assets/optimized/06.svg" data-title="完成确认" aria-label="放大查看：完成确认">
+<img src="assets/optimized/06.svg" alt="完成确认优化设计稿" loading="lazy" width="402" height="874">
+</button>
+<figcaption>完成确认<span>↗</span>
+</figcaption>
+</figure>
+<figure class="screen"><button class="zoom" data-image="assets/optimized/A07.svg" data-title="车间管理生产管控" aria-label="放大查看：车间管理生产管控"><img src="assets/optimized/A07.svg" alt="车间管理生产管控优化设计稿" loading="lazy" width="402" height="874"></button><figcaption>车间管理·生产管控<span>↗</span></figcaption></figure>
+<figure class="screen"><button class="zoom" data-image="assets/optimized/A10.svg" data-title="运输任务地图" aria-label="放大查看：运输任务地图"><img src="assets/optimized/A10.svg" alt="运输任务地图优化设计稿" loading="lazy" width="402" height="874"></button><figcaption>运输任务地图<span>↗</span></figcaption></figure>
+<figure class="screen">
+<button class="zoom" data-image="assets/stocktake-latest.webp" data-title="库存盘点" aria-label="放大查看：库存盘点">
+<img src="assets/stocktake-latest.webp" alt="库存盘点移动端界面设计稿" loading="lazy" width="402" height="874">
+</button>
+<figcaption>库存盘点<span>↗</span></figcaption>
+</figure>
+<figure class="screen">
+<button class="zoom" data-image="assets/production-alert.svg" data-title="生产异常协同" aria-label="放大查看：生产异常协同">
+<img src="assets/production-alert.svg" alt="生产异常协同移动端设计稿" loading="lazy" width="402" height="874">
+</button>
+<figcaption>生产异常协同<span>↗</span></figcaption>
+</figure>
+</div>
+<div class="closing">
+<p>信息有层次。<br>操作有依据。<br>
+<span>界面有一致性。</span>
+</p>
+<div>INDUSTRIAL INTERNET<br>MOBILE UI DESIGN<p>把复杂流程理清，让现场任务与数据更容易理解和使用。</p>
+<a href="#top">回到顶部 ↑</a>
+</div>
+</div>
+</div>
+</section>
+</main>
+<footer>
+<span>工业互联网 / 小钢制造</span>
+<span>UI DESIGN CASE STUDY</span>
+</footer>
+<dialog id="lightbox" aria-labelledby="lightbox-title">
+<div class="lightbox-bar">
+<h2 id="lightbox-title">
+</h2>
+<button id="close-lightbox" aria-label="关闭大图">关闭 ×</button>
+</div>
+<div class="lightbox-content">
+<img id="lightbox-image" alt="">
+</div>
+</dialog>
+<script src="script.js">
+</script>
+</body>
+</html>
