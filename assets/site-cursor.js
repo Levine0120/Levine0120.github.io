@@ -9,13 +9,13 @@
   const style = document.createElement('style');
   style.textContent = `
     html.portfolio-cursor,html.portfolio-cursor *{cursor:none!important}
-    .portfolio-pointer{position:fixed;left:0;top:0;width:36px;height:36px;z-index:2147483647;pointer-events:none;opacity:0;transition:opacity .12s;--pointer-fill:#181c20;--spectrum:conic-gradient(#ef7498,#f0ba70,#b5d983,#5bcab9,#6eaeed,#aa89df,#ef7498)}
+    .portfolio-pointer{position:fixed;left:0;top:0;width:32px;height:32px;z-index:2147483647;pointer-events:none;opacity:0;transition:opacity .12s;--pointer-fill:#181c20;--spectrum:conic-gradient(#ef7498,#f0ba70,#b5d983,#5bcab9,#6eaeed,#aa89df,#ef7498)}
     .portfolio-pointer.is-visible{opacity:1}
-    .portfolio-pointer svg{position:absolute;inset:0;width:36px;height:36px;fill:var(--pointer-fill);filter:drop-shadow(0 1px 2px #172b3726)}
+    .portfolio-pointer svg{position:absolute;inset:0;width:32px;height:32px;fill:var(--pointer-fill);filter:drop-shadow(0 1px 2px #172b3726)}
     .portfolio-pointer.is-dark{--pointer-fill:#fff}
-    .pointer-outline{position:absolute;inset:0;mask-image:${outline};mask-size:36px 36px;mask-repeat:no-repeat}
+    .pointer-outline{position:absolute;inset:0;mask-image:${outline};mask-size:32px 32px;mask-repeat:no-repeat}
     .pointer-outline:before{content:'';position:absolute;inset:-50%;background:var(--spectrum);animation:portfolio-spectrum 3s linear infinite}
-    .pointer-ring{position:absolute;left:-3px;top:-2px;width:38px;height:38px;border-radius:50%;background:var(--spectrum);padding:1.5px;mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);mask-composite:exclude;animation:portfolio-spectrum 3s linear infinite;opacity:0;transition:opacity .18s}
+    .pointer-ring{position:absolute;left:-3px;top:-2px;width:34px;height:34px;border-radius:50%;background:var(--spectrum);padding:1.5px;mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);mask-composite:exclude;animation:portfolio-spectrum 3s linear infinite;opacity:0;transition:opacity .18s}
     .portfolio-pointer.is-action .pointer-ring{opacity:1}
     @keyframes portfolio-spectrum{to{transform:rotate(360deg)}}
   `;
@@ -32,7 +32,7 @@
   document.addEventListener('pointermove',e=>{
     if(e.pointerType==='touch')return;
     last={x:e.clientX,y:e.clientY};
-    pointer.style.transform=`translate3d(${e.clientX-7}px,${e.clientY-5}px,0)`;
+    pointer.style.transform=`translate3d(${e.clientX-56/9}px,${e.clientY-40/9}px,0)`;
     updateTarget(e.target);pointer.classList.add('is-visible');document.documentElement.classList.add('portfolio-cursor');
   },{passive:true});
   document.addEventListener('scroll',()=>{if(last)updateTarget(document.elementFromPoint(last.x,last.y))},{passive:true,capture:true});
