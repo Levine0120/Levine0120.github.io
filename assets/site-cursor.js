@@ -3,10 +3,11 @@
   const path = 'M7 5 L8 28 Q8 30 10 28 L15 22 L23 22 Q26 22 24 20 L9 5 Q7 3 7 5 Z';
   const tilt = 'translate(2 1.5) rotate(-15 16 16.5)';
   const outline = `url("data:image/svg+xml,${encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36"><path transform="${tilt}" d="${path}" fill="none" stroke="white" stroke-width="1.8" stroke-linejoin="round"/></svg>`)}")`;
+  const silhouette = `url("data:image/svg+xml,${encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36"><path transform="${tilt}" d="${path}" fill="white"/></svg>`)}")`;
   const pointer = document.createElement('div');
   pointer.className = 'portfolio-pointer';
   pointer.setAttribute('aria-hidden','true');
-  pointer.innerHTML = `<span class="pointer-ring"></span><svg viewBox="0 0 36 36"><path transform="${tilt}" d="${path}"/></svg><span class="pointer-outline"></span>`;
+  pointer.innerHTML = `<span class="pointer-shadow"><span></span></span><svg viewBox="0 0 36 36"><path transform="${tilt}" d="${path}"/></svg><span class="pointer-outline"></span>`;
   const style = document.createElement('style');
   style.textContent = `
     html.portfolio-cursor,html.portfolio-cursor *{cursor:none!important}
@@ -16,9 +17,13 @@
     .portfolio-pointer.is-dark{--pointer-fill:#fff}
     .pointer-outline{position:absolute;inset:0;mask-image:${outline};mask-size:25.6px 25.6px;mask-repeat:no-repeat;opacity:1;transition:opacity .18s}
     .pointer-outline:before{content:'';position:absolute;inset:-50%;background:var(--spectrum);animation:portfolio-spectrum 3s linear infinite}
-    .pointer-ring{position:absolute;left:-.8px;top:-.8px;width:27.2px;height:27.2px;border-radius:50%;background:var(--spectrum);padding:1.5px;mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);mask-composite:exclude;animation:portfolio-spectrum 3s linear infinite;opacity:0;transition:opacity .18s}
-    .portfolio-pointer.is-action .pointer-ring{opacity:1}
+    .pointer-shadow{position:absolute;inset:0;opacity:0;filter:blur(3px);transform:translate(1px,2px) scale(1.15);transition:opacity .18s}
+    .pointer-shadow>span{position:absolute;inset:0;mask-image:${silhouette};mask-size:25.6px 25.6px;mask-repeat:no-repeat}
+    .pointer-shadow>span:before{content:'';position:absolute;inset:-50%;background:var(--spectrum);animation:portfolio-spectrum 3s linear infinite}
+    .portfolio-pointer.is-action .pointer-shadow{opacity:.85}
     .portfolio-pointer.is-action .pointer-outline{opacity:0}
+    .portfolio-pointer.is-action svg{stroke:var(--pointer-edge,#fff);stroke-width:1.4;stroke-linejoin:round}
+    .portfolio-pointer.is-dark{--pointer-edge:#181c20}
     @keyframes portfolio-spectrum{to{transform:rotate(360deg)}}
   `;
   document.head.append(style);document.body.append(pointer);
