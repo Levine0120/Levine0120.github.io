@@ -1,0 +1,302 @@
+[
+  {
+    "id": "01",
+    "name": "登录页",
+    "category": "登录与找站",
+    "group": "01",
+    "width": 1206,
+    "height": 2622,
+    "src": "assets/ui/01.webp",
+    "full": "assets/ui/01.png"
+  },
+  {
+    "id": "04",
+    "name": "首页活动弹窗",
+    "category": "登录与找站",
+    "group": "01",
+    "width": 1206,
+    "height": 2622,
+    "src": "assets/ui/04.webp",
+    "full": "assets/ui/04.png"
+  },
+  {
+    "id": "06",
+    "name": "站点列表中段",
+    "category": "登录与找站",
+    "group": "01",
+    "width": 1206,
+    "height": 2622,
+    "src": "assets/ui/06.webp",
+    "full": "assets/ui/06.png"
+  },
+  {
+    "id": "08",
+    "name": "找站筛选状态一",
+    "category": "登录与找站",
+    "group": "01",
+    "width": 1206,
+    "height": 2622,
+    "src": "assets/ui/08.webp",
+    "full": "assets/ui/08.png"
+  },
+  {
+    "id": "09",
+    "name": "找站筛选状态二",
+    "category": "登录与找站",
+    "group": "01",
+    "width": 1206,
+    "height": 2622,
+    "src": "assets/ui/09.webp",
+    "full": "assets/ui/09.png"
+  },
+  {
+    "id": "11",
+    "name": "筛选面板",
+    "category": "登录与找站",
+    "group": "01",
+    "width": 1206,
+    "height": 2622,
+    "src": "assets/ui/11.webp",
+    "full": "assets/ui/11.png"
+  },
+  {
+    "id": "13",
+    "name": "城市列表滚动",
+    "category": "登录与找站",
+    "group": "01",
+    "width": 1206,
+    "height": 2622,
+    "src": "assets/ui/13.webp",
+    "full": "assets/ui/13.png"
+  },
+  {
+    "id": "14",
+    "name": "站点搜索输入",
+    "category": "登录与找站",
+    "group": "01",
+    "width": 1206,
+    "height": 2622,
+    "src": "assets/ui/14.webp",
+    "full": "assets/ui/14.png"
+  },
+  {
+    "id": "15",
+    "name": "站点搜索结果",
+    "category": "登录与找站",
+    "group": "01",
+    "width": 1206,
+    "height": 2622,
+    "src": "assets/ui/15.webp",
+    "full": "assets/ui/15.png"
+  },
+  {
+    "id": "16",
+    "name": "充电站详情上段",
+    "category": "充电站详情",
+    "group": "02",
+    "width": 1206,
+    "height": 2622,
+    "src": "assets/ui/16.webp",
+    "full": "assets/ui/16.png"
+  },
+  {
+    "id": "17",
+    "name": "充电站详情中段",
+    "category": "充电站详情",
+    "group": "02",
+    "width": 1206,
+    "height": 2622,
+    "src": "assets/ui/17.webp",
+    "full": "assets/ui/17.png"
+  },
+  {
+    "id": "18",
+    "name": "价格说明时段列表一",
+    "category": "充电站详情",
+    "group": "02",
+    "width": 1206,
+    "height": 2622,
+    "src": "assets/ui/18.webp",
+    "full": "assets/ui/18.png"
+  },
+  {
+    "id": "22",
+    "name": "站点照片一",
+    "category": "充电站详情",
+    "group": "02",
+    "width": 1206,
+    "height": 2622,
+    "src": "assets/ui/22.webp",
+    "full": "assets/ui/22.png"
+  },
+  {
+    "id": "25",
+    "name": "充电枪列表",
+    "category": "充电站详情",
+    "group": "02",
+    "width": 1206,
+    "height": 2622,
+    "src": "assets/ui/25.webp",
+    "full": "assets/ui/25.png"
+  },
+  {
+    "id": "26",
+    "name": "充电枪弹窗",
+    "category": "充电站详情",
+    "group": "02",
+    "width": 1206,
+    "height": 2622,
+    "src": "assets/ui/26.webp",
+    "full": "assets/ui/26.png"
+  },
+  {
+    "id": "30",
+    "name": "Plus会员首页",
+    "category": "会员与活动",
+    "group": "03",
+    "width": 1206,
+    "height": 2622,
+    "src": "assets/ui/30.webp",
+    "full": "assets/ui/30.png"
+  },
+  {
+    "id": "31",
+    "name": "会员站点选择弹窗",
+    "category": "会员与活动",
+    "group": "03",
+    "width": 1206,
+    "height": 2622,
+    "src": "assets/ui/31.webp",
+    "full": "assets/ui/31.png"
+  },
+  {
+    "id": "33",
+    "name": "活动中心",
+    "category": "会员与活动",
+    "group": "03",
+    "width": 1206,
+    "height": 2622,
+    "src": "assets/ui/33.webp",
+    "full": "assets/ui/33.png"
+  },
+  {
+    "id": "39",
+    "name": "地图区域找站",
+    "category": "地图找站",
+    "group": "04",
+    "width": 1206,
+    "height": 2622,
+    "src": "assets/ui/39.webp",
+    "full": "assets/ui/39.png"
+  },
+  {
+    "id": "40",
+    "name": "地图选中站点",
+    "category": "地图找站",
+    "group": "04",
+    "width": 1206,
+    "height": 2622,
+    "src": "assets/ui/40.webp",
+    "full": "assets/ui/40.png"
+  },
+  {
+    "id": "41",
+    "name": "地图站点卡片",
+    "category": "地图找站",
+    "group": "04",
+    "width": 1206,
+    "height": 2622,
+    "src": "assets/ui/41.webp",
+    "full": "assets/ui/41.png"
+  },
+  {
+    "id": "44",
+    "name": "余额",
+    "category": "我的与钱包",
+    "group": "05",
+    "width": 1206,
+    "height": 2622,
+    "src": "assets/ui/44.webp",
+    "full": "assets/ui/44.png"
+  },
+  {
+    "id": "45",
+    "name": "充值金额选择",
+    "category": "我的与钱包",
+    "group": "05",
+    "width": 1206,
+    "height": 2622,
+    "src": "assets/ui/45.webp",
+    "full": "assets/ui/45.png"
+  },
+  {
+    "id": "49",
+    "name": "个人中心车辆卡片",
+    "category": "我的与钱包",
+    "group": "05",
+    "width": 1206,
+    "height": 3525,
+    "src": "assets/ui/49.webp",
+    "full": "assets/ui/49.png"
+  },
+  {
+    "id": "53",
+    "name": "放电服务",
+    "category": "我的与钱包",
+    "group": "05",
+    "width": 1206,
+    "height": 2622,
+    "src": "assets/ui/53.webp",
+    "full": "assets/ui/53.png"
+  },
+  {
+    "id": "58",
+    "name": "车辆管理更多信息",
+    "category": "车辆与电池",
+    "group": "06",
+    "width": 1206,
+    "height": 2622,
+    "src": "assets/ui/58.webp",
+    "full": "assets/ui/58.png"
+  },
+  {
+    "id": "61",
+    "name": "车辆信息填写",
+    "category": "车辆与电池",
+    "group": "06",
+    "width": 1206,
+    "height": 2622,
+    "src": "assets/ui/61.webp",
+    "full": "assets/ui/61.png"
+  },
+  {
+    "id": "62",
+    "name": "客服中心",
+    "category": "客服与反馈",
+    "group": "07",
+    "width": 1206,
+    "height": 2622,
+    "src": "assets/ui/62.webp",
+    "full": "assets/ui/62.png"
+  },
+  {
+    "id": "63",
+    "name": "常见问题详情",
+    "category": "客服与反馈",
+    "group": "07",
+    "width": 1206,
+    "height": 2622,
+    "src": "assets/ui/63.webp",
+    "full": "assets/ui/63.png"
+  },
+  {
+    "id": "71",
+    "name": "在线客服问题解答",
+    "category": "客服与反馈",
+    "group": "07",
+    "width": 1206,
+    "height": 2622,
+    "src": "assets/ui/71.webp",
+    "full": "assets/ui/71.png"
+  }
+]

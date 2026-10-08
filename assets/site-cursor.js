@@ -1,29 +1,30 @@
 (() => {
   if (!matchMedia('(hover:hover) and (pointer:fine)').matches) return;
-  // Use the actual browser cursor so scrolling and window changes cannot leave a second pointer behind.
-  const cursor = (day, action) => {
-    const fill = day ? '#183039' : '#f2fafb';
-    const edge = day ? '#f7fcfd' : '#10232c';
-    const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36">${action ? `<circle cx="16" cy="17" r="14" fill="none" stroke="${day ? '#315e6c' : '#79d4df'}" stroke-opacity=".6"/>` : ''}<path d="M7 5 L8 28 Q8 30 10 28 L15 22 L23 22 Q26 22 24 20 L9 5 Q7 3 7 5 Z" fill="${fill}" stroke="${edge}" stroke-width="1.6" stroke-linejoin="round"/></svg>`;
-    return `url("data:image/svg+xml,${encodeURIComponent(svg)}") 7 5, auto`;
-  };
-  const variants = [cursor(false,false),cursor(false,true),cursor(true,false),cursor(true,true)];
+  const pointer = document.createElement('div');
+  pointer.className = 'portfolio-pointer';
+  pointer.setAttribute('aria-hidden','true');
+  pointer.innerHTML = '<span class="pointer-spectrum"></span><svg viewBox="0 0 24 24"><path d="M5 3 6 20 10 15 16 15Z"/></svg>';
   const style = document.createElement('style');
-  style.textContent = 'html.portfolio-cursor,html.portfolio-cursor *{cursor:var(--portfolio-cursor)!important}';
-  document.head.append(style);
-  document.querySelectorAll('.portfolio-pointer').forEach(node=>node.remove());
-  let previous=-1;
+  style.textContent = `
+    html.portfolio-cursor,html.portfolio-cursor *{cursor:none!important}
+    .portfolio-pointer{position:fixed;left:0;top:0;width:32px;height:32px;z-index:2147483647;pointer-events:none;opacity:0;transition:opacity .12s;contain:layout style}
+    .portfolio-pointer.is-visible{opacity:1}
+    .pointer-spectrum{position:absolute;inset:0;border-radius:50%;background:conic-gradient(#ef7498,#f0ba70,#b5d983,#5bcab9,#6eaeed,#aa89df,#ef7498);padding:1.5px;mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);mask-composite:exclude;animation:portfolio-spectrum 3s linear infinite;transition:inset .2s}
+    .portfolio-pointer.is-action .pointer-spectrum{inset:-4px}
+    .portfolio-pointer svg{position:absolute;left:8px;top:7px;width:19px;height:19px;fill:#243c46;stroke:#fff;stroke-width:1.2;stroke-linejoin:round;filter:drop-shadow(0 1px 2px #172b3726)}
+    .portfolio-pointer.is-dark svg{fill:#f4fafc;stroke:#243c46}
+    @keyframes portfolio-spectrum{to{transform:rotate(360deg)}}
+  `;
+  document.head.append(style);document.body.append(pointer);
+  const hide=()=>{pointer.classList.remove('is-visible');document.documentElement.classList.remove('portfolio-cursor')};
   document.addEventListener('pointermove',e=>{
     if(e.pointerType==='touch')return;
+    pointer.style.transform=`translate3d(${e.clientX-12}px,${e.clientY-9}px,0)`;
+    pointer.classList.toggle('is-action',!!e.target.closest('a,button,[role="button"],input,select,textarea,[data-image]'));
     let node=e.target,lum=.8;
-    while(node instanceof Element){
-      const color=getComputedStyle(node).backgroundColor.match(/[\d.]+/g);
-      if(color&&Number(color[3]??1)>.75){lum=(Number(color[0])*.2126+Number(color[1])*.7152+Number(color[2])*.0722)/255;break;}
-      node=node.parentElement;
-    }
-    const action=!!e.target.closest('a,button,[role="button"],input,select,textarea,[data-image]');
-    const next=(lum>.48?2:0)+(action?1:0);
-    if(next!==previous){document.documentElement.style.setProperty('--portfolio-cursor',variants[next]);previous=next;}
-    document.documentElement.classList.add('portfolio-cursor');
+    while(node instanceof Element){const c=getComputedStyle(node).backgroundColor.match(/[\d.]+/g);if(c&&Number(c[3]??1)>.75){lum=(+c[0]*.2126 + +c[1]*.7152 + +c[2]*.0722)/255;break;}node=node.parentElement;}
+    pointer.classList.toggle('is-dark',lum<.48);pointer.classList.add('is-visible');document.documentElement.classList.add('portfolio-cursor');
   },{passive:true});
+  document.documentElement.addEventListener('pointerleave',hide);window.addEventListener('blur',hide);
+  document.addEventListener('visibilitychange',()=>{if(document.hidden)hide()});
 })();
