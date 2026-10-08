@@ -21,9 +21,6 @@
     .pointer-shadow>span{position:absolute;inset:0;mask-image:${silhouette};mask-size:25.6px 25.6px;mask-repeat:no-repeat}
     .pointer-shadow>span:before{content:'';position:absolute;inset:-50%;background:var(--spectrum);animation:portfolio-spectrum 3s linear infinite}
     .portfolio-pointer.is-action .pointer-shadow{opacity:.85}
-    .portfolio-pointer.is-action .pointer-outline{opacity:0}
-    .portfolio-pointer.is-action svg{stroke:var(--pointer-edge,#fff);stroke-width:1.8;stroke-linejoin:round}
-    .portfolio-pointer.is-dark{--pointer-edge:#181c20}
     @keyframes portfolio-spectrum{to{transform:rotate(360deg)}}
   `;
   document.head.append(style);document.body.append(pointer);
