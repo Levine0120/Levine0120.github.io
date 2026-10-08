@@ -22,7 +22,7 @@
     .pointer-shadow>span:before{content:'';position:absolute;inset:-50%;background:var(--spectrum);animation:portfolio-spectrum 3s linear infinite}
     .portfolio-pointer.is-action .pointer-shadow{opacity:.85}
     .portfolio-pointer.is-action .pointer-outline{opacity:0}
-    .portfolio-pointer.is-action svg{stroke:var(--pointer-edge,#fff);stroke-width:1.4;stroke-linejoin:round}
+    .portfolio-pointer.is-action svg{stroke:var(--pointer-edge,#fff);stroke-width:1.8;stroke-linejoin:round}
     .portfolio-pointer.is-dark{--pointer-edge:#181c20}
     @keyframes portfolio-spectrum{to{transform:rotate(360deg)}}
   `;
