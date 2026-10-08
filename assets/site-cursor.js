@@ -1,7 +1,7 @@
 (() => {
   if (!matchMedia('(hover:hover) and (pointer:fine)').matches) return;
-  const path = 'M8 7 Q5 5 6 9 L10 24 Q11 27 13 24 L16 19 L24 18 Q27 17 24 15 L9 7 Q8 6 8 7 Z';
-  const tilt = 'translate(2 2) rotate(-15 16 16)';
+  const path = 'M7 5 L8 28 Q8 30 10 28 L15 22 L23 22 Q26 22 24 20 L9 5 Q7 3 7 5 Z';
+  const tilt = 'translate(2 1.5) rotate(-15 16 16.5)';
   const outline = `url("data:image/svg+xml,${encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36"><path transform="${tilt}" d="${path}" fill="none" stroke="white" stroke-width="1.8" stroke-linejoin="round"/></svg>`)}")`;
   const silhouette = `url("data:image/svg+xml,${encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36"><path transform="${tilt}" d="${path}" fill="white"/></svg>`)}")`;
   const pointer = document.createElement('div');
@@ -39,7 +39,7 @@
   document.addEventListener('pointermove',e=>{
     if(e.pointerType==='touch')return;
     last={x:e.clientX,y:e.clientY};
-    pointer.style.transform=`translate3d(${e.clientX-5.65}px,${e.clientY-8.1}px,0)`;
+    pointer.style.transform=`translate3d(${e.clientX-4.5}px,${e.clientY-6.55}px,0)`;
     updateTarget(e.target);pointer.classList.add('is-visible');document.documentElement.classList.add('portfolio-cursor');
   },{passive:true});
   document.addEventListener('scroll',()=>{if(last)updateTarget(document.elementFromPoint(last.x,last.y))},{passive:true,capture:true});
