@@ -1,0 +1,548 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="制造现场的生产、库存、发运和报工分散在不同业务环节。产品要解决的是：同一个构件由谁处理、处于哪道工序、下一步做什么，以及现场操作如何形成可核对的业务记录。">
+<meta name="theme-color" content="#0a1828">
+<title>小钢制造 · 工业互联网 · 产品经理案例</title>
+<link rel="stylesheet" href="style.css?v=20260926-gradient">
+<link rel="stylesheet" href="../../assets/pm-case.css"></head>
+<body>
+<a class="skip" href="#overview">跳至项目内容</a>
+<svg class="icon-sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><symbol id="i-layers" viewBox="0 0 24 24"><path d="m12 3 9 5-9 5-9-5 9-5Zm-9 9 9 5 9-5M3 16l9 5 9-5"></path></symbol><symbol id="i-status" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="m8 12 2.5 2.5L16 9"></path></symbol><symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="3" width="7" height="7" rx="1"></rect><rect x="3" y="14" width="7" height="7" rx="1"></rect><rect x="14" y="14" width="7" height="7" rx="1"></rect></symbol><symbol id="i-factory" viewBox="0 0 24 24"><path d="M3 21V9l6 3V9l6 3V4h4v17H3Z"></path><path d="M7 17h1m5 0h1m4 0h1"></path></symbol><symbol id="i-warehouse" viewBox="0 0 24 24"><path d="M3 21V8l9-5 9 5v13H3Z M3 9l9-5 9 5 M8 21v-9h8v9 M8 16h8"></path></symbol><symbol id="i-truck" viewBox="0 0 24 24"><path d="M2 6h12v11H2V6Zm12 4h4l4 4v3h-8v-7Z"></path><circle cx="6" cy="18" r="2"></circle><circle cx="18" cy="18" r="2"></circle></symbol><symbol id="i-chart" viewBox="0 0 24 24"><path d="M3 20h18M6 17v-6m6 6V5m6 12V9"></path></symbol><symbol id="i-checklist" viewBox="0 0 24 24"><path d="M9 5h12M9 12h12M9 19h12M3 5l1 1 2-2m-3 8 1 1 2-2m-3 8 1 1 2-2"></path></symbol><symbol id="i-position" viewBox="0 0 24 24"><path d="M12 21s7-6 7-12a7 7 0 1 0-14 0c0 6 7 12 7 12Z"></path><circle cx="12" cy="9" r="2.5"></circle></symbol></svg>
+<header class="site-header">
+<a href="#top" class="brand">
+<span class="brand-mark brand-logo" aria-hidden="true"></span><span>小钢制造-工业互联网平台</span></a>
+<nav aria-label="章节导航">
+<a href="#overview">项目概览</a>
+<a href="#scenarios">核心场景</a>
+<a href="#system">业务规则</a>
+<a href="#showcase">功能全景</a>
+</nav>
+</header>
+<main>
+<section class="hero" id="top">
+<div class="hero-grid">
+</div>
+<div class="hero-copy">
+<p class="eyebrow">INDUSTRIAL INTERNET · MOBILE EXPERIENCE</p>
+<h1>复杂制造，<br>清晰呈现<span>。</span>
+</h1>
+<p class="hero-sub">工业互联网 / 小钢制造<br>
+<span>制造现场任务闭环与多角色业务协同</span>
+</p>
+<a class="hero-link" href="#overview">查看产品案例 <span>↓</span>
+</a>
+</div>
+<div class="hero-art" aria-label="移动端核心功能">
+<figure class="screen hero-phone one">
+<button class="zoom" data-image="/cases/industrial-mobile/assets/optimized/07-latest.webp" data-title="堆场管控" aria-label="放大查看：堆场管控">
+<img src="/cases/industrial-mobile/assets/optimized/07-latest.webp" alt="堆场管控产品页面" loading="lazy" width="402" height="874">
+</button>
+<figcaption>堆场管控<span>↗</span>
+</figcaption>
+</figure>
+<figure class="screen hero-phone two">
+<button class="zoom" data-image="/cases/industrial-mobile/assets/optimized/01.svg" data-title="工业互联网工作台" aria-label="放大查看：工业互联网工作台">
+<img src="/cases/industrial-mobile/assets/optimized/01.svg" alt="工业互联网工作台产品页面" loading="lazy" width="402" height="874">
+</button>
+<figcaption>工业互联网工作台<span>↗</span>
+</figcaption>
+</figure>
+<figure class="screen hero-phone three">
+<button class="zoom" data-image="/cases/industrial-mobile/assets/optimized/A07.svg" data-title="车间生产管控" aria-label="放大查看：车间生产管控">
+<img src="/cases/industrial-mobile/assets/optimized/A07.svg" alt="车间生产管控产品页面" loading="lazy" width="402" height="874">
+</button>
+<figcaption>车间生产管控<span>↗</span>
+</figcaption>
+</figure>
+</div>
+<div class="hero-bottom">
+<span>从现场任务到数据洞察</span>
+</div>
+</section>
+<div class="chapter-strip">
+<span>工业互联网</span>
+<span>柔性制造</span>
+<span>物联云仓</span>
+<span>抛丸喷涂</span>
+</div>
+<section id="overview" class="section wrap">
+<div class="section-head">
+<p class="eyebrow">PROJECT OVERVIEW</p>
+<h2>从现场任务，<br>到可追溯的业务记录。</h2>
+</div>
+<div class="overview-body">
+<p class="large-copy">围绕钢结构制造现场的生产、库存、发运与报工，将构件、工序、单据与人员串联到移动工作台，让现场操作形成可追踪的业务记录。</p>
+<p>负责梳理现场需求与岗位分工，定义任务、状态和操作规则，推进版本排期、需求评审、研发协作、测试验收、上线培训及反馈复盘。</p>
+<dl class="facts">
+<div>
+<dt>项目类型</dt>
+<dd>工业互联网 / 移动端</dd>
+</div>
+<div>
+<dt>产品职责</dt>
+<dd>需求规划 · 业务规则 · 版本交付</dd>
+</div>
+<div>
+<dt>核心场景</dt>
+<dd>生产 / 库存 / 发运 / 报工</dd>
+</div>
+<div>
+<dt>项目呈现</dt>
+<dd>业务流程、产品方案与功能说明</dd>
+</div>
+</dl>
+</div>
+</section>
+<section class="pm-section pm-brief" id="pm-case" style="--pm-accent:#168f9a"><div class="pm-wrap"><p class="pm-eyebrow">PRODUCT BRIEF / 业务与职责</p><h2>解决什么问题，<br>为谁交付价值。</h2><p class="pm-lead">制造现场的生产、库存、发运和报工分散在不同业务环节。产品要解决的是：同一个构件由谁处理、处于哪道工序、下一步做什么，以及现场操作如何形成可核对的业务记录。</p><div class="pm-grid"><article class="pm-card"><span class="pm-index">01</span><h3>车间人员</h3><p>查找构件、执行工序、提交报工与完成确认。</p></article><article class="pm-card"><span class="pm-index">02</span><h3>仓储与物流</h3><p>核对库位、数量、重量及发运单，跟踪出入库与运输状态。</p></article><article class="pm-card"><span class="pm-index">03</span><h3>班组与管理者</h3><p>查看待办、催办、退回和周期统计，定位任务积压。</p></article></div><div class="pm-responsibility"><b>我的产品职责</b><p>负责现场需求梳理、业务流程与原型、字段和状态规则、优先级及版本安排；组织需求评审，跟进研发联调、测试验收、上线培训与使用反馈。</p></div><p class="pm-eyebrow pm-flow-label">CORE WORKFLOW / 核心业务链路</p><ol class="pm-flow"><li><span>01</span>工作台待办</li><li><span>02</span>定位构件或单据</li><li><span>03</span>核对工序与数量</li><li><span>04</span>执行并确认</li><li><span>05</span>回写状态与统计</li></ol></div></section><section id="challenge" class="section soft">
+<div class="wrap">
+<div class="section-head">
+<p class="eyebrow">CHALLENGE &amp; OBJECTIVES</p>
+<h2>多个岗位，共同完成一条业务链。</h2>
+<p class="intro">明确任务归属、业务对象和流转结果，再将现场需求拆解为可交付的功能。</p>
+</div>
+<div class="challenge-grid">
+<article>
+<span class="feature-icon"><svg><use href="#i-layers"></use></svg></span>
+<h3>对象分散，记录难以串联</h3>
+<p>构件编号、工号、件号和工序共同确定作业对象，需要在查询、处理和统计中保持关联。</p>
+<div class="goal">关联对象<span>构件 → 工序 → 任务 → 记录</span>
+</div>
+</article>
+<article>
+<span class="feature-icon"><svg><use href="#i-status"></use></svg></span>
+<h3>任务流转，需要明确责任</h3>
+<p>待处理、完成与退回对应不同处理结果，催办则提醒责任人推进事项。</p>
+<div class="goal">明确流转<span>责任人 + 状态 + 下一步动作</span>
+</div>
+</article>
+<article>
+<span class="feature-icon"><svg><use href="#i-grid"></use></svg></span>
+<h3>跨业务协同，口径需要对齐</h3>
+<p>生产、库存、发运和报工使用不同计量维度，需要约定对象、周期、单位和查询范围。</p>
+<div class="goal">对齐口径<span>同一对象，追踪不同业务记录</span>
+</div>
+</article>
+</div>
+</div>
+</section>
+<section id="structure" class="section wrap">
+<div class="section-head">
+<p class="eyebrow">INFORMATION STRUCTURE</p>
+<h2>以任务为线索，<br>串联业务流程。</h2>
+<p class="intro">工作台承接岗位待办；业务模块负责各自的记录和执行，通过构件、单据及人员关系建立查询路径。</p>
+</div>
+<div class="architecture">
+<div class="arch-root">
+<svg class="arch-icon"><use href="#i-grid"></use></svg>
+<span>统一入口</span>
+<strong>工业互联网工作台</strong>
+<small>常用操作 · 今日待办 · 业务应用</small>
+</div>
+<div class="arch-branches">
+<article>
+<svg class="arch-icon"><use href="#i-factory"></use></svg>
+<span>PRODUCTION</span>
+<h3>生产 / 车间</h3>
+<p>生产概览 → 工序产量<br>构件任务 → 完成确认</p>
+</article>
+<article>
+<svg class="arch-icon"><use href="#i-warehouse"></use></svg>
+<span>WAREHOUSE</span>
+<h3>堆场 / 库存</h3>
+<p>库存总览 → 库存分析<br>库存作业 → 盘点核对</p>
+</article>
+<article>
+<svg class="arch-icon"><use href="#i-truck"></use></svg>
+<span>LOGISTICS</span>
+<h3>发运 / 物流</h3>
+<p>发运列表 → 任务详情<br>运输信息 → 状态追踪</p>
+</article>
+<article>
+<svg class="arch-icon"><use href="#i-chart"></use></svg>
+<span>REPORTING</span>
+<h3>统计 / 报工</h3>
+<p>岗位工作台 → 新建报工<br>周期筛选 → 指标明细</p>
+</article>
+</div>
+<p class="fine">业务范围示意 · 各模块按对象关联，接口互通范围以实际版本为准</p>
+</div>
+</section>
+<section id="strategy" class="section dark">
+<div class="wrap">
+<div class="section-head">
+<p class="eyebrow">BUSINESS RULES</p>
+<h2>让每一次处理，<br>都有明确的对象与结果。</h2>
+</div>
+<div class="strategy-layout">
+<div class="strategy-list">
+<article>
+<span class="strategy-icon"><svg><use href="#i-position"></use></svg></span>
+<div>
+<h3>以构件和工序确定任务</h3>
+<p>构件编号关联工号、件号和当前工序。处理前核对对象，完成确认和报工记录回到对应任务。</p>
+</div>
+</article>
+<article>
+<span class="strategy-icon"><svg><use href="#i-status"></use></svg></span>
+<div>
+<h3>区分状态、催办与退回</h3>
+<p>待处理与完成描述执行结果；催办标记需要推进的事项；退回记录原因，并明确修改后的重新提交路径。</p>
+</div>
+</article>
+<article>
+<span class="strategy-icon"><svg><use href="#i-checklist"></use></svg></span>
+<div>
+<h3>关键提交核对业务条件</h3>
+<p>完成确认再次核对构件及工序；报工约定岗位、日期、数量与单位，检查必填项和重复提交。</p>
+</div>
+</article>
+<article>
+<span class="strategy-icon"><svg><use href="#i-chart"></use></svg></span>
+<div>
+<h3>汇总能够追溯到明细</h3>
+<p>重量、件数与面积分别统计，按相同周期核对汇总和记录，避免跨单位相加或重复计入。</p>
+</div>
+</article>
+</div>
+<div class="strategy-demo">
+<div class="object-card">
+<div class="card-top">
+<span class="tag warning">催办</span>
+<span>JBYZ–GZ3–04</span>
+</div>
+<strong>C1–3aGGKZ3a–17</strong>
+<p>件号 01　·　当前工序：埋弧焊</p>
+<div class="card-actions">
+<span>查看构件详情</span>
+<span>进入操作 →</span>
+</div>
+</div>
+<div class="annotation">
+<span>对象身份</span>
+<span>状态与上下文</span>
+<span>操作入口</span>
+</div>
+<div class="state-row">
+<span class="tag normal">待处理</span>
+<span class="tag success">已完成</span>
+<span class="tag warning">催办</span>
+<span class="tag danger">已退回</span>
+</div>
+<p class="fine">构件任务示例 · 展示对象、状态与执行入口的关系</p>
+</div>
+</div>
+</div>
+</section>
+<section id="scenarios" class="section wrap scenes">
+<div class="section-head">
+<p class="eyebrow">KEY SCENARIOS</p>
+<h2>四类业务，各自形成处理闭环。</h2>
+<p class="intro">以生产、库存、发运和报工的典型任务，说明功能范围、关键字段与业务规则。</p>
+</div>
+<article class="scene">
+<div class="scene-title">
+<span class="scene-icon"><svg><use href="#i-factory"></use></svg></span>
+<div>
+<p class="eyebrow">生产 / 车间管理</p>
+<h3>让产量、设备与任务各就其位。</h3>
+</div>
+</div>
+<div class="scene-notes">
+<div>
+<span>场景问题</span>
+<p>同一页面内既要掌握生产概况，也要进入具体构件任务。</p>
+</div>
+<div>
+<span>产品方案</span>
+<p>定义生产概览、工序产量、设备状态与构件任务；从汇总进入具体构件，核对当前工序后执行完成确认。</p>
+</div>
+<div class="pills">
+<span>指标口径</span>
+<span>任务对象</span>
+<span>操作核对</span>
+</div>
+</div>
+<div class="screen-stage ">
+<figure class="screen ">
+<button class="zoom" data-image="/cases/industrial-mobile/assets/optimized/A07.svg" data-title="车间生产管控" aria-label="放大查看：车间生产管控">
+<img src="/cases/industrial-mobile/assets/optimized/A07.svg" alt="车间生产管控产品页面" loading="lazy" width="402" height="874">
+</button>
+<figcaption>车间生产管控<span>↗</span>
+</figcaption>
+</figure>
+<figure class="screen ">
+<button class="zoom" data-image="/cases/industrial-mobile/assets/optimized/03-latest.png" data-title="构件任务列表" aria-label="放大查看：构件任务列表">
+<img src="/cases/industrial-mobile/assets/optimized/03-latest.png" alt="构件任务列表产品页面" loading="lazy" width="402" height="874">
+</button>
+<figcaption>构件任务列表<span>↗</span>
+</figcaption>
+</figure>
+<figure class="screen ">
+<button class="zoom" data-image="/cases/industrial-mobile/assets/optimized/06.svg" data-title="打砂完成确认" aria-label="放大查看：打砂完成确认">
+<img src="/cases/industrial-mobile/assets/optimized/06.svg" alt="打砂完成确认产品页面" loading="lazy" width="402" height="874">
+</button>
+<figcaption>打砂完成确认<span>↗</span>
+</figcaption>
+</figure>
+</div>
+</article>
+<article class="scene">
+<div class="scene-title">
+<span class="scene-icon"><svg><use href="#i-warehouse"></use></svg></span>
+<div>
+<p class="eyebrow">堆场 / 库存</p>
+<h3>从库存总量，逐层读到结构。</h3>
+</div>
+</div>
+<div class="scene-notes">
+<div>
+<span>场景问题</span>
+<p>重量、件数、趋势和库存构成需要并列查看，却不能混为一种数据。</p>
+</div>
+<div>
+<span>产品方案</span>
+<p>库存总览关联入出库记录，按周期查询变化；重量与件数分别统计，定位到库位及明细后核查差异。</p>
+</div>
+<div class="pills">
+<span>数据口径</span>
+<span>明细关联</span>
+<span>库存与出入库核对</span>
+</div>
+</div>
+<div class="screen-stage two-up">
+<figure class="screen ">
+<button class="zoom" data-image="/cases/industrial-mobile/assets/optimized/07-latest.webp" data-title="堆场管控概览" aria-label="放大查看：堆场管控概览">
+<img src="/cases/industrial-mobile/assets/optimized/07-latest.webp" alt="堆场管控概览产品页面" loading="lazy" width="402" height="874">
+</button>
+<figcaption>堆场管控概览<span>↗</span>
+</figcaption>
+</figure>
+<figure class="screen ">
+<button class="zoom" data-image="/cases/industrial-mobile/assets/optimized/08.svg" data-title="库存趋势分析" aria-label="放大查看：库存趋势分析">
+<img src="/cases/industrial-mobile/assets/optimized/08.svg" alt="库存趋势分析产品页面" loading="lazy" width="402" height="874">
+</button>
+<figcaption>库存趋势分析<span>↗</span>
+</figcaption>
+</figure>
+</div>
+</article>
+<article class="scene">
+<div class="scene-title">
+<span class="scene-icon"><svg><use href="#i-truck"></use></svg></span>
+<div>
+<p class="eyebrow">发运 / 物流</p>
+<h3>把流转状态，放回任务上下文。</h3>
+</div>
+</div>
+<div class="scene-notes">
+<div>
+<span>场景问题</span>
+<p>发运单、运输状态与地点信息分散时，用户难以快速确认当前任务。</p>
+</div>
+<div>
+<span>产品方案</span>
+<p>以发运单号串联线路、运输阶段和地点信息；定义各节点需要记录的业务信息及后续动作，支持过程追踪。</p>
+</div>
+<div class="pills">
+<span>单号优先</span>
+<span>进度表达</span>
+<span>信息核对</span>
+</div>
+</div>
+<div class="screen-stage two-up">
+<figure class="screen ">
+<button class="zoom" data-image="/cases/industrial-mobile/assets/optimized/09.svg" data-title="发运任务管理" aria-label="放大查看：发运任务管理">
+<img src="/cases/industrial-mobile/assets/optimized/09.svg" alt="发运任务管理产品页面" loading="lazy" width="402" height="874">
+</button>
+<figcaption>发运任务管理<span>↗</span>
+</figcaption>
+</figure>
+<figure class="screen ">
+<button class="zoom" data-image="/cases/industrial-mobile/assets/optimized/10.svg" data-title="发运任务详情" aria-label="放大查看：发运任务详情">
+<img src="/cases/industrial-mobile/assets/optimized/10.svg" alt="发运任务详情产品页面" loading="lazy" width="402" height="874">
+</button>
+<figcaption>发运任务详情<span>↗</span>
+</figcaption>
+</figure>
+</div>
+</article>
+<article class="scene">
+<div class="scene-title">
+<span class="scene-icon"><svg><use href="#i-chart"></use></svg></span>
+<div>
+<p class="eyebrow">数据统计 / 报工</p>
+<h3>让数据阅读与现场填报更有条理。</h3>
+</div>
+</div>
+<div class="scene-notes">
+<div>
+<span>场景问题</span>
+<p>不同岗位关注点不同；密集字段与统计图表也需要各自的阅读节奏。</p>
+</div>
+<div>
+<span>产品方案</span>
+<p>按岗位确定可处理任务与报工内容，明确作业信息、完成数量、日期及单位；统计按相同周期汇总，退回记录用于修正。</p>
+</div>
+<div class="pills">
+<span>岗位入口</span>
+<span>填报规则</span>
+<span>周期与单位</span>
+</div>
+</div>
+<div class="screen-stage ">
+<figure class="screen ">
+<button class="zoom" data-image="/cases/industrial-mobile/assets/optimized/02.svg" data-title="组员报工作业" aria-label="放大查看：组员报工作业">
+<img src="/cases/industrial-mobile/assets/optimized/02.svg" alt="组员报工作业产品页面" loading="lazy" width="402" height="874">
+</button>
+<figcaption>组员报工作业<span>↗</span>
+</figcaption>
+</figure>
+<figure class="screen ">
+<button class="zoom" data-image="/cases/industrial-mobile/assets/optimized/04.svg" data-title="新建焊工报工" aria-label="放大查看：新建焊工报工">
+<img src="/cases/industrial-mobile/assets/optimized/04.svg" alt="新建焊工报工产品页面" loading="lazy" width="402" height="874">
+</button>
+<figcaption>新建焊工报工<span>↗</span>
+</figcaption>
+</figure>
+<figure class="screen ">
+<button class="zoom" data-image="/cases/industrial-mobile/assets/optimized/A03.svg" data-title="月度入库统计" aria-label="放大查看：月度入库统计">
+<img src="/cases/industrial-mobile/assets/optimized/A03.svg" alt="月度入库统计产品页面" loading="lazy" width="402" height="874">
+</button>
+<figcaption>月度入库统计<span>↗</span>
+</figcaption>
+</figure>
+</div>
+</article>
+</section>
+<section id="system" class="pm-section pm-rules " style="--pm-accent:#168f9a"><div class="pm-wrap"><p class="pm-eyebrow">PRODUCT DECISIONS / 范围与规则</p><h2>把需求拆清楚，<br>让取舍有依据。</h2><p class="pm-lead">围绕核心任务确定版本范围，再明确对象关系、状态含义与异常边界。</p><div class="pm-grid"><article class="pm-card"><span class="pm-index">01</span><h3>先完成作业，再扩展分析</h3><p>优先覆盖构件任务、工序确认、报工和出入库等日常闭环；库存趋势、产量统计与周期分析在基础记录可核对后继续完善。</p></article><article class="pm-card"><span class="pm-index">02</span><h3>以业务对象串联记录</h3><p>构件编号关联工号、件号和当前工序；发运单关联线路、地点和运输阶段。不同页面继续指向同一个对象，避免只看统计却找不到明细。</p></article><article class="pm-card"><span class="pm-index">03</span><h3>把催办与结果分开</h3><p>待处理、已完成和已退回描述处理结果；催办提醒需要关注的任务。确认操作前核对对象与工序，退回后保留原因和后续处理入口。</p></article></div><div class="pm-subhead"><p class="pm-eyebrow">DELIVERY &amp; ACCEPTANCE / 交付与验收</p><h2>从需求评审，<br>到可验证的业务结果。</h2></div><div class="pm-delivery"><span>需求及原型评审</span><i>→</i><span>优先级与版本排期</span><i>→</i><span>研发跟进与联调</span><i>→</i><span>场景验收与问题复测</span><i>→</i><span>上线培训与反馈</span></div><div class="pm-grid"><article class="pm-card"><span class="pm-index">01</span><h3>工序与报工</h3><p>按构件、岗位和日期核查提交内容；必填项、数量单位、重复提交和退回重提纳入场景验收。</p></article><article class="pm-card"><span class="pm-index">02</span><h3>库存与发运</h3><p>核查单号、库位、数量、重量与运输节点；详情和列表状态应一致，出入库记录能回查。</p></article><article class="pm-card"><span class="pm-index">03</span><h3>统计与上线</h3><p>按相同周期对照明细与汇总；培训覆盖查任务、报工、入出库及异常处理，反馈按阻塞程度进入迭代清单。</p></article></div><div class="pm-outputs"><b>交付内容</b><p>需求清单与版本范围 · 业务流程与原型 · 字段及状态说明 · 评审记录 · 验收场景与问题清单 · 上线说明与迭代事项</p></div><div class="pm-subhead"><p class="pm-eyebrow">ITERATION / 复盘关注</p><h2>上线之后，<br>继续跟进使用中的问题。</h2></div><div class="pm-grid"><article class="pm-card"><span class="pm-index">01</span><h3>任务完成</h3><p>关注提交成功、退回原因、待办停留和催办事项，定位流程障碍。</p></article><article class="pm-card"><span class="pm-index">02</span><h3>数据可核对</h3><p>关注报工与工序记录、库存数量与重量的差异，先校正口径再讨论效率。</p></article><article class="pm-card"><span class="pm-index">03</span><h3>现场采用</h3><p>记录班组实际使用中的漏填、错选与绕行操作，反推字段及流程调整。</p></article></div><p class="pm-note">以业务记录和使用反馈为依据，持续调整版本优先级。</p></div></section><section id="showcase" class="section dark final-showcase">
+<div class="wrap">
+<div class="section-head">
+<p class="eyebrow">FINAL SHOWCASE</p>
+<h2>从任务执行，到业务协同。</h2>
+<p class="intro">页面对应真实的业务对象、状态与处理动作，形成从查询到执行和复核的产品链路。</p>
+</div>
+<div class="showcase-grid">
+<figure class="screen ">
+<button class="zoom" data-image="/cases/industrial-mobile/assets/optimized/01.svg" data-title="统一工作台" aria-label="放大查看：统一工作台">
+<img src="/cases/industrial-mobile/assets/optimized/01.svg" alt="统一工作台产品页面" loading="lazy" width="402" height="874">
+</button>
+<figcaption>统一工作台<span>↗</span>
+</figcaption>
+</figure>
+<figure class="screen ">
+<button class="zoom" data-image="/cases/industrial-mobile/assets/optimized/02.svg" data-title="组员报工" aria-label="放大查看：组员报工">
+<img src="/cases/industrial-mobile/assets/optimized/02.svg" alt="组员报工产品页面" loading="lazy" width="402" height="874">
+</button>
+<figcaption>组员报工<span>↗</span>
+</figcaption>
+</figure>
+<figure class="screen ">
+<button class="zoom" data-image="/cases/industrial-mobile/assets/optimized/03-latest.png" data-title="构件任务" aria-label="放大查看：构件任务">
+<img src="/cases/industrial-mobile/assets/optimized/03-latest.png" alt="构件任务产品页面" loading="lazy" width="402" height="874">
+</button>
+<figcaption>构件任务<span>↗</span>
+</figcaption>
+</figure>
+<figure class="screen ">
+<button class="zoom" data-image="/cases/industrial-mobile/assets/optimized/04.svg" data-title="新建报工" aria-label="放大查看：新建报工">
+<img src="/cases/industrial-mobile/assets/optimized/04.svg" alt="新建报工产品页面" loading="lazy" width="402" height="874">
+</button>
+<figcaption>新建报工<span>↗</span>
+</figcaption>
+</figure>
+<figure class="screen ">
+<button class="zoom" data-image="/cases/industrial-mobile/assets/optimized/07-latest.webp" data-title="堆场管控" aria-label="放大查看：堆场管控">
+<img src="/cases/industrial-mobile/assets/optimized/07-latest.webp" alt="堆场管控产品页面" loading="lazy" width="402" height="874">
+</button>
+<figcaption>堆场管控<span>↗</span>
+</figcaption>
+</figure>
+<figure class="screen ">
+<button class="zoom" data-image="/cases/industrial-mobile/assets/optimized/08.svg" data-title="库存趋势" aria-label="放大查看：库存趋势">
+<img src="/cases/industrial-mobile/assets/optimized/08.svg" alt="库存趋势产品页面" loading="lazy" width="402" height="874">
+</button>
+<figcaption>库存趋势<span>↗</span>
+</figcaption>
+</figure>
+<figure class="screen ">
+<button class="zoom" data-image="/cases/industrial-mobile/assets/optimized/09.svg" data-title="发运管理" aria-label="放大查看：发运管理">
+<img src="/cases/industrial-mobile/assets/optimized/09.svg" alt="发运管理产品页面" loading="lazy" width="402" height="874">
+</button>
+<figcaption>发运管理<span>↗</span>
+</figcaption>
+</figure>
+<figure class="screen ">
+<button class="zoom" data-image="/cases/industrial-mobile/assets/optimized/10.svg" data-title="发运详情" aria-label="放大查看：发运详情">
+<img src="/cases/industrial-mobile/assets/optimized/10.svg" alt="发运详情产品页面" loading="lazy" width="402" height="874">
+</button>
+<figcaption>发运详情<span>↗</span>
+</figcaption>
+</figure>
+<figure class="screen ">
+<button class="zoom" data-image="/cases/industrial-mobile/assets/optimized/A03.svg" data-title="月度统计" aria-label="放大查看：月度统计">
+<img src="/cases/industrial-mobile/assets/optimized/A03.svg" alt="月度统计产品页面" loading="lazy" width="402" height="874">
+</button>
+<figcaption>月度统计<span>↗</span>
+</figcaption>
+</figure>
+<figure class="screen ">
+<button class="zoom" data-image="/cases/industrial-mobile/assets/optimized/A12.svg" data-title="作业工作台" aria-label="放大查看：作业工作台">
+<img src="/cases/industrial-mobile/assets/optimized/A12.svg" alt="作业工作台产品页面" loading="lazy" width="402" height="874">
+</button>
+<figcaption>作业工作台<span>↗</span>
+</figcaption>
+</figure>
+<figure class="screen ">
+<button class="zoom" data-image="/cases/industrial-mobile/assets/optimized/06.svg" data-title="完成确认" aria-label="放大查看：完成确认">
+<img src="/cases/industrial-mobile/assets/optimized/06.svg" alt="完成确认产品页面" loading="lazy" width="402" height="874">
+</button>
+<figcaption>完成确认<span>↗</span>
+</figcaption>
+</figure>
+<figure class="screen"><button class="zoom" data-image="/cases/industrial-mobile/assets/optimized/A07.svg" data-title="车间管理生产管控" aria-label="放大查看：车间管理生产管控"><img src="/cases/industrial-mobile/assets/optimized/A07.svg" alt="车间管理生产管控产品页面" loading="lazy" width="402" height="874"></button><figcaption>车间管理·生产管控<span>↗</span></figcaption></figure>
+<figure class="screen"><button class="zoom" data-image="/cases/industrial-mobile/assets/optimized/A10.svg" data-title="运输任务地图" aria-label="放大查看：运输任务地图"><img src="/cases/industrial-mobile/assets/optimized/A10.svg" alt="运输任务地图产品页面" loading="lazy" width="402" height="874"></button><figcaption>运输任务地图<span>↗</span></figcaption></figure>
+<figure class="screen">
+<button class="zoom" data-image="/cases/industrial-mobile/assets/stocktake-latest.webp" data-title="库存盘点" aria-label="放大查看：库存盘点">
+<img src="/cases/industrial-mobile/assets/stocktake-latest.webp" alt="库存盘点移动端产品页面" loading="lazy" width="402" height="874">
+</button>
+<figcaption>库存盘点<span>↗</span></figcaption>
+</figure>
+<figure class="screen">
+<button class="zoom" data-image="/cases/industrial-mobile/assets/production-alert.svg" data-title="生产异常协同" aria-label="放大查看：生产异常协同">
+<img src="/cases/industrial-mobile/assets/production-alert.svg" alt="生产异常协同移动端产品页面" loading="lazy" width="402" height="874">
+</button>
+<figcaption>生产异常协同<span>↗</span></figcaption>
+</figure>
+</div>
+<div class="closing">
+<p>任务有责任。<br>操作有依据。<br>
+<span>记录可追溯。</span>
+</p>
+<div>INDUSTRIAL INTERNET<br>MOBILE PRODUCT MANAGEMENT<p>把复杂流程理清，让现场任务与数据更容易理解和使用。</p>
+<a href="#top">回到顶部 ↑</a>
+</div>
+</div>
+</div>
+</section>
+</main>
+<footer>
+<span>工业互联网 / 小钢制造</span>
+<span>PRODUCT MANAGEMENT CASE STUDY</span>
+</footer>
+<dialog id="lightbox" aria-labelledby="lightbox-title">
+<div class="lightbox-bar">
+<h2 id="lightbox-title">
+</h2>
+<button id="close-lightbox" aria-label="关闭大图">关闭 ×</button>
+</div>
+<div class="lightbox-content">
+<img id="lightbox-image" alt="">
+</div>
+</dialog>
+<script src="script.js">
+</script>
+</body>
+</html>
