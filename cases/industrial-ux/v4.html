@@ -1,0 +1,834 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>小钢制造 · 交互与用户体验 — 梁洪</title>
+<meta name="description" content="小钢制造工业互联网交互设计：从看懂钢结构生产，到报工、生产、库存、发运四个现场任务的交互设计。">
+<link rel="stylesheet" href="v4.css?v=6">
+</head>
+<body id="top">
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-doc" viewBox="0 0 24 24"><path d="M7 3h7l5 5v13H7z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M14 3v5h5M10 12h6M10 16h6" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></symbol>
+    <symbol id="i-flow" viewBox="0 0 24 24"><rect x="3" y="4" width="7" height="5" rx="1.2" fill="none" stroke="currentColor" stroke-width="1.7"/><rect x="14" y="15" width="7" height="5" rx="1.2" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M6.5 9v4.5h11V15" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24"><rect x="6.5" y="2.5" width="11" height="19" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M10.5 18.5h3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></symbol>
+    <symbol id="i-pen" viewBox="0 0 24 24"><path d="M4 20l4-1 11-11-3-3L5 16z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M14 7l3 3" stroke="currentColor" stroke-width="1.7"/></symbol>
+    <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M3 19c.6-3.4 3-5 6-5s5.4 1.6 6 5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M15.5 5.2a3 3 0 0 1 0 5.6M17.5 14.3c1.8.6 3 2.2 3.4 4.7" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></symbol>
+    <symbol id="i-factory" viewBox="0 0 24 24"><path d="M3 20V10l5 3V10l5 3V6h4l1 4h3v10z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M7 17h2M12 17h2M17 17h1" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></symbol>
+    <symbol id="i-helmet" viewBox="0 0 24 24"><path d="M4 16a8 8 0 0 1 16 0" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M3 16h18v2H3zM12 8V5" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" fill="none"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="3" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M8 12.5l2.7 2.7L16 9.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 20h16" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M7 16v-4M12 16V7M17 16v-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></symbol>
+    <symbol id="i-box" viewBox="0 0 24 24"><path d="M12 3l8 4v10l-8 4-8-4V7z M4 7l8 4 8-4M12 11v10" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+    <symbol id="i-truck" viewBox="0 0 24 24"><path d="M2.5 6h11v10h-11zM13.5 9.5h4l3 3.5V16h-7" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><circle cx="6.5" cy="17.5" r="1.8" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="17" cy="17.5" r="1.8" fill="none" stroke="currentColor" stroke-width="1.7"/></symbol>
+    <symbol id="i-weld" viewBox="0 0 24 24"><path d="M3 18h18M6 18l3-8h6l3 8" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M12 6V3M8.5 7 7 5M15.5 7 17 5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  </defs>
+</svg>
+
+
+
+<nav class="rail" id="rail" aria-label="页面导航">
+  <a href="#top" data-t="top"><i></i><span>前序</span></a>
+  <a href="#report" data-t="report"><i></i><span>报工</span></a>
+  <a href="#production" data-t="production"><i></i><span>生产</span></a>
+  <a href="#inventory" data-t="inventory"><i></i><span>库存</span></a>
+  <a href="#shipping" data-t="shipping"><i></i><span>发运</span></a>
+  <b class="rail-track" aria-hidden="true"><b class="rail-fill" id="rail-fill"></b></b>
+</nav>
+<main>
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <p class="kicker">小钢制造 · 工业互联网 · 交互设计</p>
+      <h1>车间里的每一次报工，<br>都要<em>选对构件、报对数量。</em></h1>
+      <div class="journey" aria-label="纸质单据，经过业务流程图，变成手机上的报工">
+        <span><svg><use href="#i-doc"/></svg>纸质单据</span>
+        <i></i>
+        <span><svg><use href="#i-flow"/></svg>看懂业务</span>
+        <i></i>
+        <span class="on"><svg><use href="#i-phone"/></svg>手机报工</span>
+      </div>
+      <dl class="facts">
+        <div><svg><use href="#i-pen"/></svg><dt>我的角色</dt><dd>交互与 UI 设计 · 跟进开发</dd></div>
+        <div><svg><use href="#i-users"/></svg><dt>用户</dt><dd>作业人员 · 班组长 · 管理人员</dd></div>
+        <div><svg><use href="#i-phone"/></svg><dt>平台</dt><dd>移动端 · 车间现场</dd></div>
+      </dl>
+    </div>
+    <div class="hero-phones" aria-hidden="true">
+      <div class="phone"><img src="assets/v2/new-04.svg" width="1206" height="2622" alt=""></div>
+      <div class="phone phone--back"><img src="assets/v2/new-02.svg" width="1206" height="2622" alt=""></div>
+    </div>
+  </div>
+</section>
+
+<div id="panels">
+
+<!-- ================================================================ 总览 -->
+<div class="panel" data-scene="overview" id="overview">
+
+  <section class="sec" id="overview-flow" data-nav="看懂生产">
+    <div class="wrap">
+      <header class="sec-head">
+        <p class="sec-tag">项目背景 · 看懂生产</p>
+        <h2>刚接手时我不懂钢结构，<br>所以先把一根构件的路画了出来。</h2>
+      </header>
+      <div class="lead-graphic">
+        <div class="lg-row">
+          <span class="lg-label">梳理了</span>
+          <div class="chips"><b>项目</b><b>技术</b><b>采购</b><b>生产</b><b>车间</b><b>质量</b><b>仓储</b></div>
+          <span class="lg-note">7 个部门的交接</span>
+        </div>
+        <div class="lg-row">
+          <span class="lg-label">走了一遍</span>
+          <div class="chain"><b>下料</b><i></i><b>组立</b><i></i><b>焊接</b><i></i><b>打磨油漆</b><i></i><b>入库</b><i></i><b>发运</b></div>
+        </div>
+      </div>
+    </div>
+
+    <figure class="diagram wrap-wide">
+      <button class="zoomable" type="button" data-src="assets/v2/business-flow-xl.webp" data-title="钢结构生产业务流程图（本人绘制）" aria-label="放大查看业务流程图">
+        <img src="assets/v2/business-flow-hi.webp" width="3200" height="2048" alt="本人绘制的钢结构生产业务流程图">
+        <span class="pin" style="left:53%;top:46.5%">1</span>
+        <span class="pin" style="left:62%;top:75%">2</span>
+        <span class="pin" style="left:85.5%;top:59%">3</span>
+        <span class="zoom-hint">⤢ 点击放大，可拖动看细节</span>
+      </button>
+      <figcaption class="pins-legend">
+        <p><b>1</b>生产部按周下发计划，进度回到这里汇总</p>
+        <p><b>2</b>8 道加工工序，每道都要「报工」和「销号」</p>
+        <p><b>3</b>入库和发运，靠前面的记录对上数</p>
+      </figcaption>
+    </figure>
+  </section>
+
+  <section class="sec sec--tight" id="overview-key" data-nav="为什么是报工">
+    <div class="wrap">
+      <div class="insight-img">
+        <button class="zoomable" type="button" data-src="assets/v2/process-strip.webp" data-title="主加工车间的 8 道工序">
+          <img src="assets/v2/process-strip.webp" width="2182" height="319" alt="流程图局部：组立、埋弧、校正、钻锯锁、总装、总焊、打磨、油漆，每道工序下都有报工和销号">
+        </button>
+        <p class="img-note">流程图局部 · 每道工序下面都有「报工」「销号」</p>
+      </div>
+      <div class="why">
+        <h3>报工，是整条链上<br>最频繁、也最容易出错的一步。</h3>
+        <ul class="why-list">
+          <li><svg><use href="#i-weld"/></svg><b>每根构件、每道工序</b><span>都要报一次</span></li>
+          <li><svg><use href="#i-check"/></svg><b>班组长</b><span>据此审批</span></li>
+          <li><svg><use href="#i-chart"/></svg><b>产量和工时</b><span>全部从这里来</span></li>
+        </ul>
+        <p class="why-end">一条报错的记录会一路传到结算和发运，所以我从报工切入，把它当作主线。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec sec--tint" id="overview-roles" data-nav="三个角色">
+    <div class="wrap">
+      <header class="sec-head">
+        <p class="sec-tag">项目背景 · 用户</p>
+        <h2>同一条记录，三个人看的重点不一样。</h2>
+      </header>
+      <div class="roles-grid">
+        <article><span class="role-ic"><svg><use href="#i-helmet"/></svg></span><p class="role-name">作业人员</p><h4>快点报完，别报错</h4><p>站在构件旁用手机操作</p><ul><li>找得到构件</li><li>填得快</li><li>知道交上去没有</li></ul></article>
+        <article><span class="role-ic"><svg><use href="#i-check"/></svg></span><p class="role-name">班组长</p><h4>看清要审什么</h4><p>每天集中处理待审批</p><ul><li>待审批有几条</li><li>哪条有问题</li><li>退回后改了没有</li></ul></article>
+        <article><span class="role-ic"><svg><use href="#i-chart"/></svg></span><p class="role-name">管理人员</p><h4>数字对得上</h4><p>看产量、工时和库存</p><ul><li>口径一致</li><li>能追到具体记录</li><li>异常及时看到</li></ul></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="overview-process" data-nav="过程与输出物">
+    <div class="wrap">
+      <header class="sec-head">
+        <p class="sec-tag">项目背景 · 过程与输出物</p>
+        <h2>从听懂需求，到交给开发，<br>每一步都有确认，也都有产出。</h2>
+      </header>
+      <div class="loop">
+        <span class="lp-me">交互设计</span>
+        <span class="lp-arrow">⇄</span>
+        <div class="lp-who"><b>作业人员</b><b>班组长</b><b>生产部</b><b>开发</b></div>
+        <p>每个阶段的产出，都拿回去和对应的人确认；确认不了的，带进下一轮。</p>
+      </div>
+      <div class="out-table"><table>
+        <tr><th>阶段</th><th>输出物</th><th>和谁确认</th><th>工具</th></tr><tr><td><b>01</b> 业务调研</td><td>业务流程图、访谈提纲与记录要点</td><td>生产部、班组长、作业人员、质检</td><td>流程图软件、在线文档</td></tr><tr><td><b>02</b> 下车间</td><td>纸单字段清单、字段映射表</td><td>作业人员、班组长、生产部</td><td>现场拍照、在线表格</td></tr><tr><td><b>03</b> 需求整理</td><td>需求清单、需求确认记录</td><td>班组长、生产部、开发</td><td>在线表格、在线文档</td></tr><tr><td><b>04</b> 拆任务</td><td>任务流程图、信息架构图</td><td>班组长、开发</td><td>流程图软件</td></tr><tr><td><b>05</b> 低保真原型 + 交互说明</td><td>低保真原型、交互说明文档</td><td>班组长、作业人员、开发</td><td>Figma</td></tr><tr><td><b>06</b> 高保真出稿</td><td>高保真设计稿、样式与组件</td><td>产品、开发</td><td>Figma</td></tr><tr><td><b>07</b> 跟开发</td><td>开发标注、联调验收用例</td><td>开发、测试</td><td>Figma 开发模式、在线表格</td></tr>
+      </table></div>
+      <div class="stgs">
+      <article class="stg">
+        <div class="stg-head"><span class="stg-no">01</span><div><h3>业务调研：画流程图</h3><p>报工、生产、库存、发运：每张单从哪来、谁填、谁审、谁用。</p></div></div>
+        <div class="stg-body">
+          <div class="stg-info">
+            <h5>我做了什么</h5><ul class="acts"><li>先找<b>生产部</b>了解计划怎么下发、进度怎么回收</li><li>再找<b>仓库、发运</b>了解堆场和装车怎么交接</li><li>再到车间找<b>班组长、作业人员</b>确认现场怎么交接</li><li>用流程图软件把部门、单据、动作画成一张图</li><li>画完拿回去给生产部和班组长核对，改到大家都认</li></ul>
+            <h5>和谁确认</h5><div class="cks"><span class="ck ">生产部</span><span class="ck ">班组长</span><span class="ck ">作业人员</span><span class="ck ">质检</span><span class="ck ">仓管</span><span class="ck ">发运员</span></div>
+            <h5>用什么工具</h5><div class="cks"><span class="ck ck--tool">流程图软件</span><span class="ck ck--tool">在线文档</span></div>
+            <h5>输出物</h5><div class="cks"><span class="ck ck--out">业务流程图</span><span class="ck ck--out">访谈提纲与记录要点</span></div>
+          </div>
+          <div class="stg-figs"><figure class="doc-fig"><button class="zoomable doc-shot" type="button" data-src="assets/v2/ill-flow.webp" data-title="业务流程图（本人绘制，局部）"><img src="assets/v2/ill-flow.webp" width="1200" height="780" alt="业务流程图（本人绘制，局部）" loading="lazy"></button><figcaption>业务流程图 · 项目原件（局部）</figcaption></figure><figure class="doc-fig"><button class="zoomable doc-shot doc-shot--tall" type="button" data-src="assets/v2/d5-A_interview.webp" data-title="访谈提纲与记录要点"><img src="assets/v2/d5-A_interview.webp" width="2400" height="2580" alt="访谈提纲与记录要点" loading="lazy"></button><figcaption>访谈记录 · 11 位对象，覆盖四个模块</figcaption></figure></div>
+        </div>
+      </article>
+      <article class="stg">
+        <div class="stg-head"><span class="stg-no">02</span><div><h3>下车间：把纸单拆成字段</h3><p>四张纸单拆成字段，顺便看清车间环境。</p></div></div>
+        <div class="stg-body">
+          <div class="stg-info">
+            <h5>我做了什么</h5><ul class="acts"><li>看工人怎么填报工单、流转卡、入库单、发货单</li><li>逐栏拆出字段：哪些能自动带入、哪些必须手填</li><li>标出单位、必填、数据来源</li><li>签字改成账号身份和审批流</li><li>记下现场限制：光线暗、戴手套、噪音大、信号弱</li></ul>
+            <h5>和谁确认</h5><div class="cks"><span class="ck ">作业人员</span><span class="ck ">班组长</span><span class="ck ">生产部</span></div>
+            <h5>用什么工具</h5><div class="cks"><span class="ck ck--tool">现场拍照</span><span class="ck ck--tool">在线表格</span></div>
+            <h5>输出物</h5><div class="cks"><span class="ck ck--out">纸单字段清单</span><span class="ck ck--out">字段映射表</span><span class="ck ck--out">人因与环境需求</span></div>
+          </div>
+          <div class="stg-figs"><figure class="doc-fig"><button class="zoomable doc-shot doc-shot--tall" type="button" data-src="assets/v2/d5-A2_env.webp" data-title="现场环境观察与人因需求"><img src="assets/v2/d5-A2_env.webp" width="2400" height="2340" alt="现场环境观察与人因需求" loading="lazy"></button><figcaption>现场观察 · 光线、手套、噪音、信号</figcaption></figure><figure class="doc-fig"><button class="zoomable doc-shot" type="button" data-src="assets/v2/d5-B_paper.webp" data-title="纸质单据（按原单字段复原）"><img src="assets/v2/d5-B_paper.webp" width="2400" height="1500" alt="纸质单据（按原单字段复原）" loading="lazy"></button><figcaption>纸质单据 · 报工单 / 流转卡 / 入库单 / 发货单</figcaption></figure><figure class="doc-fig"><button class="zoomable doc-shot doc-shot--tall" type="button" data-src="assets/v2/d5-C_fields.webp" data-title="字段映射表"><img src="assets/v2/d5-C_fields.webp" width="2400" height="2850" alt="字段映射表" loading="lazy"></button><figcaption>字段映射表 · 纸单栏目 → 线上控件</figcaption></figure></div>
+        </div>
+      </article>
+      <article class="stg">
+        <div class="stg-head"><span class="stg-no">03</span><div><h3>需求整理：一条条写清，再反复确认</h3><p>把听到的、看到的，变成能逐条确认的需求。</p></div></div>
+        <div class="stg-body">
+          <div class="stg-info">
+            <h5>我做了什么</h5><ul class="acts"><li>每条需求写成「角色 + 场景 + 要做到什么」</li><li>标来源和优先级（P0 / P1）</li><li>人因需求单独一组：填得少、看得清、点得准</li><li>拿去和班组长、生产部、开发逐条确认</li><li>确认不了的标「待确认」，带进下一轮</li></ul>
+            <h5>和谁确认</h5><div class="cks"><span class="ck ">班组长</span><span class="ck ">生产部</span><span class="ck ">开发</span></div>
+            <h5>用什么工具</h5><div class="cks"><span class="ck ck--tool">在线表格</span><span class="ck ck--tool">在线文档</span></div>
+            <h5>输出物</h5><div class="cks"><span class="ck ck--out">需求清单</span><span class="ck ck--out">需求确认记录</span></div>
+          </div>
+          <div class="stg-figs"><figure class="doc-fig"><button class="zoomable doc-shot doc-shot--tall" type="button" data-src="assets/v2/d5-D_reqs.webp" data-title="需求清单"><img src="assets/v2/d5-D_reqs.webp" width="2400" height="2550" alt="需求清单" loading="lazy"></button><figcaption>需求清单 · 34 条业务 + 12 条人因</figcaption></figure><figure class="doc-fig"><button class="zoomable doc-shot doc-shot--tall" type="button" data-src="assets/v2/d5-E_confirm.webp" data-title="需求确认记录"><img src="assets/v2/d5-E_confirm.webp" width="2400" height="2340" alt="需求确认记录" loading="lazy"></button><figcaption>需求确认记录 · 共 4 轮</figcaption></figure></div>
+        </div>
+      </article>
+      <article class="stg">
+        <div class="stg-head"><span class="stg-no">04</span><div><h3>拆任务：流程和页面归属</h3><p>四个模块分别拆任务，正常路径和出错分支一起画。</p></div></div>
+        <div class="stg-body">
+          <div class="stg-info">
+            <h5>我做了什么</h5><ul class="acts"><li>报工拆成：找入口、确认对象、填写、核对提交、看结果、处理退回</li><li>生产、库存、发运同样拆到每一步</li><li>画任务流程图，按作业人员、系统、班组长分泳道</li><li>校验失败、超时、退回都画出去向</li><li>整理信息架构：四个模块统一工作台入口</li></ul>
+            <h5>和谁确认</h5><div class="cks"><span class="ck ">班组长</span><span class="ck ">开发</span></div>
+            <h5>用什么工具</h5><div class="cks"><span class="ck ck--tool">流程图软件</span></div>
+            <h5>输出物</h5><div class="cks"><span class="ck ck--out">任务流程图</span><span class="ck ck--out">信息架构图</span></div>
+          </div>
+          <div class="stg-figs"><figure class="doc-fig"><button class="zoomable doc-shot" type="button" data-src="assets/v2/d5-F_flow.webp" data-title="任务流程图 · 四个模块"><img src="assets/v2/d5-F_flow.webp" width="2400" height="1500" alt="任务流程图 · 四个模块" loading="lazy"></button><figcaption>任务流程图 · 四个模块总览</figcaption></figure><div class="doc-grid"><figure class="doc-fig"><button class="zoomable doc-shot" type="button" data-src="assets/v2/d5-F_flow_bg.webp" data-title="任务流程图 · 报工"><img src="assets/v2/d5-F_flow_bg.webp" width="2400" height="1500" alt="任务流程图 · 报工" loading="lazy"></button><figcaption>报工</figcaption></figure><figure class="doc-fig"><button class="zoomable doc-shot" type="button" data-src="assets/v2/d5-F_flow_sc.webp" data-title="任务流程图 · 生产"><img src="assets/v2/d5-F_flow_sc.webp" width="2400" height="1500" alt="任务流程图 · 生产" loading="lazy"></button><figcaption>生产</figcaption></figure><figure class="doc-fig"><button class="zoomable doc-shot" type="button" data-src="assets/v2/d5-F_flow_kc.webp" data-title="任务流程图 · 库存"><img src="assets/v2/d5-F_flow_kc.webp" width="2400" height="1500" alt="任务流程图 · 库存" loading="lazy"></button><figcaption>库存</figcaption></figure><figure class="doc-fig"><button class="zoomable doc-shot" type="button" data-src="assets/v2/d5-F_flow_fy.webp" data-title="任务流程图 · 发运"><img src="assets/v2/d5-F_flow_fy.webp" width="2400" height="1500" alt="任务流程图 · 发运" loading="lazy"></button><figcaption>发运</figcaption></figure></div><figure class="doc-fig"><button class="zoomable doc-shot" type="button" data-src="assets/v2/d5-G_ia.webp" data-title="信息架构图"><img src="assets/v2/d5-G_ia.webp" width="2400" height="1500" alt="信息架构图" loading="lazy"></button><figcaption>信息架构图 · 四个模块</figcaption></figure></div>
+        </div>
+      </article>
+      <article class="stg">
+        <div class="stg-head"><span class="stg-no">05</span><div><h3>低保真原型 + 交互说明</h3><p>先用线框验证结构，再把规则写清楚。</p></div></div>
+        <div class="stg-body">
+          <div class="stg-info">
+            <h5>我做了什么</h5><ul class="acts"><li>每个模块用灰色线框搭出关键页面，连成可点击流程</li><li>拿给班组长和作业人员走一遍，现场改</li><li>每个控件写清：规则、状态、异常</li><li>交互说明编号，与需求清单一一对应</li></ul>
+            <h5>和谁确认</h5><div class="cks"><span class="ck ">班组长</span><span class="ck ">作业人员</span><span class="ck ">开发</span></div>
+            <h5>用什么工具</h5><div class="cks"><span class="ck ck--tool">Figma</span></div>
+            <h5>输出物</h5><div class="cks"><span class="ck ck--out">低保真原型</span><span class="ck ck--out">交互说明文档</span></div>
+          </div>
+          <div class="stg-figs"><figure class="doc-fig"><button class="zoomable doc-shot" type="button" data-src="assets/v2/d5-H_lofi.webp" data-title="低保真原型"><img src="assets/v2/d5-H_lofi.webp" width="2400" height="1500" alt="低保真原型" loading="lazy"></button><figcaption>低保真原型 · Figma 画板总览</figcaption></figure><div class="doc-grid"><figure class="doc-fig"><button class="zoomable doc-shot" type="button" data-src="assets/v2/d5-I_spec_bg.webp" data-title="交互说明 · 报工"><img src="assets/v2/d5-I_spec_bg.webp" width="2400" height="1500" alt="交互说明 · 报工" loading="lazy"></button><figcaption>交互说明 · 报工</figcaption></figure><figure class="doc-fig"><button class="zoomable doc-shot" type="button" data-src="assets/v2/d5-I_spec_sc.webp" data-title="交互说明 · 生产"><img src="assets/v2/d5-I_spec_sc.webp" width="2400" height="1500" alt="交互说明 · 生产" loading="lazy"></button><figcaption>交互说明 · 生产</figcaption></figure><figure class="doc-fig"><button class="zoomable doc-shot" type="button" data-src="assets/v2/d5-I_spec_kc.webp" data-title="交互说明 · 库存"><img src="assets/v2/d5-I_spec_kc.webp" width="2400" height="1500" alt="交互说明 · 库存" loading="lazy"></button><figcaption>交互说明 · 库存</figcaption></figure><figure class="doc-fig"><button class="zoomable doc-shot" type="button" data-src="assets/v2/d5-I_spec_fy.webp" data-title="交互说明 · 发运"><img src="assets/v2/d5-I_spec_fy.webp" width="2400" height="1500" alt="交互说明 · 发运" loading="lazy"></button><figcaption>交互说明 · 发运</figcaption></figure></div></div>
+        </div>
+      </article>
+      <article class="stg">
+        <div class="stg-head"><span class="stg-no">06</span><div><h3>高保真出稿</h3><p>结构稳定后，统一视觉，所有状态出图。</p></div></div>
+        <div class="stg-body">
+          <div class="stg-info">
+            <h5>我做了什么</h5><ul class="acts"><li>统一颜色、字体、间距和组件</li><li>报工、生产、库存、发运逐页出稿，缺的页面补齐</li><li>空、加载、失败、退回等状态都有对应画面</li></ul>
+            <h5>和谁确认</h5><div class="cks"><span class="ck ">产品</span><span class="ck ">开发</span></div>
+            <h5>用什么工具</h5><div class="cks"><span class="ck ck--tool">Figma</span></div>
+            <h5>输出物</h5><div class="cks"><span class="ck ck--out">高保真设计稿</span><span class="ck ck--out">样式与组件</span></div>
+          </div>
+          <div class="stg-figs"><figure class="doc-fig"><button class="zoomable doc-shot" type="button" data-src="assets/v2/d5-J_hifi.webp" data-title="高保真设计稿"><img src="assets/v2/d5-J_hifi.webp" width="2400" height="1500" alt="高保真设计稿" loading="lazy"></button><figcaption>高保真设计稿 · 四个模块</figcaption></figure></div>
+        </div>
+      </article>
+      <article class="stg">
+        <div class="stg-head"><span class="stg-no">07</span><div><h3>跟开发：标注、联调、验收</h3><p>交出去之后，还要跟到上线。</p></div></div>
+        <div class="stg-body">
+          <div class="stg-info">
+            <h5>我做了什么</h5><ul class="acts"><li>交付标注、切图和交互说明</li><li>联调时按用例逐条验收：正常、空、失败、超时、权限</li><li>问题记录后回归，确认改好再关闭</li></ul>
+            <h5>和谁确认</h5><div class="cks"><span class="ck ">开发</span><span class="ck ">测试</span></div>
+            <h5>用什么工具</h5><div class="cks"><span class="ck ck--tool">Figma 开发模式</span><span class="ck ck--tool">在线表格</span></div>
+            <h5>输出物</h5><div class="cks"><span class="ck ck--out">开发标注</span><span class="ck ck--out">联调验收用例</span></div>
+          </div>
+          <div class="stg-figs"><figure class="doc-fig"><button class="zoomable doc-shot" type="button" data-src="assets/v2/d5-K1_dev.webp" data-title="新建报工 · 开发标注"><img src="assets/v2/d5-K1_dev.webp" width="2400" height="1500" alt="新建报工 · 开发标注" loading="lazy"></button><figcaption>开发标注 · Figma 开发模式</figcaption></figure><figure class="doc-fig"><button class="zoomable doc-shot" type="button" data-src="assets/v2/d5-K2_tests.webp" data-title="联调验收用例"><img src="assets/v2/d5-K2_tests.webp" width="2400" height="1650" alt="联调验收用例" loading="lazy"></button><figcaption>联调验收用例 · 20 条，对应需求编号</figcaption></figure></div>
+        </div>
+      </article>
+      </div>
+      <p class="fine">以上文件图按项目原设计稿复盘重建：字段、页面、流程取自原稿；访谈与确认记录只保留事项和结论，不含原话。业务流程图和高保真设计稿为项目原件。</p>
+    </div>
+  </section>
+
+  <section class="sec sec--dark" id="overview-scenes" data-nav="四个场景">
+    <div class="wrap">
+      <header class="sec-head">
+        <p class="sec-tag">项目背景 · 场景</p>
+        <h2>四个现场任务，用同一套顺序：<br>认对象，看状态，再操作。</h2>
+      </header>
+      <div class="scene-cards">
+        <a class="scene-card" href="#report"><img src="assets/v2/new-04.svg" width="1206" height="2622" alt="" loading="lazy"><span class="sc-ic"><svg><use href="#i-pen"/></svg></span><h4>报工</h4><p>选对构件、报对数量，提交后知道结果</p><em>主线 · 4 节 <svg><use href="#i-arrow"/></svg></em></a>
+        <a class="scene-card" href="#production"><img src="assets/v2/new-03.webp" width="1206" height="2622" alt="" loading="lazy"><span class="sc-ic"><svg><use href="#i-factory"/></svg></span><h4>生产</h4><p>从任务找到构件，完成前再核对一次</p><em>3 节 <svg><use href="#i-arrow"/></svg></em></a>
+        <a class="scene-card" href="#inventory"><img src="assets/v2/new-07.webp" width="1206" height="2622" alt="" loading="lazy"><span class="sc-ic"><svg><use href="#i-box"/></svg></span><h4>库存</h4><p>先看总量，再查到一根构件</p><em>3 节 <svg><use href="#i-arrow"/></svg></em></a>
+        <a class="scene-card" href="#shipping"><img src="assets/v2/new-10.svg" width="1206" height="2622" alt="" loading="lazy"><span class="sc-ic"><svg><use href="#i-truck"/></svg></span><h4>发运</h4><p>找到这一车，看清走到了哪一步</p><em>2 节 <svg><use href="#i-arrow"/></svg></em></a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ================================================================ 报工 -->
+<div class="panel" data-scene="report" id="report">
+  <div class="scene-band"><div class="wrap"><span class="sb-ic"><svg><use href="#i-pen"/></svg></span><p class="sb-no">场景 01</p><h2>报工</h2><p class="sb-desc">选对构件、报对数量，提交后知道结果。</p></div></div>
+
+  <section class="sec sec--dark" id="report-pick" data-nav="选对构件">
+    <div class="wrap">
+      <header class="sec-head">
+        <p class="sec-tag">报工 · 01</p>
+        <h2>构件编号长得几乎一样，<br>就让不一样的那几位先被看见。</h2>
+      </header>
+      <p class="problem"><code>C1-3aGGKZ3<i>1</i></code> 和 <code>C1-3aGGKZ3<i>-01</i></code> 只差一个短横。<br>手输又慢又容易选错，而选错构件，后面填得再准也白填。</p>
+
+      <div class="decision">
+        <figure class="decision-phone">
+          <span class="badge badge--old">原设计</span>
+          <button class="zoomable phone phone--lg" type="button" data-src="assets/v2/search-full.webp" data-title="原设计 · 新建报工中的构件编号搜索" data-portrait="true">
+            <img src="assets/v2/search-crop.webp" width="900" height="945" alt="原设计：新建报工页面中构件编号模糊搜索，已选 2 个">
+            <span class="pin" style="left:56%;top:20.5%">1</span>
+            <span class="pin" style="left:57%;top:47%">2</span>
+            <span class="pin" style="left:60%;top:57%">3</span>
+            <span class="pin" style="left:27%;top:29%">4</span>
+          </button>
+        </figure>
+        <ol class="notes-list">
+          <li><b>1</b><div><h4>先定工号，再搜构件</h4><p>搜索范围先缩小到这个工程。</p></div></li>
+          <li><b>2</b><div><h4>输一半就能搜</h4><p>匹配的部分标蓝，不用整串敲完。</p></div></li>
+          <li><b>3</b><div><h4>尾号保持深色</h4><p>真正能区分的那几位，不被高亮淹没。</p></div></li>
+          <li><b>4</b><div><h4>多选，数量看得见</h4><p>输入框前写明「已选 2 个」。</p></div></li>
+        </ol>
+      </div>
+      <div class="turn">
+        <p>但工人仍要<strong>先知道编号，再去找</strong>。车间里，他面前是一根实物构件，手边是一长串任务。</p>
+        <a class="turn-go" href="#production-find">优化后改为从任务出发 · 见下方「生产」<svg><use href="#i-arrow"/></svg></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="report-fill" data-nav="报对数量">
+    <div class="wrap">
+      <header class="sec-head">
+        <p class="sec-tag">报工 · 02</p>
+        <h2>十几个字段平铺在一页，<br>就分成「核对」和「填写」两组。</h2>
+      </header>
+      <ul class="pain">
+        <li>原表单照搬纸单字段，从上到下全部过一遍</li>
+        <li>分不清哪些已定好、哪些这次要填</li>
+        <li>单位挂在输入框外，按钮只叫「新建」</li>
+      </ul>
+
+      <div class="compare">
+        <figure class="compare-col">
+          <span class="badge badge--old">原设计</span>
+          <button class="zoomable phone phone--md" type="button" data-src="assets/v2/form-old.webp" data-title="原设计 · 新建报工表单" data-portrait="true">
+            <img src="assets/v2/form-old.webp" width="900" height="1776" alt="原设计：新建报工表单，字段平铺">
+            <span class="pin pin--muted" style="left:90%;top:30%">A</span>
+            <span class="pin pin--muted" style="left:96%;top:52%">B</span>
+            <span class="pin pin--muted" style="left:84%;top:94.6%">C</span>
+          </button>
+          <ul class="old-notes">
+            <li><b>A</b>所有字段排在同一列，没有分组</li>
+            <li><b>B</b>单位写成「(mm) / 毫米」</li>
+            <li><b>C</b>「新建」说不清会发生什么</li>
+          </ul>
+        </figure>
+        <div class="compare-arrow" aria-hidden="true"><svg><use href="#i-arrow"/></svg></div>
+        <figure class="compare-col">
+          <span class="badge badge--new">优化设计</span>
+          <button class="zoomable phone phone--md" type="button" data-src="assets/v2/new-04.svg" data-title="优化设计 · 新建报工" data-portrait="true">
+            <img src="assets/v2/new-04.svg" width="1206" height="2622" alt="优化设计：新建报工，分为作业信息和完成情况两组">
+            <span class="pin" style="left:92%;top:13.8%">1</span>
+            <span class="pin" style="left:42%;top:18.9%">2</span>
+            <span class="pin" style="left:42%;top:49.6%">3</span>
+            <span class="pin" style="left:64%;top:58.7%">4</span>
+            <span class="pin" style="left:88%;top:94%">5</span>
+          </button>
+        </figure>
+        <ol class="notes-list notes-list--light">
+          <li><b>1</b><div><h4>先说这页做什么</h4><p>「核对构件后填写实际完成量」</p></div></li>
+          <li><b>2</b><div><h4>作业信息：核对</h4><p>班组、工号、构件等，进来时已确定。</p></div></li>
+          <li><b>3</b><div><h4>完成情况：填写</h4><p>板厚、完成量、焊丝量、用时单独一组。</p></div></li>
+          <li><b>4</b><div><h4>单位跟着数字</h4><p>「20 mm」「2.8 kg」放在一起读。</p></div></li>
+          <li><b>5</b><div><h4>按钮说清结果</h4><p>「新建」改为「提交报工」，固定底部。</p></div></li>
+        </ol>
+      </div>
+
+      <div class="patch">
+        <div class="patch-text">
+          <span class="badge badge--retro">补充设计</span>
+          <h3>还差一步：完成量和用时也要带单位</h3>
+          <p>优化稿里这两项还是光秃秃的数字，偏偏它们最容易填错。<br>补上 m 和 h，和板厚、焊丝量写法一致；输入时单位固定在右侧。</p>
+        </div>
+        <div class="patch-cards" aria-label="完成情况字段补充单位前后对比">
+          <div class="pc"><p class="pc-cap">优化稿</p><div class="pc-card"><div class="pc-row"><span>板厚</span><span>20 mm</span></div><div class="pc-row pc-row--miss"><span>完成量</span><span>12.5</span></div><div class="pc-row"><span>焊丝量</span><span>2.8 kg</span></div><div class="pc-row pc-row--miss"><span>用时</span><span>7.5</span></div></div></div>
+          <div class="pc"><p class="pc-cap pc-cap--new">补充后</p><div class="pc-card"><div class="pc-row"><span>板厚</span><span>20 mm</span></div><div class="pc-row pc-row--fix"><span>完成量</span><span>12.5 <u>m</u></span></div><div class="pc-row"><span>焊丝量</span><span>2.8 kg</span></div><div class="pc-row pc-row--fix"><span>用时</span><span>7.5 <u>h</u></span></div></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec sec--tint" id="report-after" data-nav="提交之后">
+    <div class="wrap">
+      <header class="sec-head">
+        <p class="sec-tag">报工 · 03</p>
+        <h2>提交成功不等于审批通过，<br>结果要回到工人每天打开的地方。</h2>
+      </header>
+      <div class="flow" role="img" aria-label="报工状态流转：填写、提交、待审批，通过后销号；退回后修改并重新提交，回到待审批">
+        <div class="flow-row">
+          <span class="node">填写</span><i></i><span class="node node--blue">提交</span><i></i><span class="node node--amber">待审批</span><i></i><span class="node node--teal">已通过</span><i></i><span class="node">销号</span>
+        </div>
+        <div class="flow-branch">
+          <span class="node node--red">已退回</span><i></i><span class="node">修改</span><i></i><span class="node node--blue">重新提交</span><span class="branch-back">↺ 回到待审批</span>
+        </div>
+      </div>
+
+      <div class="compare">
+        <figure class="compare-col">
+          <span class="badge badge--old">原设计</span>
+          <button class="zoomable phone phone--md" type="button" data-src="assets/v2/success-old.webp" data-title="原设计 · 报工完成" data-portrait="true">
+            <img src="assets/v2/success-old.webp" width="900" height="1050" alt="原设计：新建报工完成页">
+            <span class="pin pin--muted" style="left:88%;top:50.5%">A</span>
+            <span class="pin pin--muted" style="left:88%;top:85.7%">B</span>
+          </button>
+          <ul class="old-notes">
+            <li><b>A</b>结果要自己去「报工历史」里找</li>
+            <li><b>B</b>主按钮是「立即销号」，可还没审批</li>
+          </ul>
+        </figure>
+        <div class="compare-arrow" aria-hidden="true"><svg><use href="#i-arrow"/></svg></div>
+        <figure class="compare-col">
+          <span class="badge badge--new">优化设计</span>
+          <button class="zoomable phone phone--md" type="button" data-src="assets/v2/new-02.svg" data-title="优化设计 · 报工作业工作台" data-portrait="true">
+            <img src="assets/v2/new-02.svg" width="1206" height="2622" alt="优化设计：报工作业工作台，显示待审批 10、已退回需修改 02">
+            <span class="pin" style="left:90%;top:36%">1</span>
+            <span class="pin" style="left:36%;top:47%">2</span>
+            <span class="pin" style="left:90%;top:47%">3</span>
+          </button>
+        </figure>
+        <ol class="notes-list notes-list--light">
+          <li><b>1</b><div><h4>提交前就知道后果</h4><p>入口写明「提交班组审批」。</p></div></li>
+          <li><b>2</b><div><h4>结果回到入口</h4><p>待审批数量就在工作台上。</p></div></li>
+          <li><b>3</b><div><h4>状态和动作写在一起</h4><p>「已退回 · 需修改」，点进去就改。</p></div></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec sec--dark" id="report-returned" data-nav="退回与修改">
+    <div class="wrap">
+      <header class="sec-head">
+        <p class="sec-tag">报工 · 04</p>
+        <h2>被退回时要知道：<br>哪里错了、改哪里、改完怎么办。</h2>
+      </header>
+      <div class="compare">
+        <figure class="compare-col">
+          <span class="badge badge--old">原设计</span>
+          <button class="zoomable phone phone--md" type="button" data-src="assets/v2/returned-crop.webp" data-title="原设计 · 报工详情（已驳回）" data-portrait="true">
+            <img src="assets/v2/returned-crop.webp" width="900" height="1458" alt="原设计：报工详情，已驳回，驳回原因为信息填写错误">
+            <span class="pin pin--muted" style="left:76%;top:12.8%">A</span>
+            <span class="pin pin--muted" style="left:92%;top:18.9%">B</span>
+            <span class="pin pin--muted" style="left:40%;top:96.5%">C</span>
+          </button>
+          <ul class="old-notes old-notes--dark">
+            <li><b>A</b>做到了：红色「已驳回」一眼可见</li>
+            <li><b>B</b>原因只写「信息填写错误」</li>
+            <li><b>C</b>只能看，没有修改入口</li>
+          </ul>
+        </figure>
+        <div class="compare-arrow" aria-hidden="true"><svg><use href="#i-arrow"/></svg></div>
+        <figure class="compare-col">
+          <span class="badge badge--retro">补充设计</span>
+          <div class="mock-wrap">
+            <div class="phone phone--md mock" role="img" aria-label="补充设计：已退回详情，标出出错字段，底部修改后重新提交">
+              <div class="mk-nav"><span>‹</span><b>报工详情</b><span></span></div>
+              <div class="mk-state mk-state--red"><b>已退回 · 需修改</b><small>04-28 08:55</small></div>
+              <div class="mk-reason"><em>退回原因</em>完成量与构件长度不符，请核对后重新提交</div>
+              <p class="mk-gt">作业信息</p>
+              <div class="mk-group">
+                <div class="mk-row"><span>工号</span><span>JBYZ-GZ3-04</span></div>
+                <div class="mk-row"><span>构件编号</span><span>A3-42JC-01</span></div>
+                <div class="mk-row"><span>工作内容</span><span>组十字</span></div>
+              </div>
+              <p class="mk-gt">完成情况</p>
+              <div class="mk-group">
+                <div class="mk-row"><span>板厚</span><span>7 mm</span></div>
+                <div class="mk-row mk-row--err"><span>完成量</span><span><i>需修改</i>7 m</span></div>
+                <div class="mk-row"><span>焊丝量</span><span>8 kg</span></div>
+                <div class="mk-row"><span>用时</span><span>3 h</span></div>
+              </div>
+              <div class="mk-foot"><div class="mk-btn">修改后重新提交</div></div>
+            </div>
+            <span class="pin" style="left:-1%;top:21.5%">1</span>
+            <span class="pin" style="left:-1%;top:65.8%">2</span>
+            <span class="pin" style="left:-1%;top:93.5%">3</span>
+          </div>
+        </figure>
+        <ol class="notes-list">
+          <li><b>1</b><div><h4>原因写到具体字段</h4><p>「完成量与构件长度不符」，而不是「填写错误」。</p></div></li>
+          <li><b>2</b><div><h4>出错的那行标出来</h4><p>只改有问题的地方，不用整张重填。</p></div></li>
+          <li><b>3</b><div><h4>改完就地提交</h4><p>回到待审批，记录保留修改轨迹。</p></div></li>
+        </ol>
+      </div>
+      <p class="fine fine--dark">新版设计稿中没有退回详情页，右侧按新版视觉规范补画；退回原因为示例文字，尚未经过真实用户验证。</p>
+    </div>
+  </section>
+</div>
+
+<!-- ================================================================ 生产 -->
+<div class="panel" data-scene="production" id="production">
+  <div class="scene-band"><div class="wrap"><span class="sb-ic"><svg><use href="#i-factory"/></svg></span><p class="sb-no">场景 02</p><h2>生产</h2><p class="sb-desc">从任务找到构件，完成前再核对一次。</p></div></div>
+
+  <section class="sec" id="production-find" data-nav="找到构件">
+    <div class="wrap">
+      <header class="sec-head">
+        <p class="sec-tag">生产 · 01</p>
+        <h2>从一张挤满的表格，<br>到一眼认出要做的那根构件。</h2>
+      </header>
+      <ul class="pain">
+        <li>4 列塞进手机宽度，长编号被截断、折行</li>
+        <li>紧急、催办只是一个小色块</li>
+        <li>退回、催办、报工、完成四个动作一样大</li>
+      </ul>
+      <div class="compare">
+        <figure class="compare-col">
+          <span class="badge badge--old">原设计</span>
+          <button class="zoomable phone phone--md" type="button" data-src="assets/v2/production-old.webp" data-title="原设计 · 构件任务（选中后）" data-portrait="true">
+            <img src="assets/v2/production-old.webp" width="900" height="1900" alt="原设计：构件任务表格，选中多行，底部四个操作">
+            <span class="pin pin--muted" style="left:6%;top:31%">A</span>
+            <span class="pin pin--muted" style="left:30%;top:72.7%">B</span>
+            <span class="pin pin--muted" style="left:50%;top:86%">C</span>
+          </button>
+          <ul class="old-notes">
+            <li><b>A</b>紧急、催办只是小色块</li>
+            <li><b>B</b>长编号挤出了列宽</li>
+            <li><b>C</b>四个操作同样分量</li>
+          </ul>
+        </figure>
+        <div class="compare-arrow" aria-hidden="true"><svg><use href="#i-arrow"/></svg></div>
+        <figure class="compare-col">
+          <span class="badge badge--new">优化设计</span>
+          <button class="zoomable phone phone--md" type="button" data-src="assets/v2/new-03.webp" data-title="优化设计 · 构件任务" data-portrait="true">
+            <img src="assets/v2/new-03.webp" width="1206" height="2622" alt="优化设计：构件任务列表，构件编号为卡片主标题，底部扫码查找构件">
+            <span class="pin" style="left:6%;top:20.9%">1</span>
+            <span class="pin" style="left:78%;top:35.2%">2</span>
+            <span class="pin" style="left:8%;top:31.8%">3</span>
+            <span class="pin" style="left:88%;top:94%">4</span>
+          </button>
+        </figure>
+        <ol class="notes-list notes-list--light">
+          <li><b>1</b><div><h4>先分清该做哪些</h4><p>待处理 360、催办 2、已完成，带数量的分组。</p></div></li>
+          <li><b>2</b><div><h4>编号是卡片标题</h4><p>工号、件号、当前工序退为辅助信息。</p></div></li>
+          <li><b>3</b><div><h4>急的先看见</h4><p>紧急、催办、待处理用颜色加文字。</p></div></li>
+          <li><b>4</b><div><h4>面对实物，直接扫码</h4><p>「扫码查找构件」是主按钮，拇指够得到。</p></div></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec sec--dark" id="production-confirm" data-nav="完成前核对">
+    <div class="wrap">
+      <header class="sec-head">
+        <p class="sec-tag">生产 · 02</p>
+        <h2>点「完成」之前，<br>把对象再摆到眼前一次。</h2>
+      </header>
+      <div class="decision decision--rev">
+        <ol class="notes-list">
+          <li><b>1</b><div><h4>问一句，而不是直接执行</h4><p>「确认完成打砂？」工序名写进标题。</p></div></li>
+          <li><b>2</b><div><h4>工号、构件、工序再列一遍</h4><p>提示语直说目的：「避免误销号」。</p></div></li>
+          <li><b>3</b><div><h4>主按钮写清动作</h4><p>「确认完成打砂」，而不是「确定」。</p></div></li>
+          <li><b>4</b><div><h4>退路一样清楚</h4><p>「返回核对」，不怕点错。</p></div></li>
+        </ol>
+        <figure class="decision-phone">
+          <span class="badge badge--new">优化设计</span>
+          <button class="zoomable phone phone--lg" type="button" data-src="assets/v2/new-06.svg" data-title="优化设计 · 完成确认" data-portrait="true">
+            <img src="assets/v2/new-06.svg" width="1206" height="2622" alt="优化设计：确认完成打砂面板，再次列出工号、构件编号和当前工序">
+            <span class="pin" style="left:92%;top:55.8%">1</span>
+            <span class="pin" style="left:6%;top:70.8%">2</span>
+            <span class="pin" style="left:92%;top:88%">3</span>
+            <span class="pin" style="left:70%;top:94.6%">4</span>
+          </button>
+        </figure>
+      </div>
+      <p class="fine fine--dark">原设计里「完成」是底部四个圆形按钮之一，点击后没有再次核对对象。</p>
+    </div>
+  </section>
+
+  <section class="sec" id="production-overview" data-nav="生产总览">
+    <div class="wrap">
+      <header class="sec-head">
+        <p class="sec-tag">生产 · 03</p>
+        <h2>管理者打开，先看总量，<br>再往下看工序和设备。</h2>
+      </header>
+      <div class="decision">
+        <figure class="decision-phone">
+          <span class="badge badge--new">优化设计</span>
+          <button class="zoomable phone phone--lg" type="button" data-src="assets/v2/new-A07.svg" data-title="优化设计 · 生产管控" data-portrait="true">
+            <img src="assets/v2/new-A07.svg" width="1206" height="2622" alt="优化设计：生产管控，今日打砂面积、工序产量、设备状态、生产周报">
+            <span class="pin" style="left:94%;top:20%">1</span>
+            <span class="pin" style="left:94%;top:44%">2</span>
+            <span class="pin" style="left:94%;top:65%">3</span>
+            <span class="pin" style="left:94%;top:80%">4</span>
+          </button>
+        </figure>
+        <ol class="notes-list notes-list--light">
+          <li><b>1</b><div><h4>今天做了多少</h4><p>今日打砂面积用最大的字，本月累计跟在下面。</p></div></li>
+          <li><b>2</b><div><h4>工序分开看</h4><p>打砂、油漆各一张卡，年累计做参照。</p></div></li>
+          <li><b>3</b><div><h4>设备状态：颜色加文字</h4><p>工作中、待机中、已关机，不只靠颜色。</p></div></li>
+          <li><b>4</b><div><h4>周报一步进入</h4><p>收料、存车数量直接显示在入口上。</p></div></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ================================================================ 库存 -->
+<div class="panel" data-scene="inventory" id="inventory">
+  <div class="scene-band"><div class="wrap"><span class="sb-ic"><svg><use href="#i-box"/></svg></span><p class="sb-no">场景 03</p><h2>库存</h2><p class="sb-desc">先看总量，再查到一根构件。</p></div></div>
+
+  <section class="sec" id="inventory-overview" data-nav="先看总量">
+    <div class="wrap">
+      <header class="sec-head">
+        <p class="sec-tag">库存 · 01</p>
+        <h2>打开库存，第一句应该回答：<br>现在有多少？</h2>
+      </header>
+      <ul class="pain">
+        <li>原页面一进来就是明细表，看不到总量</li>
+        <li>重量写成「1.33635 吨」，小数位过长</li>
+        <li>详情只是一列「字段：值」，没有重点</li>
+      </ul>
+      <div class="compare">
+        <figure class="compare-col">
+          <span class="badge badge--old">原设计</span>
+          <button class="zoomable phone phone--md" type="button" data-src="assets/v2/inventory-old.webp" data-title="原设计 · 构件库存（详细信息）" data-portrait="true">
+            <img src="assets/v2/inventory-old.webp" width="900" height="1550" alt="原设计：构件库存表格与详细信息弹层">
+            <span class="pin pin--muted" style="left:92%;top:10.3%">A</span>
+            <span class="pin pin--muted" style="left:44%;top:75%">B</span>
+            <span class="pin pin--muted" style="left:92%;top:58%">C</span>
+          </button>
+          <ul class="old-notes">
+            <li><b>A</b>先给明细，没有总量</li>
+            <li><b>B</b>重量小数位过长</li>
+            <li><b>C</b>详情没有层级</li>
+          </ul>
+        </figure>
+        <div class="compare-arrow" aria-hidden="true"><svg><use href="#i-arrow"/></svg></div>
+        <figure class="compare-col">
+          <span class="badge badge--new">优化设计</span>
+          <button class="zoomable phone phone--md" type="button" data-src="assets/v2/new-07.webp" data-title="优化设计 · 堆场管控" data-portrait="true">
+            <img src="assets/v2/new-07.webp" width="1206" height="2622" alt="优化设计：堆场管控，当前成品库存 9,204 吨，库存作业与库存分析入口">
+            <span class="pin" style="left:94%;top:20%">1</span>
+            <span class="pin" style="left:94%;top:28%">2</span>
+            <span class="pin" style="left:94%;top:41%">3</span>
+            <span class="pin" style="left:94%;top:62%">4</span>
+          </button>
+        </figure>
+        <ol class="notes-list notes-list--light">
+          <li><b>1</b><div><h4>总量放最上面</h4><p>「9,204 吨」，件数和更新时间跟在下面。</p></div></li>
+          <li><b>2</b><div><h4>今天的进出</h4><p>今日入库、出库各占一边。</p></div></li>
+          <li><b>3</b><div><h4>四个高频动作</h4><p>入库、出库、倒运、盘点，一排入口。</p></div></li>
+          <li><b>4</b><div><h4>分析再往下</h4><p>库存、库龄、库位统计，按需进入。</p></div></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec sec--dark" id="inventory-detail" data-nav="一根构件">
+    <div class="wrap">
+      <header class="sec-head">
+        <p class="sec-tag">库存 · 02</p>
+        <h2>查到一根构件时，<br>先知道它在哪儿、有多重。</h2>
+      </header>
+      <div class="decision decision--rev">
+        <ol class="notes-list">
+          <li><b>1</b><div><h4>编号做标题，状态紧跟</h4><p>「在库」用标签，和编号放在同一行。</p></div></li>
+          <li><b>2</b><div><h4>库位最醒目</h4><p>去堆场找构件，最先要的是「D9」。</p></div></li>
+          <li><b>3</b><div><h4>数字统一写法</h4><p>重量 1.336 t、长度 3,590 mm，单位跟着数字。</p></div></li>
+          <li><b>4</b><div><h4>下一步就在底部</h4><p>出库、倒运两个动作，主次分明。</p></div></li>
+        </ol>
+        <figure class="decision-phone">
+          <span class="badge badge--retro">补充设计</span>
+          <div class="mock-wrap mock-wrap--lg">
+            <div class="phone phone--lg mock" role="img" aria-label="补充设计：构件库存详情">
+              <div class="mk-nav"><span>‹</span><b>构件详情</b><span></span></div>
+              <div class="mk-hero">
+                <div class="mk-id"><b>C1-3aGGKZ3a-17</b><i class="tag tag--teal">在库</i></div>
+                <small>地上住院楼 · 批次 036</small>
+              </div>
+              <div class="mk-loc">
+                <div><em>库位</em><b>D9</b></div>
+                <div><em>重量</em><b>1.336<small> t</small></b></div>
+                <div><em>长度</em><b>3,590<small> mm</small></b></div>
+              </div>
+              <p class="mk-gt">库位位置 <small>2 号堆场</small></p>
+              <div class="mk-yard"><div class="yd-row"><b>A</b><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="yd-row"><b>B</b><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="yd-row"><b>C</b><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="yd-row"><b>D</b><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="on">D9</i><i></i></div><div class="yd-axis"><b></b><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span></div></div>
+              <p class="mk-gt">入库信息</p>
+              <div class="mk-group">
+                <div class="mk-row"><span>入库时间</span><span>2022-09-06 10:21</span></div>
+                <div class="mk-row"><span>工程任务</span><span>地上住院楼</span></div>
+                <div class="mk-row"><span>备注</span><span>无</span></div>
+              </div>
+              <div class="mk-foot mk-foot--two"><div class="mk-btn mk-btn--ghost">倒运</div><div class="mk-btn">出库</div></div>
+            </div>
+            <span class="pin" style="left:101%;top:14%">1</span>
+            <span class="pin" style="left:101%;top:24%">2</span>
+            <span class="pin" style="left:101%;top:30%">3</span>
+            <span class="pin" style="left:101%;top:93.5%">4</span>
+          </div>
+        </figure>
+      </div>
+      <p class="fine fine--dark">新版设计稿中没有单根构件详情，右侧按新版视觉规范补画；字段与数值取自原设计；堆场编号与库位图为示意，重量保留位数为建议，需与业务确认。</p>
+    </div>
+  </section>
+
+  <section class="sec" id="inventory-trend" data-nav="趋势与盘点">
+    <div class="wrap">
+      <header class="sec-head">
+        <p class="sec-tag">库存 · 03</p>
+        <h2>重量和件数分开说，<br>盘点时差异先浮上来。</h2>
+      </header>
+      <div class="duo-wide">
+        <figure>
+          <span class="badge badge--new">优化设计 · 库存统计</span>
+          <button class="zoomable phone phone--md" type="button" data-src="assets/v2/new-08.svg" data-title="优化设计 · 库存统计" data-portrait="true">
+            <img src="assets/v2/new-08.svg" width="1206" height="2622" alt="优化设计：库存统计，按月柱状图，选中 6 月 9,204 吨">
+            <span class="pin" style="left:62%;top:28.7%">1</span>
+            <span class="pin" style="left:94%;top:67%">2</span>
+            <span class="pin" style="left:94%;top:80%">3</span>
+          </button>
+          <ol class="notes-list notes-list--light notes-list--compact">
+            <li><b>1</b><div><h4>选中即读数</h4><p>点柱子，直接显示「06 月 · 9,204 吨」。</p></div></li>
+            <li><b>2</b><div><h4>重量、件数两张卡</h4><p>吨和件不混成一个数。</p></div></li>
+            <li><b>3</b><div><h4>写明口径</h4><p>按月末库存汇总，避免误读。</p></div></li>
+          </ol>
+        </figure>
+        <figure>
+          <span class="badge badge--new">优化设计 · 库存盘点</span>
+          <button class="zoomable phone phone--md" type="button" data-src="assets/v2/stocktake.webp" data-title="优化设计 · 库存盘点" data-portrait="true">
+            <img src="assets/v2/stocktake.webp" width="1206" height="2622" alt="优化设计：库存盘点，今日进度 18/24，待核对差异与复核提醒">
+            <span class="pin" style="left:94%;top:21.5%">1</span>
+            <span class="pin" style="left:66%;top:50%">2</span>
+            <span class="pin" style="left:94%;top:83%">3</span>
+          </button>
+          <ol class="notes-list notes-list--light notes-list--compact">
+            <li><b>1</b><div><h4>今天还剩多少</h4><p>「18 / 24 项」加进度条。</p></div></li>
+            <li><b>2</b><div><h4>差异放在任务卡里</h4><p>「待核对」直接标在库区旁。</p></div></li>
+            <li><b>3</b><div><h4>需要复核的单独提醒</h4><p>「有 2 处库存数据待复核」。</p></div></li>
+          </ol>
+        </figure>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ================================================================ 发运 -->
+<div class="panel" data-scene="shipping" id="shipping">
+  <div class="scene-band"><div class="wrap"><span class="sb-ic"><svg><use href="#i-truck"/></svg></span><p class="sb-no">场景 04</p><h2>发运</h2><p class="sb-desc">找到这一车，看清走到了哪一步。</p></div></div>
+
+  <section class="sec" id="shipping-list" data-nav="找到这一车">
+    <div class="wrap">
+      <header class="sec-head">
+        <p class="sec-tag">发运 · 01</p>
+        <h2>一天几十张发运单，<br>先用单号和状态找到这一车。</h2>
+      </header>
+      <div class="decision">
+        <figure class="decision-phone">
+          <span class="badge badge--new">优化设计</span>
+          <button class="zoomable phone phone--lg" type="button" data-src="assets/v2/new-09.svg" data-title="优化设计 · 发运管理" data-portrait="true">
+            <img src="assets/v2/new-09.svg" width="1206" height="2622" alt="优化设计：发运管理列表，单号为卡片标题，状态标签，底部扫码查看发运单">
+            <span class="pin" style="left:94%;top:19.7%">1</span>
+            <span class="pin" style="left:6%;top:30.4%">2</span>
+            <span class="pin" style="left:96%;top:30.4%">3</span>
+            <span class="pin" style="left:88%;top:93%">4</span>
+          </button>
+        </figure>
+        <ol class="notes-list notes-list--light">
+          <li><b>1</b><div><h4>按审批分组</h4><p>全部、待审批、已审批，一行切换。</p></div></li>
+          <li><b>2</b><div><h4>单号是标题</h4><p>制造单位、收货单位退为两行辅助信息。</p></div></li>
+          <li><b>3</b><div><h4>状态各有颜色</h4><p>待发运、运输中、待审批，颜色加文字。</p></div></li>
+          <li><b>4</b><div><h4>手里拿着单子就扫</h4><p>「扫码查看发运单」固定在底部。</p></div></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec sec--dark" id="shipping-detail" data-nav="运输途中">
+    <div class="wrap">
+      <header class="sec-head">
+        <p class="sec-tag">发运 · 02</p>
+        <h2>车在路上时，<br>阶段、信息和下一步要各就各位。</h2>
+      </header>
+      <ul class="pain pain--dark">
+        <li>全程、剩余、预计时长挤在一句话里</li>
+        <li>「结束运输」是浮在内容上的圆按钮，挡住了字段</li>
+        <li>「运输中」只是右上角一个小标签</li>
+      </ul>
+      <div class="compare">
+        <figure class="compare-col">
+          <span class="badge badge--old">原设计</span>
+          <button class="zoomable phone phone--md" type="button" data-src="assets/v2/shipping-old.webp" data-title="原设计 · 任务详情（发运中）" data-portrait="true">
+            <img src="assets/v2/shipping-old.webp" width="900" height="1550" alt="原设计：发运任务详情，地图、运输信息与悬浮的结束运输按钮">
+            <span class="pin pin--muted" style="left:92%;top:40%">A</span>
+            <span class="pin pin--muted" style="left:72%;top:83.5%">B</span>
+            <span class="pin pin--muted" style="left:72%;top:50%">C</span>
+          </button>
+          <ul class="old-notes old-notes--dark">
+            <li><b>A</b>三个数字挤在一句话里</li>
+            <li><b>B</b>悬浮按钮挡住内容</li>
+            <li><b>C</b>状态只是小标签</li>
+          </ul>
+        </figure>
+        <div class="compare-arrow" aria-hidden="true"><svg><use href="#i-arrow"/></svg></div>
+        <figure class="compare-col">
+          <span class="badge badge--new">优化设计</span>
+          <button class="zoomable phone phone--md" type="button" data-src="assets/v2/new-10.svg" data-title="优化设计 · 发运任务详情" data-portrait="true">
+            <img src="assets/v2/new-10.svg" width="1206" height="2622" alt="优化设计：发运任务详情，阶段进度、运输信息、发运前提醒与开始运输按钮">
+            <span class="pin" style="left:94%;top:40%">1</span>
+            <span class="pin" style="left:94%;top:57%">2</span>
+            <span class="pin" style="left:94%;top:76.8%">3</span>
+            <span class="pin" style="left:88%;top:93%">4</span>
+          </button>
+        </figure>
+        <ol class="notes-list">
+          <li><b>1</b><div><h4>阶段连成进度条</h4><p>待发运 → 运输中 → 已到达 → 已完成。</p></div></li>
+          <li><b>2</b><div><h4>运输信息成组</h4><p>起止地址、收货人、构件数量放在一张卡里。</p></div></li>
+          <li><b>3</b><div><h4>出发前提醒</h4><p>「发运前请核对车辆、构件与目的地」。</p></div></li>
+          <li><b>4</b><div><h4>主按钮回到底部</h4><p>「开始运输」，不再遮挡内容。</p></div></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+</div>
+
+</div><!-- /panels -->
+
+<!-- ============ 复盘（所有场景共用） ============ -->
+<section class="sec review-sec" id="review">
+  <div class="wrap">
+    <header class="sec-head">
+      <p class="sec-tag">复盘</p>
+      <h2>回头看这个项目。</h2>
+    </header>
+    <div class="review">
+      <article><svg><use href="#i-flow"/></svg><h4>学到的</h4><p>工业产品的难点不在好不好看，而在每个字段背后都连着别人的工作。先画清业务，取舍才有依据。</p></article>
+      <article><svg><use href="#i-check"/></svg><h4>还没做完的</h4><p>字段级退回原因、完成量和用时的单位、库存数字的保留位数，都要先和业务确认规则。</p></article>
+      <article><svg><use href="#i-helmet"/></svg><h4>下次怎么验证</h4><p>请几位焊工在车间完成三件事：扫码找到构件、报一次带单位的完成量、处理一条退回。看哪里停顿、选错或求助。</p></article>
+    </div>
+    <a class="crosslink" href="../industrial-mobile/"><span>同一项目的视觉设计</span><strong>查看小钢制造 UI 案例 <svg><use href="#i-arrow"/></svg></strong></a>
+  </div>
+</section>
+</main>
+
+<footer class="foot wrap">
+  <span>© 梁洪 · 小钢制造交互与用户体验</span>
+  <span>「原设计」为项目交付稿 · 「优化设计」见 UI 案例 · 「补充设计」为本次补画</span>
+</footer>
+
+<div class="viewer" id="viewer" hidden>
+  <div class="viewer-bar">
+    <strong id="viewer-title"></strong>
+    <div class="viewer-tools">
+      <button type="button" data-z="out" aria-label="缩小">−</button>
+      <span id="viewer-pct">100%</span>
+      <button type="button" data-z="in" aria-label="放大">+</button>
+      <button type="button" data-z="fit">适应窗口</button>
+      <button type="button" data-z="close" class="viewer-close">关闭 ✕</button>
+    </div>
+  </div>
+  <div class="viewer-stage" id="viewer-stage"><img id="viewer-img" alt="" draggable="false"></div>
+  <p class="viewer-tip">滚轮或双指缩放 · 拖动查看 · 双击放大</p>
+</div>
+
+<script src="v4.js?v=2"></script>
+</body>
+</html>
