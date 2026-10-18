@@ -14,7 +14,7 @@ const printCollections={
     {slug:'silicone',title:'产品设计',pages:2,ratio:1672/2408,ratios:[1672/2408,12742/6161],cover:'assets/hangtong-silicone/page-1.jpg',sources:['assets/hangtong-silicone/page-1.jpg','assets/hangtong-silicone/page-2.jpg'],base:'assets/hangtong-silicone/',digits:1}
   ]},
   exhibition:{title:'展板设计',eyebrow:'PRINT DESIGN / EXHIBITION',description:'选择一组，查看展板与展示效果',footer:'中建科工 · 展板设计',items:[
-    {slug:'overview',title:'企业介绍展板',pages:2,ratio:6000/821,ratios:[6000/821,3728/732],sources:['assets/exhibition-pages/page-1.jpg','assets/exhibition-pages/overview-render.webp'],base:'assets/exhibition-pages/',digits:1},
+    {slug:'overview',title:'企业介绍展板',pages:1,ratio:6000/821,ratios:[6000/821],sources:['assets/exhibition-pages/page-1.jpg'],base:'assets/exhibition-pages/',digits:1},
     {slug:'exhibition',title:'展板与展陈效果',pages:6,ratio:9356/2552,ratios:[9356/2552,5954/2552,2200/1241,2200/1241,2200/1241,2200/1241],base:'assets/exhibition-pages/',digits:1,startPage:2},
     {slug:'foldout',title:'智能制造折页',pages:7,ratio:595.44/841.92,base:'assets/foldout-pages/',digits:1}
   ]},
