@@ -62,6 +62,7 @@ function renderCollection(){
   flyerGrid.classList.toggle('is-brochures',currentCollection==='hangtong-ecommerce'||currentCollection==='brochures'||currentCollection==='exhibition'||currentCollection==='hangtong'||currentCollection==='ipanel'||currentCollection==='jingzhen');
   flyerGrid.classList.toggle('is-magazines',currentCollection==='magazines');
   flyerGrid.classList.toggle('is-standards',currentCollection==='standards');
+  if(!group.items.length){const empty=document.createElement('p');empty.className='category-empty';empty.setAttribute('role','status');empty.textContent=language==='zh'?'内容整理中':'Content coming soon';flyerGrid.append(empty);}
   group.items.forEach((item,index)=>{
     const button=document.createElement('button');
     button.type='button';button.className='flyer-item';
@@ -83,7 +84,8 @@ function openCollection(type,trigger){
   flyerCollection.classList.add('open');flyerCollection.setAttribute('aria-hidden','false');
   document.body.classList.add('modal-open');
   const last=collectionLastItem[type];
-  (last?flyerGrid.querySelector(`[data-slug="${last}"]`):flyerGrid.querySelector('.flyer-item')).focus();
+  (last?flyerGrid.querySelector(`[data-slug="${last}"]`):flyerGrid.querySelector('.flyer-item'))?.focus();
+  if(!printCollections[type].items.length)document.querySelector('#flyer-collection-close').focus();
 }
 function openHangtongCollection(trigger){openCollection('hangtong',trigger)}
 function openExhibitionCollection(trigger){openCollection('exhibition',trigger)}
