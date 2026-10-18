@@ -6,12 +6,12 @@ const brochureTurn=document.querySelector('#brochure-turn');
 const brochureDefault={title:'中建钢构智能制造产品集',eyebrow:'PRINT DESIGN / 2022',footer:'CHINA CONSTRUCTION STEEL STRUCTURE',total:16,ratio:1729.13/651.968,base:'assets/brochure-pages/',digits:2};
 const exhibitionSpec={title:'中建科工 · 展板设计',eyebrow:'PRINT DESIGN / EXHIBITION',footer:'中建科工 · 展板设计',total:7,ratio:6633.07/907.087,ratios:[6000/821,9356/2552,5954/2552,2200/1241,2200/1241,2200/1241,2200/1241],base:'assets/exhibition-pages/',digits:1};
 let brochureCurrent=brochureDefault,brochureTotal=16;
-const brochureZoomLevels=[1,1.5,2,2.7,4];
+const brochureZoomLevels=[1,1.5,2,2.7,4,6,8];
 let brochureIndex=1,brochureBusy=false,brochureTrigger=null,brochureZoom=1,brochureX=0,brochureY=0,brochureGeneration=0,brochureDrag=null;
 const brochureSrc=n=>brochureCurrent.sources?.[n-1]||`${brochureCurrent.base}page-${String(n+(brochureCurrent.startPage||1)-1).padStart(brochureCurrent.digits,'0')}.jpg`;
 function brochureUpdate(){
   brochurePage.src=brochureSrc(brochureIndex);
-  brochurePage.alt=`画册第 ${brochureIndex} 页`;
+  brochurePage.alt=`${brochureCurrent.title}，第 ${brochureIndex} 页`;
   brochureBook.style.setProperty('--book-ratio',brochureCurrent.ratios?.[brochureIndex-1]||brochureCurrent.ratio);
   document.querySelector('#brochure-count').textContent=`${String(brochureIndex).padStart(2,'0')} / ${brochureTotal}`;
   document.querySelector('#brochure-track-fill').style.width=`${brochureIndex/brochureTotal*100}%`;
@@ -46,6 +46,7 @@ function brochureZoomStep(step){
 }
 function openBrochure(trigger,spec=brochureDefault){
   brochureCurrent=spec;brochureTotal=spec.total;
+  brochureViewer.setAttribute('aria-label',spec.title+'预览');
   document.querySelector('#brochure-title').textContent=spec.title;
   document.querySelector('#brochure-eyebrow').textContent=spec.eyebrow;
   document.querySelector('#brochure-footer-label').textContent=spec.footer;

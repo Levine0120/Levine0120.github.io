@@ -16,7 +16,7 @@ const printCollections={
   exhibition:{title:'展板设计',eyebrow:'PRINT DESIGN / EXHIBITION',description:'选择一组，查看展板与展示效果',footer:'中建科工 · 展板设计',items:[
     {slug:'overview',title:'企业介绍展板',pages:2,ratio:6000/821,ratios:[6000/821,3728/732],sources:['assets/exhibition-pages/page-1.jpg','assets/exhibition-pages/overview-render.webp'],base:'assets/exhibition-pages/',digits:1},
     {slug:'exhibition',title:'展板与展陈效果',pages:6,ratio:9356/2552,ratios:[9356/2552,5954/2552,2200/1241,2200/1241,2200/1241,2200/1241],base:'assets/exhibition-pages/',digits:1,startPage:2},
-    {slug:'foldout',title:'智能制造折页 · 2020 简版',pages:7,ratio:595.44/841.92,base:'assets/foldout-pages/',digits:1}
+    {slug:'foldout',title:'智能制造折页',pages:7,ratio:595.44/841.92,base:'assets/foldout-pages/',digits:1}
   ]},
   brochures:{title:'智能制造产品集',eyebrow:'PRINT DESIGN / CORPORATE BROCHURE',description:'选择一个版本，翻阅完整画册',footer:'中建钢构 · 智能制造产品集',items:[
     {slug:'2022',title:'2022 版 · 智能制造产品集',pages:16,ratio:1729.13/651.968,base:'assets/brochure-pages/',digits:2},
@@ -54,6 +54,7 @@ const collectionLastItem={};
 function renderCollection(){
   const group=printCollections[currentCollection];
   flyerCollection.setAttribute('aria-label',`${group.title}目录`);
+  document.querySelector('#flyer-collection-close').setAttribute('aria-label',`关闭${group.title}目录`);
   document.querySelector('#flyer-collection-eyebrow').textContent=group.eyebrow;
   document.querySelector('#flyer-collection-title').textContent=group.title;
   document.querySelector('#flyer-collection-description').textContent=group.description;
