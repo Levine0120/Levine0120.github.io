@@ -1,0 +1,51 @@
+/* 灵犀魔方 · 补充样式（基于 ds.css） */
+.band.nn .wrap{grid-template-columns:1fr}
+.band.nn h2{max-width:820px}
+.facts b{font-size:20px}
+.pain{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.pain div{border-radius:18px;overflow:hidden;background:#fff;border:1px solid var(--line)}
+.pain img{width:100%;aspect-ratio:4/3;object-fit:cover;background:#0c2233}
+.pain b{display:block;font-size:20px;padding:18px 20px 4px}
+.pain span{display:block;font-size:14.5px;color:var(--ink-2);padding:0 20px 20px}
+.goal{border-radius:20px;background:var(--navy);color:#fff;padding:30px 32px}
+.goal .tag{color:var(--sky)}
+.gl{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.gl div{padding:20px;border-radius:14px;background:rgba(255,255,255,.05);border:1px solid var(--navy-line)}
+.gl b{display:block;font-size:15px;color:var(--sky);letter-spacing:.08em}
+.gl em{display:block;font-style:normal;font-size:24px;font-weight:700;color:#ffb35c;margin:6px 0 4px}
+.gl span{font-size:14px;color:#a9c0cf}
+.goal .note{margin-top:20px;font-size:15px;color:#cfe0eb}
+.goal .note b{color:#fff}
+.evo .zoomable img{aspect-ratio:16/9!important;object-fit:cover;object-position:left top}
+.sec--dark .evo figcaption b{color:#fff}
+.sec--dark .evo figcaption span{color:#a9c0cf}
+.sec--dark .evo .arrow{color:#4f7189}
+.tallfig .zoomable{max-height:720px;position:relative}
+.tallfig .zoomable::after{content:"点击看全图";position:absolute;left:0;right:0;bottom:0;padding:60px 0 18px;text-align:center;font-size:14px;color:#fff;background:linear-gradient(transparent,rgba(7,22,36,.85))}
+.tallfig .zoomable img{object-fit:cover;object-position:top}
+.split.rev{grid-template-columns:1fr 360px}
+.split.site{grid-template-columns:420px 1fr;align-items:start}
+.cmp2 figure img{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:14px;border:1px solid var(--navy-line)}
+.vid{aspect-ratio:1920/948;object-fit:cover}
+@media (max-width:1100px){.split.site,.split.rev{grid-template-columns:1fr}}
+@media (max-width:700px){.pain,.gl{grid-template-columns:1fr}.goal{padding:22px 18px}.tallfig .zoomable{max-height:520px}}
+figure img,.pain img{height:auto}
+.tbs{display:flex;flex-direction:column;gap:14px}
+.tbs>div{display:grid;grid-template-columns:220px 1fr;gap:20px;align-items:center;padding:14px;border-radius:14px;background:#fff;border:1px solid var(--line)}
+.tbs p b{display:block;font-size:16px}
+.tbs p span{font-size:13.5px;color:var(--ink-2);line-height:1.5}
+.tbs img{width:100%;height:auto;border-radius:8px;border:1px solid var(--line)}
+@media (max-width:700px){.tbs>div{grid-template-columns:1fr;gap:10px}}
+/* 局部放大：直接展示，不需点击 */
+.dz{display:grid;grid-template-columns:1fr 2.1fr 1fr;gap:18px;align-items:start}
+.dz2{display:grid;grid-template-columns:2.4fr 1fr;gap:18px;align-items:start}
+.dcol{display:flex;flex-direction:column;gap:18px}
+.dc{background:var(--tint);border:1px solid var(--line);border-radius:16px;padding:18px}
+.sec--tint .dc{background:#fff}
+.dc h4{font-size:16px;margin:0 0 4px}
+.dc p{font-size:13.5px;color:var(--ink-2);line-height:1.55;margin:0 0 14px}
+.dc img{width:100%;height:auto;border-radius:10px;border:1px solid var(--line);background:#fff}
+.dc img+img{margin-top:10px}
+.mt.tag{display:block;margin-bottom:14px}
+@media (max-width:900px){.dz,.dz2{grid-template-columns:1fr}}
+img[src$="cmp-manual.webp"]{aspect-ratio:16/9;object-fit:cover;border-radius:14px}

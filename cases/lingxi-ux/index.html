@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>灵犀魔方 · 模拟产线系统交互设计 · 梁洪</title>
+<meta name="description" content="灵犀魔方模拟产线系统的交互设计：产线搭建工作台、设备集成、工序编排、AI 助手、仿真看板、设备大屏与官网。">
+<link rel="stylesheet" href="ds.css?v=1">
+<link rel="stylesheet" href="lx.css?v=3">
+</head>
+<body>
+<main>
+<section class="hero" id="top"><div class="wrap">
+<p class="eyebrow">灵犀魔方 · 模拟产线系统 · 交互设计</p>
+<h1>一条产线，<br><em>先在电脑里跑一遍。</em></h1>
+<p class="lead">灵犀魔方是中建钢构做的产线设计与仿真平台。我负责它的交互和界面，从搭产线的工作台、接设备的集成页、AI 助手，一直做到仿真看板、设备大屏、登录页和官网。</p>
+<div class="facts"><div><b>设计 · 集成 · 流程</b><span>工作台的三个阶段</span></div><div><b>3D 画布 + 2D 编排</b><span>两种编辑方式</span></div><div><b>网页 · 大屏 · 官网</b><span>做到的范围</span></div></div>
+<div class="hero-shot"><figure class=""><button class="zoomable" type="button" data-src="assets/canvas.webp" data-title="灵犀魔方 · 3D 产线场景"><img src="assets/canvas.webp" width="2400" height="1350" alt="灵犀魔方 · 3D 产线场景" loading="lazy"></button></figure></div>
+</div></section>
+<section class="sec"><div class="wrap"><header class="head"><p class="tag">背景</p><h2>先弄清楚：钢构厂的产线卡在哪。</h2><p class="sub">项目汇报时梳理出三个问题。后面每一块界面，都是对着这三个问题做的。</p></header>
+<div class="pain">
+<div><img src="assets/bg-design.webp" width="1351" height="996" alt="产线设计慢" loading="lazy"><b>产线设计慢</b><span>布局靠手绘，改一次就要重画</span></div>
+<div><img src="assets/bg-debug.webp" width="1443" height="996" alt="设备调试难" loading="lazy"><b>设备调试难</b><span>每台设备协议不同，要人到现场一台台调</span></div>
+<div><img src="assets/bg-dispatch.webp" width="1431" height="996" alt="生产调度乱" loading="lazy"><b>生产调度乱</b><span>资源靠一线人工协调，靠对讲机喊</span></div>
+</div>
+<div class="goal mt"><p class="tag">目标</p><div class="gl"><div><b>设计</b><em>“快到飞起”</em><span>拖设备搭产线，一天出方案</span></div><div><b>调试</b><em>“准到可怕”</em><span>图形化绑定设备，自动适配协议</span></div><div><b>调度</b><em>“心领神会”</em><span>仿真先跑一遍，看板实时盯着</span></div></div><p class="note">这三个目标，后来就成了工作台顶部的三个页签：<b>设计</b>、<b>集成</b>、<b>流程</b>。</p></div>
+</div></section>
+<section class="sec sec--dark"><div class="wrap"><header class="head"><p class="tag">产品</p><h2>一套软件，加两台硬件。</h2><p class="sub">「1+2+4」：一台产线大脑（灵犀魔方），两个终端（物联网关、工位机），四种能力。我做的是跑在上面的软件界面。</p></header>
+<figure class=""><button class="zoomable" type="button" data-src="assets/arch.webp" data-title="软硬件全景架构图"><img src="assets/arch.webp" width="2400" height="1350" alt="软硬件全景架构图" loading="lazy"></button><p class="cap">云、边、端三层：云上做设计和管理，边缘网关接设备，端上是各种机器人和工作站</p></figure>
+<div class="mt"><figure class=""><button class="zoomable" type="button" data-src="assets/matrix.webp" data-title="灵犀魔方四大能力"><img src="assets/matrix.webp" width="2400" height="1350" alt="灵犀魔方四大能力" loading="lazy"></button><p class="cap">四种能力：产线设计师、设备集成专家、调度大脑、车间的眼睛</p></figure></div>
+</div></section>
+<section class="sec"><div class="wrap"><header class="head"><p class="tag">入口</p><h2>打开系统，先看到项目。</h2><p class="sub">项目按设计、集成、仿真分类。新建时可以从精选模板开始，不用从零搭。</p></header>
+<div class="g3"><figure class=""><button class="zoomable" type="button" data-src="assets/space.webp" data-title="项目空间"><img src="assets/space.webp" width="1924" height="1088" alt="项目空间" loading="lazy"></button><p class="cap">项目空间：卡片直接显示产线缩略图</p></figure><figure class=""><button class="zoomable" type="button" data-src="assets/home.webp" data-title="产线大脑首页"><img src="assets/home.webp" width="2400" height="1259" alt="产线大脑首页" loading="lazy"></button><p class="cap">首页：按行业找模板，按角色进应用</p></figure><figure class=""><button class="zoomable" type="button" data-src="assets/res.webp" data-title="资源广场"><img src="assets/res.webp" width="2400" height="1366" alt="资源广场" loading="lazy"></button><p class="cap">资源广场：协议配置、组件、模板集中管理</p></figure></div>
+</div></section>
+<section class="band nn"><div class="wrap"><div><p class="k">设计 · 搭产线</p><h2>拖设备，搭场景，配参数。</h2><p>最常用的部分。用户在这里把一条产线从空白画布搭出来。</p><ul class="chips"><li>模型库</li><li>3D 画布</li><li>属性栏</li><li>仿真时间轴</li></ul></div></div></section>
+<section class="sec"><div class="wrap"><div class="split">
+<div><header class="head"><p class="tag">工作台</p><h2>一个工作台，四个区域。</h2></header>
+<div class="pts"><div class="pt"><span class="ic"><svg viewBox="0 0 24 24"><path d="M4 5h6v6H4zM14 5h6v6h-6zM4 15h6v4H4zM14 15h6v4h-6z"/></svg></span><div><b>左边：模型库</b><span>按加工设备、物流设备、内置设备分层，配合搜索找设备</span></div></div><div class="pt"><span class="ic"><svg viewBox="0 0 24 24"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9z"/><path d="M4 7.5l8 4.5 8-4.5M12 12v9"/></svg></span><div><b>中间：画布</b><span>3D 场景占最大的面积，设备之间的空间关系一眼看清</span></div></div><div class="pt"><span class="ic"><svg viewBox="0 0 24 24"><path d="M5 4h14v16H5z"/><path d="M8 9h8M8 13h8M8 17h5"/></svg></span><div><b>右边：属性栏</b><span>设备信息、坐标尺寸、仿真参数，按组排好</span></div></div><div class="pt"><span class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M10 8.5l5 3.5-5 3.5z"/></svg></span><div><b>底部：时间轴</b><span>播放、停止、步进和运行速度，固定在底部</span></div></div></div></div>
+<figure class=""><button class="zoomable" type="button" data-src="assets/ws-latest.webp" data-title="产线搭建工作台 · 最新版"><img src="assets/ws-latest.webp" width="2400" height="1347" alt="产线搭建工作台 · 最新版" loading="lazy"></button></figure>
+</div>
+<p class="tag mt">局部放大</p><div class="dz"><div class="dc "><h4>模型库 · 分类查找</h4><p>搜索加树形目录，展开类别再选具体设备。选中的那一项用浅蓝底色标出来。</p><img src="assets/d-lib.webp" width="489" height="770" alt="模型库 · 分类查找" loading="lazy"></div><div class="dcol"><div class="dc "><h4>布局工具 · 集中编辑</h4><p>撤回、缩放、对齐、组合、连接线放一组；甘特图、利用率这些分析工具用分隔线隔开，放另一组。</p><img src="assets/d-layout.webp" width="1484" height="132" alt="布局工具 · 集中编辑" loading="lazy"><img src="assets/d-ana.webp" width="931" height="128" alt="布局工具 · 集中编辑" loading="lazy"></div><div class="dc "><h4>仿真控制 · 时间轴</h4><p>播放、停止、步进固定在底部，旁边就是运行时间和进度。</p><img src="assets/d-run.webp" width="1771" height="89" alt="仿真控制 · 时间轴" loading="lazy"></div></div><div class="dc "><h4>属性栏 · 分组配置</h4><p>设备信息 → 空间参数 → 仿真属性，从上到下按顺序分组，方便一项项核对。</p><img src="assets/d-prop.webp" width="461" height="1106" alt="属性栏 · 分组配置" loading="lazy"></div></div>
+</div></section>
+<section class="sec sec--tint"><div class="wrap"><header class="head"><p class="tag">工具栏</p><h2>顶部工具栏，改了几轮。</h2><p class="sub">编辑工具在左，统计分析在右，中间用分隔线分组。改动主要在右上角的操作按钮。</p></header>
+<div class="tbs">
+<div><p><b>早期</b><span>右上只有部署、保存、导出</span></p><img src="assets/tb-old.webp" width="2366" height="250" alt="早期顶部工具栏" loading="lazy"></div>
+<div><p><b>加上采购和模板</b><span>搭好的产线能存成模板，缺的设备直接采购</span></p><img src="assets/tb-new.webp" width="2366" height="250" alt="最新顶部工具栏" loading="lazy"></div>
+<div><p><b>加入 AI 页签</b><span>页签变成设计、流程、仿真、AI，右侧换成会话历史</span></p><img src="assets/tb-ai.webp" width="2366" height="250" alt="加入 AI 后的顶部工具栏" loading="lazy"></div>
+</div>
+</div></section>
+<section class="sec"><div class="wrap"><header class="head"><p class="tag">画布模式</p><h2>只想看场景时，把界面收起来。</h2><p class="sub">菜单和面板收起，工具缩成顶部一排图标。底部用「设计 → 集成 → 流程」三个圆点切换阶段，当前阶段高亮。</p></header>
+<figure class=""><button class="zoomable" type="button" data-src="assets/canvas-early.webp" data-title="画布模式 · 早期稿"><img src="assets/canvas-early.webp" width="2400" height="1350" alt="画布模式 · 早期稿" loading="lazy"></button></figure>
+<div class="g2 mt"><figure class=""><button class="zoomable" type="button" data-src="assets/gizmo.webp" data-title="选中设备 · 移动旋转"><img src="assets/gizmo.webp" width="2400" height="1350" alt="选中设备 · 移动旋转" loading="lazy"></button><p class="cap">选中设备后出现坐标轴，直接拖动、旋转</p></figure><figure class=""><button class="zoomable" type="button" data-src="assets/tree.webp" data-title="模型树"><img src="assets/tree.webp" width="2400" height="1350" alt="模型树" loading="lazy"></button><p class="cap">左侧弹出模型树，场景里有什么一目了然</p></figure></div>
+<div class="g2 mt"><div class="dc "><h4>三个阶段 · 并排切换</h4><p>设计、集成、流程并排放在底部，当前在哪一步用蓝色突出。</p><img src="assets/d-stage.webp" width="608" height="248" alt="三个阶段 · 并排切换" loading="lazy"></div><div class="dc "><h4>图标 · 配上文字</h4><p>工具缩成图标后，下面都配文字：菜单、工具、仿真、撤销、恢复、保存、锁定、采购。</p><img src="assets/d-tools.webp" width="908" height="216" alt="图标 · 配上文字" loading="lazy"></div></div>
+</div></section>
+<section class="sec sec--dark"><div class="wrap"><header class="head"><p class="tag">上线演示</p><h2>搭一条 H 型钢产线，直接跑仿真。</h2><p class="sub">从空画布拖入设备，连成产线，点运行，最后在看板里看产量和设备利用率。</p></header>
+<figure><video class="vid" src="assets/v-build.mp4" poster="assets/po-build.webp" muted loop playsinline preload="none" controls></video><p class="cap">上线录屏：搭建 → 仿真 → 看板</p></figure>
+<div class="g2 mt cmp2"><figure><img src="assets/cmp-hand.webp" width="1024" height="562" alt="传统手绘产线布局" loading="lazy"><p class="cap">以前：手绘、CAD 画布局</p></figure><figure><img src="assets/canvas-early.webp" width="2400" height="1350" alt="搭积木式产线设计" loading="lazy"><p class="cap">现在：像搭积木一样拖设备</p></figure></div>
+</div></section>
+<section class="band nn"><div class="wrap"><div><p class="k">集成 · 接设备</p><h2>画几条线，设备就绑定了。</h2><p>把真实设备接进来：网关连设备、系统连订单。协议由网关自动适配。</p><ul class="chips"><li>边缘网关</li><li>设备节点</li><li>连接属性</li></ul></div></div></section>
+<section class="sec"><div class="wrap"><header class="head"><p class="tag">集成</p><h2>从节点关系，到一眼看清的卡片。</h2><p class="sub">网关、设备、系统、产品用节点和连线表达。版本之间主要在改「哪个是重点」。</p></header>
+<div class="evo"><figure><button class="zoomable" type="button" data-src="assets/int-1885.webp" data-title="集成 · 节点关系"><img src="assets/int-1885.webp" width="2400" height="1368" alt="集成 · 节点关系" loading="lazy"></button><figcaption><b>先把关系画出来</b><span>网关连机器人，系统连订单，产品单独一类</span></figcaption></figure><span class="arrow">→</span><figure><button class="zoomable" type="button" data-src="assets/int-gw.webp" data-title="集成 · 选择网关"><img src="assets/int-gw.webp" width="2400" height="1347" alt="集成 · 选择网关" loading="lazy"></button><figcaption><b>选中看属性</b><span>选中网关，右侧显示 Host、端口、采集协议</span></figcaption></figure><span class="arrow">→</span><figure><button class="zoomable" type="button" data-src="assets/int-new.webp" data-title="集成 · 新排版"><img src="assets/int-new.webp" width="2400" height="1347" alt="集成 · 新排版" loading="lazy"></button><figcaption><b>卡片改明显</b><span>设备卡片放大、对齐，连线更清楚</span></figcaption></figure></div>
+<div class="dz2 mt"><div class="dc "><h4>对象关系 · 节点连线</h4><p>边缘网关连一组设备；系统连班组和订单模型；产品单独一类。谁和谁有关系，用线一眼看出来。</p><img src="assets/d-rel.webp" width="1618" height="1413" alt="对象关系 · 节点连线" loading="lazy"></div><div class="dc "><h4>设备属性</h4><p>设备信息和连接属性分两组：网关、DeviceCode、Host 放在一起查。</p><img src="assets/d-devprop.webp" width="416" height="953" alt="设备属性" loading="lazy"></div></div>
+<div class="g2 mt"><figure><video class="vid" src="assets/v-integrate.mp4" poster="assets/po-integrate.webp" muted loop playsinline preload="none" controls></video><p class="cap">上线录屏：网关拖线连接设备，右侧同步显示属性</p></figure><figure><img src="assets/cmp-manual.webp" width="952" height="596" alt="传统人工设备协议调试" loading="lazy"><p class="cap">以前：几个人围着设备现场调协议</p></figure></div>
+</div></section>
+<section class="sec sec--tint"><div class="wrap"><header class="head"><p class="tag">流程</p><h2>工序编排：上料、切割、分拣。</h2><p class="sub">工序做成节点，再往下接设备、条件分支和算法模块。中间件从左侧库里拖进来。</p></header>
+<div class="dz2"><div class="dc "><h4>工序与节点编排</h4><p>上料、切割、零件分拣排成工序链，再往下连设备节点、条件分支和算法模块。</p><img src="assets/d-proc.webp" width="2352" height="819" alt="工序与节点编排" loading="lazy"></div><div class="dc "><h4>工序信息单独维护</h4><p>名称、编码、颜色、排序编号放在一起，不同工序一眼分清。</p><img src="assets/d-procprop.webp" width="487" height="477" alt="工序信息单独维护" loading="lazy"></div></div>
+<div class="mt"><figure class=""><button class="zoomable" type="button" data-src="assets/flow-mid.webp" data-title="流程 · 中间件库"><img src="assets/flow-mid.webp" width="2400" height="1347" alt="流程 · 中间件库" loading="lazy"></button><p class="cap">左侧中间件库：条件判断、开始、结束</p></figure></div>
+</div></section>
+<section class="band nn"><div class="wrap"><div><p class="k">AI · 说一句话</p><h2>跟它说要什么产线，它先搭一版。</h2><p>AI 不替人做决定，它先给一个能改的起点。</p><ul class="chips"><li>AI 辅助建模</li><li>语音指令</li><li>风险预测</li></ul></div></div></section>
+<section class="sec sec--dark"><div class="wrap"><div class="split rev">
+<figure><video class="vid" src="assets/v-ai.mp4" poster="assets/po-ai.webp" muted loop playsinline preload="none" controls></video><p class="cap">上线录屏：输入需求，AI 生成整条产线</p></figure>
+<div><header class="head"><p class="tag">AI 助手</p><h2>放在右侧，不挡画布。</h2></header>
+<div class="pts"><div class="pt"><span class="ic"><svg viewBox="0 0 24 24"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z"/><path d="M18 15l.9 2.1L21 18l-2.1.9L18 21l-.9-2.1L15 18l2.1-.9z"/></svg></span><div><b>AI 辅助建模</b><span>一句话生成产线，生成过程在画布上实时出现，随时可以停</span></div></div><div class="pt"><span class="ic"><svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg></span><div><b>AI 人机交互</b><span>语音控制设备、查生产数据</span></div></div><div class="pt"><span class="ic"><svg viewBox="0 0 24 24"><path d="M12 3l10 18H2z"/><path d="M12 10v5M12 18v.5"/></svg></span><div><b>AI 预测</b><span>提前提示设备老化、排产冲突、工位滞留</span></div></div></div></div>
+</div>
+<div class="mt"><figure class=""><button class="zoomable" type="button" data-src="assets/ws-ai.webp" data-title="AI 页签"><img src="assets/ws-ai.webp" width="2400" height="1347" alt="AI 页签" loading="lazy"></button><p class="cap">AI 单独一个页签，右侧面板保留会话历史</p></figure></div>
+</div></section>
+<section class="band nn"><div class="wrap"><div><p class="k">运行 · 看产线</p><h2>跑起来以后，要看得见。</h2><p>仿真看板、设备大屏、设备地图，都是给车间和管理者看的。</p><ul class="chips"><li>仿真看板</li><li>设备大屏</li><li>设备地图</li></ul></div></div></section>
+<section class="sec"><div class="wrap"><header class="head"><p class="tag">看板</p><h2>产线看板，做了三版。</h2><p class="sub">从「放满图表」到「围绕一次仿真」：每一版都在减少不需要的东西。</p></header>
+<div class="evo"><figure><button class="zoomable" type="button" data-src="assets/kb-1.webp" data-title="产线看板 · 第一版"><img src="assets/kb-1.webp" width="2400" height="1350" alt="产线看板 · 第一版" loading="lazy"></button><figcaption><b>第一版</b><span>2D 产线示意，下面四张折线图</span></figcaption></figure><span class="arrow">→</span><figure><button class="zoomable" type="button" data-src="assets/kb-2.webp" data-title="产线看板 · 第二版"><img src="assets/kb-2.webp" width="2400" height="1350" alt="产线看板 · 第二版" loading="lazy"></button><figcaption><b>第二版</b><span>换成 3D 厂房，左右放设备列表和告警</span></figcaption></figure><span class="arrow">→</span><figure><button class="zoomable" type="button" data-src="assets/kb-3.webp" data-title="H 型钢智能线仿真分析看板"><img src="assets/kb-3.webp" width="2400" height="1185" alt="H 型钢智能线仿真分析看板" loading="lazy"></button><figcaption><b>仿真分析看板</b><span>先看总时长、总产量、每小时产量，再看利用率和在制品</span></figcaption></figure></div>
+</div></section>
+<section class="sec sec--dark"><div class="wrap"><header class="head"><p class="tag">设备大屏</p><h2>从「看数据」，到「能操作」。</h2><p class="sub">单台设备的大屏，左边状态、中间设备、右边效率。</p></header>
+<div class="evo"><figure><button class="zoomable" type="button" data-src="assets/scr-1.webp" data-title="协作焊接机器人 · 第一版"><img src="assets/scr-1.webp" width="2400" height="1349" alt="协作焊接机器人 · 第一版" loading="lazy"></button><figcaption><b>先展示</b><span>设备状态、电流电压、告警记录</span></figcaption></figure><span class="arrow">→</span><figure><button class="zoomable" type="button" data-src="assets/scr-2.webp" data-title="协作焊接机器人 · 展会版"><img src="assets/scr-2.webp" width="2400" height="1349" alt="协作焊接机器人 · 展会版" loading="lazy"></button><figcaption><b>加上操作</b><span>OEE 环形图，中间加「开始焊接」等按钮和任务列表</span></figcaption></figure><span class="arrow">→</span><figure><button class="zoomable" type="button" data-src="assets/scr-3.webp" data-title="柔性焊接机器人"><img src="assets/scr-3.webp" width="2400" height="1349" alt="柔性焊接机器人" loading="lazy"></button><figcaption><b>换一台设备复用</b><span>同一套版式，换成柔性焊接机器人</span></figcaption></figure></div>
+</div></section>
+<section class="sec"><div class="wrap"><header class="head"><p class="tag">设备地图</p><h2>设备在哪，地图上看。</h2><p class="sub">先做了浅色网页版，再出深色版，最后做成全国范围的大屏。</p></header>
+<div class="g3"><figure class=""><button class="zoomable" type="button" data-src="assets/map-light.webp" data-title="设备地图 · 浅色"><img src="assets/map-light.webp" width="2400" height="1350" alt="设备地图 · 浅色" loading="lazy"></button><p class="cap">浅色：点位颜色区分在线、离线</p></figure><figure class=""><button class="zoomable" type="button" data-src="assets/map-dark.webp" data-title="设备地图 · 深色"><img src="assets/map-dark.webp" width="2400" height="1348" alt="设备地图 · 深色" loading="lazy"></button><p class="cap">深色：和大屏风格统一</p></figure><figure class=""><button class="zoomable" type="button" data-src="assets/map-cn.webp" data-title="设备地图 · 全国"><img src="assets/map-cn.webp" width="2400" height="1350" alt="设备地图 · 全国" loading="lazy"></button><p class="cap">全国：按公司看设备总数和告警</p></figure></div>
+<div class="g2 mt"><figure class=""><button class="zoomable" type="button" data-src="assets/dev-web.webp" data-title="设备详情"><img src="assets/dev-web.webp" width="2400" height="1559" alt="设备详情" loading="lazy"></button><p class="cap">设备详情：用颜色条看一天的工作、待机、报警</p></figure><figure class=""><button class="zoomable" type="button" data-src="assets/gw-mon.webp" data-title="网关监控"><img src="assets/gw-mon.webp" width="2400" height="1231" alt="网关监控" loading="lazy"></button><p class="cap">网关监控：网关上运行的服务和资源占用</p></figure></div>
+</div></section>
+<section class="sec end"><div class="wrap"><p class="tag">总结</p><h2>从一张空白画布，到一条跑起来的产线。</h2><p class="sub">做的事情很多，但目标一直没变：让产线设计更快，设备接入更简单，运行状态看得见。</p>
+<div class="match"><div><b>设计</b><p>拖设备搭产线，模板复用</p></div><div><b>集成</b><p>画线绑定设备，自动适配</p></div><div><b>运行</b><p>仿真先跑，看板和大屏盯着</p></div></div></div></section>
+</main>
+<footer class="foot"><div class="wrap"><span>LIANG HONG / UI &amp; UX DESIGN</span><a href="#top">回到顶部 ↑</a></div></footer>
+<div class="viewer" id="viewer" hidden>
+  <div class="viewer-bar">
+    <strong id="viewer-title"></strong>
+    <div class="viewer-tools">
+      <button type="button" data-z="out" aria-label="缩小">−</button>
+      <span id="viewer-pct">100%</span>
+      <button type="button" data-z="in" aria-label="放大">+</button>
+      <button type="button" data-z="fit">适应窗口</button>
+      <button type="button" data-z="close" class="viewer-close">关闭 ✕</button>
+    </div>
+  </div>
+  <div class="viewer-stage" id="viewer-stage"><img id="viewer-img" alt="" draggable="false"></div>
+  <p class="viewer-tip">滚轮或双指缩放 · 拖动查看 · 双击放大</p>
+</div>
+<script src="ds.js?v=1"></script>
+<script defer src="../../assets/image-protection.js?v=2"></script></body>
+</html>
