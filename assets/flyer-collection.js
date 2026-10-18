@@ -59,7 +59,7 @@ function renderCollection(){
   document.querySelector('#flyer-collection-title').textContent=group.title;
   document.querySelector('#flyer-collection-description').textContent=group.description;
   flyerGrid.replaceChildren();
-  flyerGrid.classList.toggle('is-brochures',currentCollection==='brochures'||currentCollection==='exhibition'||currentCollection==='hangtong'||currentCollection==='ipanel'||currentCollection==='jingzhen');
+  flyerGrid.classList.toggle('is-brochures',currentCollection==='hangtong-ecommerce'||currentCollection==='brochures'||currentCollection==='exhibition'||currentCollection==='hangtong'||currentCollection==='ipanel'||currentCollection==='jingzhen');
   flyerGrid.classList.toggle('is-magazines',currentCollection==='magazines');
   flyerGrid.classList.toggle('is-standards',currentCollection==='standards');
   group.items.forEach((item,index)=>{
@@ -72,7 +72,7 @@ function renderCollection(){
     button.onclick=()=>{
       collectionLastItem[currentCollection]=item.id||item.slug;
       flyerCollection.classList.remove('open');flyerCollection.setAttribute('aria-hidden','true');
-      openBrochure(collectionTrigger,{title:item.title,eyebrow:`${group.eyebrow} / ${String(index+1).padStart(2,'0')}`,footer:group.footer,total:item.pages,ratio:item.ratio,ratios:item.ratios,sources:item.sources,base:pageBase,digits:item.digits||1,startPage:item.startPage||1,showBack:true});
+      openBrochure(collectionTrigger,{title:item.title,eyebrow:`${group.eyebrow} / ${String(index+1).padStart(2,'0')}`,footer:group.footer,total:item.pages,ratio:item.ratio,ratios:item.ratios,sources:item.sources,base:pageBase,digits:item.digits||1,startPage:item.startPage||1,showBack:true,initialZoom:item.initialZoom,initialAlign:item.initialAlign});
     };
     flyerGrid.append(button);
   });

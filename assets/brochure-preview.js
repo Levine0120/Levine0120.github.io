@@ -55,7 +55,7 @@ function openBrochure(trigger,spec=brochureDefault){
   brochureTrigger=trigger;brochureIndex=1;brochureBusy=false;brochureGeneration++;
   brochureViewer.classList.add('open');brochureViewer.setAttribute('aria-hidden','false');
   document.body.classList.add('modal-open');
-  brochureUpdate();brochureSetZoom(spec.initialZoom||1);document.querySelector('#brochure-close').focus();
+  brochureUpdate();brochureSetZoom(spec.initialZoom||1);if(spec.initialAlign==='top'){brochureY=Number.MAX_SAFE_INTEGER;brochureApplyZoom()}document.querySelector('#brochure-close').focus();
   if(brochureTotal>1){const next=new Image();next.src=brochureSrc(2)}
 }
 function closeBrochure(){
