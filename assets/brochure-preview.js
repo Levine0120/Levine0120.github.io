@@ -87,6 +87,7 @@ document.querySelector('#brochure-zoom-in').onclick=()=>brochureZoomStep(1);
 document.querySelector('#brochure-zoom-out').onclick=()=>brochureZoomStep(-1);
 brochureViewer.addEventListener('click',e=>{if(e.target===brochureViewer)closeBrochure()});
 brochureBook.addEventListener('pointerdown',e=>{
+  if(e.button!==0)return;
   if(!brochureViewer.classList.contains('open'))return;
   brochureDrag={x:e.clientX,y:e.clientY,startX:brochureX,startY:brochureY,moved:false};
   brochureBook.setPointerCapture(e.pointerId);

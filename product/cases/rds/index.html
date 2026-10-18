@@ -32,4 +32,4 @@ document.addEventListener('keydown',e=>{if(e.key==='ArrowLeft')show(current-1);i
 get('image').onclick=()=>get('original').click();show(0);
 if(window.parent!==window){document.querySelector('.close').addEventListener('click',e=>{e.preventDefault();window.parent.postMessage({type:'rds-close'},location.origin)});document.addEventListener('keydown',e=>{if(e.key==='Escape')window.parent.postMessage({type:'rds-close'},location.origin)})}
 </script>
-<script defer src="../../assets/site-cursor.js?v=2"></script></body></html>
+<script defer src="../../assets/site-cursor.js?v=2"></script><script defer src="../../../assets/image-protection.js?v=2"></script></body></html>
