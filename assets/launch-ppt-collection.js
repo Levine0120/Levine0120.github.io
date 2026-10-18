@@ -1,5 +1,5 @@
 printCollections["launch-ppt"]={
-  "title": "发布会 PPT",
+  "title": "产品发布会 PPT",
   "eyebrow": "PRESENTATION DESIGN",
   "description": "选择一份演示文稿，逐页查看完整内容",
   "footer": "发布会与演示设计",
