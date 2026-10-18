@@ -59,7 +59,7 @@ function renderCollection(){
   document.querySelector('#flyer-collection-title').textContent=group.title;
   document.querySelector('#flyer-collection-description').textContent=group.description;
   flyerGrid.replaceChildren();
-  flyerGrid.classList.toggle('is-brochures',currentCollection==='hangtong-ecommerce'||currentCollection==='brochures'||currentCollection==='exhibition'||currentCollection==='hangtong'||currentCollection==='ipanel'||currentCollection==='jingzhen');
+  flyerGrid.classList.toggle('is-brochures',currentCollection==='sfitic-graphic'||currentCollection==='hangtong-ecommerce'||currentCollection==='brochures'||currentCollection==='exhibition'||currentCollection==='hangtong'||currentCollection==='ipanel'||currentCollection==='jingzhen');
   flyerGrid.classList.toggle('is-magazines',currentCollection==='magazines');
   flyerGrid.classList.toggle('is-standards',currentCollection==='standards');
   if(!group.items.length){const empty=document.createElement('p');empty.className='category-empty';empty.setAttribute('role','status');empty.textContent=language==='zh'?'内容整理中':'Content coming soon';flyerGrid.append(empty);}
