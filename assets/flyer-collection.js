@@ -72,7 +72,7 @@ function renderCollection(){
     button.onclick=()=>{
       collectionLastItem[currentCollection]=item.id||item.slug;
       flyerCollection.classList.remove('open');flyerCollection.setAttribute('aria-hidden','true');
-      openBrochure(collectionTrigger,{title:item.title,eyebrow:`${group.eyebrow} / ${String(index+1).padStart(2,'0')}`,footer:group.footer,total:item.pages,ratio:item.ratio,ratios:item.ratios,sources:item.sources,base:pageBase,digits:item.digits||1,startPage:item.startPage||1,showBack:true,initialZoom:item.initialZoom,initialAlign:item.initialAlign});
+      openBrochure(collectionTrigger,{title:item.title,eyebrow:`${group.eyebrow} / ${String(index+1).padStart(2,'0')}`,footer:group.footer,total:item.pages,ratio:item.ratio,ratios:item.ratios,sources:item.sources,base:pageBase,digits:item.digits||1,startPage:item.startPage||1,showBack:true,initialZoom:item.initialZoom,initialAlign:item.initialAlign,longPage:item.longPage});
     };
     flyerGrid.append(button);
   });

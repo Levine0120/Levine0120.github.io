@@ -1,0 +1,6 @@
+/* Long product pages use their full width and native vertical scrolling. */
+#brochure-viewer.is-long-page .brochure-stage{display:block;overflow:auto;padding:16px 32px;overscroll-behavior:contain;scrollbar-color:#66869b #102334}
+#brochure-viewer.is-long-page .brochure-book{max-height:none;max-width:none;margin:0 auto;transform:none!important;cursor:grab;will-change:auto}
+#brochure-viewer.is-long-page .brochure-book.is-dragging{cursor:grabbing}
+#brochure-viewer.is-long-page .brochure-edge{position:fixed;top:50%;bottom:auto;height:84px;transform:translateY(-50%);width:30px;background:#0a1c2d88;border-radius:6px}
+#brochure-viewer.is-long-page .brochure-prev{left:0}#brochure-viewer.is-long-page .brochure-next{right:0}
