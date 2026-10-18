@@ -6,7 +6,7 @@ printCollections["launch-ppt"]={
   "items": [
     {
       "slug": "manufacturing",
-      "title": "为制造而生",
+      "title": "为制造而生 · 灵犀魔方产线智能化解决方案",
       "pages": 26,
       "ratios": [
         2.4998523767345713,
