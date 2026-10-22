@@ -1,0 +1,1117 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>智能安全帽大屏</title>
+
+<meta name="description" content="中建钢构广东厂智能安全帽大屏的 UI 与交互：背景、产品、高保真、交互演示、报警流程、视觉和全部页面。">
+<style>
+/* Layout: portfolio case page — light reading sections, navy bands for product/visual, one dark interactive dashboard in the middle. Follows the tokens of lianghongdesign.com case pages. */
+:root{
+  --ink:#14293a; --ink-2:#4d6475; --ink-3:#7f94a3;
+  --line:#dfe7ed; --bg:#fbfcfd; --tint:#f1f6fa; --card:#ffffff;
+  --navy:#0b2133; --navy-2:#11304a; --navy-line:#234660; --navy-ink:#a9c0cf;
+  --blue:#1769eb; --sky:#7cc8f0; --cyan:#35d0e6;
+  --red:#e5484d; --red-deep:#5a1418; --amber:#f2b632; --hblue:#2f8ff0; --white-hat:#e9eef2; --ok:#14a37f; --grey:#8a9aa6;
+  --scr:#071725; --scr-2:#0d2638; --scr-line:#1d4a63; --scr-ink:#cfe3ee;
+  --bar-h:0px;
+  --font:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans SC",Arial,sans-serif;
+  --mono:"SF Mono",ui-monospace,Menlo,Consolas,monospace;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{scroll-padding-top:calc(var(--bar-h) + 12px)}
+body{background:var(--bg);color:var(--ink);font-family:var(--font);-webkit-font-smoothing:antialiased;line-height:1.65;font-size:15px}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:rgba(251,252,253,.96)}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%;height:auto}
+h1,h2,h3,h4,p,figure,ul,ol,dl,dd{margin:0;padding:0}
+ul,ol{list-style:none}
+h1,h2,h3{text-wrap:balance}
+p,li{text-wrap:pretty}
+button{font:inherit;color:inherit;cursor:pointer;background:none;border:0;padding:0}
+input,select{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--blue);outline-offset:3px;border-radius:4px}
+.num{font-variant-numeric:tabular-nums}
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+
+/* ---------- bar ---------- */
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:rgba(251,252,253,.94);backdrop-filter:saturate(1.4) blur(14px);-webkit-backdrop-filter:saturate(1.4) blur(14px);border-bottom:1px solid var(--line)}
+.bar .wrap{height:var(--bar-h);display:flex;align-items:center;gap:20px}
+.bar .brand{font-weight:700;font-size:14px;white-space:nowrap;display:flex;align-items:center;gap:8px}
+.bar .brand i{width:9px;height:9px;border-radius:50%;background:var(--amber);box-shadow:0 0 0 3px rgba(242,182,50,.25)}
+.subnav{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;flex:1;min-width:0}
+.subnav::-webkit-scrollbar{display:none}
+.subnav a{white-space:nowrap;font-size:13px;color:var(--ink-3);padding:6px 12px;border-radius:999px;transition:background .15s,color .15s}
+.subnav a:hover{color:var(--ink)}
+.subnav a.on{color:var(--blue);background:#e8f0fd;font-weight:600}
+
+/* ---------- hero ---------- */
+.hero{background:radial-gradient(ellipse at 72% 0%,#17405e 0%,var(--navy) 62%);color:#fff;padding-block:84px 0;overflow:hidden}
+.eyebrow{font-size:13px;letter-spacing:.2em;color:var(--sky)}
+.hero h1{font-size:clamp(34px,5.4vw,66px);line-height:1.14;letter-spacing:-.015em;margin:16px 0 18px;font-weight:800}
+.hero h1 em{font-style:normal;background:linear-gradient(100deg,#ffd77a,#f2a33a);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero .lead{font-size:18px;color:#b9cddb;max-width:660px}
+.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin-top:38px;border-radius:16px;overflow:hidden;background:rgba(255,255,255,.1)}
+.facts div{background:rgba(7,22,35,.62);padding:18px 20px;min-width:0}
+.facts b{display:block;font-size:21px;font-weight:700;color:#fff}
+.facts span{font-size:13px;color:#9db4c4}
+.hero-shot{margin-top:50px}
+.hero-shot img{width:100%;border-radius:16px 16px 0 0;box-shadow:0 -10px 60px rgba(0,0,0,.45)}
+
+/* ---------- sections ---------- */
+.sec{padding-block:92px}
+.sec--tint{background:var(--tint)}
+.sec--dark{background:var(--navy);color:#fff}
+.head{max-width:780px;margin-bottom:40px}
+.tag{font-size:13px;font-weight:600;letter-spacing:.14em;color:var(--blue)}
+.sec--dark .tag{color:var(--sky)}
+.head h2,.h2{font-size:clamp(26px,3.3vw,38px);line-height:1.25;font-weight:800;letter-spacing:-.01em;margin:10px 0 12px}
+.sub{font-size:16.5px;color:var(--ink-2);max-width:68ch}
+.sec--dark .sub{color:var(--navy-ink)}
+.mt{margin-top:48px}
+.mt-s{margin-top:24px}
+.h3{font-size:22px;font-weight:700;line-height:1.35;margin-bottom:8px}
+.badge{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;padding:3px 10px;border-radius:999px;background:#fff3dc;color:#9a5b00;white-space:nowrap}
+.badge.o{background:#e8f0fd;color:var(--blue)}
+.sec--dark .badge{background:rgba(242,182,50,.16);color:#ffd27a}
+
+/* figures + zoom */
+figure .zoom{display:block;width:100%;border-radius:14px;overflow:hidden;border:1px solid var(--line);background:#0b1d2c;cursor:zoom-in;position:relative}
+.sec--dark figure .zoom{border-color:var(--navy-line)}
+figure .zoom img{width:100%;transition:transform .35s}
+figure .zoom:hover img{transform:scale(1.015)}
+.cap{font-size:13.5px;color:var(--ink-3);margin-top:10px}
+.sec--dark .cap{color:#8fa9ba}
+.g2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
+.g3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+
+/* pains */
+.pain{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.pain>div{border-radius:16px;background:var(--card);border:1px solid var(--line);padding:22px 22px 24px;min-width:0}
+.pain .ic{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;background:var(--tint);color:var(--blue);margin-bottom:14px}
+.pain .ic svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.pain b{display:block;font-size:19px;margin-bottom:4px}
+.pain span{font-size:14.5px;color:var(--ink-2)}
+.goal{border-radius:20px;background:var(--navy);color:#fff;padding:30px 32px}
+.goal .tag{color:var(--sky)}
+.gl{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:14px}
+.gl div{padding:20px;border-radius:14px;background:rgba(255,255,255,.05);border:1px solid var(--navy-line)}
+.gl b{display:block;font-size:14px;color:var(--sky);letter-spacing:.08em}
+.gl em{display:block;font-style:normal;font-size:24px;font-weight:700;color:#ffc65c;margin:6px 0 4px}
+.gl span{font-size:14px;color:var(--navy-ink)}
+.goal .note{margin-top:20px;font-size:15px;color:#cfe0eb}
+.goal .note b{color:#fff}
+
+/* users */
+.users{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.user{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:24px;display:flex;flex-direction:column;gap:14px;min-width:0}
+.user .who{display:flex;align-items:center;gap:12px}
+.hat{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;flex-shrink:0}
+.hat svg{width:22px;height:22px}
+.user h3{font-size:19px}
+.user .role{font-size:13px;color:var(--ink-3)}
+.user dl{display:grid;gap:10px}
+.user dt{font-size:12px;font-weight:600;letter-spacing:.1em;color:var(--ink-3)}
+.user dd{font-size:14.5px;color:var(--ink-2)}
+.quote{margin-top:28px;border-left:3px solid var(--amber);padding:6px 0 6px 18px;font-size:18px;font-weight:600;max-width:760px}
+.quote span{display:block;font-size:14px;font-weight:400;color:var(--ink-2);margin-top:4px}
+
+/* architecture */
+.arch{display:grid;grid-template-columns:1.05fr auto 1fr auto 1fr auto 1.2fr;align-items:stretch;gap:10px}
+.arch .col{background:rgba(255,255,255,.04);border:1px solid var(--navy-line);border-radius:16px;padding:18px;min-width:0}
+.arch .col h4{font-size:12px;letter-spacing:.14em;color:var(--sky);font-weight:600}
+.arch .col b{display:block;font-size:18px;margin:4px 0 10px}
+.arch .col li{font-size:13.5px;color:var(--navy-ink);padding:5px 0;border-top:1px dashed rgba(124,200,240,.18)}
+.arch .col li:first-child{border-top:0}
+.arch .col li em{font-style:normal;color:#fff}
+.arch .arr{display:grid;place-items:center;color:#4f7189}
+.arch .arr svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2}
+.arch .beacon{display:flex;gap:12px;align-items:center;margin-top:12px}
+.arch .beacon img{width:64px;height:64px;object-fit:cover;border-radius:12px;flex-shrink:0}
+.arch .beacon span{font-size:12.5px;color:#8fa9ba}
+.legend4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:22px}
+.legend4 div{display:flex;align-items:center;gap:12px;padding:14px 16px;border-radius:14px;background:rgba(255,255,255,.04);border:1px solid var(--navy-line);min-width:0}
+.legend4 b{display:block;font-size:15px}
+.legend4 span{font-size:12.5px;color:#8fa9ba}
+.ia{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.ia .tree{background:rgba(255,255,255,.04);border:1px solid var(--navy-line);border-radius:16px;padding:20px 22px;min-width:0}
+.ia .tree>b{display:flex;align-items:center;gap:10px;font-size:17px;margin-bottom:12px}
+.ia .tree>b small{font-size:12px;font-weight:500;color:#8fa9ba}
+.ia ul ul{margin-left:16px;border-left:1px solid var(--navy-line);padding-left:14px}
+.ia li{font-size:14px;color:#dce9f2;padding:3px 0}
+.ia li li{color:var(--navy-ink);font-size:13.5px}
+.ia li.hl>span{color:#ffc65c;font-weight:600}
+
+/* process */
+.stages{border:1px solid var(--line);border-radius:16px;overflow:hidden;background:var(--card)}
+.stage{display:grid;grid-template-columns:56px 1.1fr 1.6fr 1fr;gap:18px;padding:16px 22px;border-top:1px solid var(--line);align-items:start}
+.stage:first-child{border-top:0}
+.stage.th{background:var(--tint);font-size:12px;font-weight:600;letter-spacing:.08em;color:var(--ink-3);padding-block:10px}
+.stage .n{font-size:13px;color:var(--ink-3);font-variant-numeric:tabular-nums;padding-top:2px}
+.stage b{font-size:15.5px}
+.stage p{font-size:14px;color:var(--ink-2)}
+.stage .who{font-size:13.5px;color:var(--ink-2)}
+.cmp{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);gap:22px;align-items:start}
+.cmp .lab{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--ink-2);margin-bottom:10px}
+.pts{display:grid;gap:12px;margin-top:18px}
+.pt{display:grid;grid-template-columns:28px 1fr;gap:12px;align-items:start}
+.pt i{width:24px;height:24px;border-radius:50%;display:grid;place-items:center;background:var(--blue);color:#fff;font-style:normal;font-size:12.5px;font-weight:700;margin-top:1px}
+.pt i.a{background:var(--grey)}
+.pt b{display:block;font-size:15px}
+.pt span{font-size:14px;color:var(--ink-2)}
+.shot{position:relative}
+.shot .pin{position:absolute;width:26px;height:26px;border-radius:50%;background:var(--blue);color:#fff;font-size:13px;font-weight:700;display:grid;place-items:center;box-shadow:0 0 0 3px #fff,0 4px 10px rgba(0,0,0,.35);transform:translate(-50%,-50%);pointer-events:none}
+
+/* band */
+.band{background:linear-gradient(180deg,var(--navy) 0%,#0e2a40 100%);color:#fff;padding-block:64px}
+.band .k{font-size:13px;letter-spacing:.2em;color:var(--sky)}
+.band h2{font-size:clamp(28px,3.8vw,44px);font-weight:800;line-height:1.2;margin:10px 0 12px}
+.band p{color:var(--navy-ink);max-width:640px;font-size:16.5px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.chips a{font-size:13.5px;padding:7px 14px;border-radius:999px;border:1px solid var(--navy-line);background:rgba(255,255,255,.05);color:#dce9f2}
+.chips a:hover{border-color:var(--sky);color:#fff}
+
+/* ================= DEMO ================= */
+.demo-note{display:flex;flex-wrap:wrap;gap:10px 18px;font-size:14px;color:var(--ink-2);margin-bottom:16px}
+.demo-note b{color:var(--ink)}
+.demo{position:relative;background:var(--scr);color:var(--scr-ink);border-radius:18px;border:1px solid #12344a;box-shadow:0 30px 60px -30px rgba(7,23,37,.6);overflow:hidden;font-size:13px}
+.d-top{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px;padding:12px 18px;background:linear-gradient(180deg,#0e2d44,#081b2a);border-bottom:1px solid var(--scr-line)}
+.d-top .t{font-size:17px;font-weight:700;color:#7fe3f2;text-align:center;letter-spacing:.06em;white-space:nowrap}
+.d-top .clock{text-align:right;font-family:var(--mono);color:#7fe3f2;font-size:14px}
+.d-tabs{display:flex;gap:6px}
+.d-tabs button{padding:5px 12px;border-radius:6px;border:1px solid var(--scr-line);color:#9fc3d5;font-size:12.5px;white-space:nowrap}
+.d-tabs button.on{background:#14506b;border-color:#2b86a8;color:#fff}
+.d-kpi{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;padding:10px 18px 0}
+.d-kpi div{background:var(--scr-2);border:1px solid var(--scr-line);border-radius:8px;padding:8px 10px;display:flex;align-items:baseline;justify-content:space-between;gap:8px;min-width:0}
+.d-kpi span{color:#8fb3c6;font-size:12px;white-space:nowrap}
+.d-kpi b{font-size:20px;font-family:var(--mono);color:#fff}
+.d-kpi b.r{color:#ff8a8d}
+.d-kpi b.y{color:var(--amber)}
+.d-body{display:grid;grid-template-columns:230px minmax(0,1fr) 250px;gap:12px;padding:12px 18px 18px}
+.d-col{display:flex;flex-direction:column;gap:10px;min-width:0}
+.d-h{font-size:12.5px;font-weight:600;color:#7fe3f2;letter-spacing:.06em;display:flex;flex-wrap:wrap;gap:6px;justify-content:space-between;align-items:center}
+.d-h small{font-weight:400;color:#7f9fb2;letter-spacing:0}
+.d-list{display:flex;flex-direction:column;gap:6px;max-height:430px;overflow:auto;scrollbar-width:thin}
+.rec{display:grid;grid-template-columns:52px 1fr;gap:8px;border-radius:8px;padding:8px;border:1px solid;font-size:12px;text-align:left;width:100%}
+.rec.alarm{background:rgba(160,30,36,.32);border-color:rgba(229,72,77,.55)}
+.rec.warn{background:rgba(242,182,50,.10);border-color:rgba(242,182,50,.45)}
+.rec.done{opacity:.6}
+.rec .tm{font-family:var(--mono);font-size:12.5px;color:#fff;line-height:1.3}
+.rec .tm small{display:block;font-family:var(--font);font-size:11.5px;color:#ffb0b2}
+.rec.warn .tm small{color:#ffd27a}
+.rec .who{color:#e6f1f7}
+.rec .where{color:#8fb3c6}
+.rec .st{display:inline-block;margin-left:6px;font-size:10.5px;padding:0 6px;border-radius:4px;background:rgba(255,255,255,.12);color:#fff}
+.rec .st.ing{background:var(--red)}
+.d-empty{font-size:12px;color:#7f9fb2;padding:10px;border:1px dashed var(--scr-line);border-radius:8px}
+
+.d-mapwrap{position:relative;border-radius:10px;border:1px solid var(--scr-line);background:radial-gradient(ellipse at 50% 40%,#0f3149 0%,#081a29 75%);overflow:hidden;aspect-ratio:960/560;max-width:100%}
+.d-mapwrap svg{position:absolute;inset:0;width:100%;height:100%;display:block}
+.d-mapwrap canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:0;transition:opacity .35s}
+.d-mapwrap.heat canvas{opacity:.85}
+.zone rect{fill:#13334c;stroke:#2a6d8c;stroke-width:1}
+.zone text{fill:#6fd6e8;font-size:13px;font-weight:600;font-family:var(--font);pointer-events:none}
+.zone.alt rect{fill:#102a3f}
+.pinG{cursor:pointer;transition:opacity .25s}
+.pinG .ring{fill:none;stroke:var(--red);stroke-width:2;opacity:0}
+.pinG.alarm .ring{animation:pulse 1.3s ease-out infinite}
+.pinG.warnflash .ring{stroke:var(--amber);animation:pulse 1s ease-out 3}
+.pinG.sel .selr{stroke:#fff;stroke-width:2;fill:none;opacity:1}
+.pinG .selr{opacity:0}
+.pinG.dim{opacity:.18}
+.pinG.off{opacity:.42}
+.pinG.flash .ring{stroke:var(--cyan);animation:pulse 1s ease-out 2}
+@keyframes pulse{0%{opacity:.95;r:8}100%{opacity:0;r:26}}
+@media (prefers-reduced-motion:reduce){.pinG.alarm .ring{animation:none;opacity:.9;r:16}}
+.d-mapctl{position:absolute;right:10px;bottom:10px;display:flex;gap:6px}
+.d-mapctl button,.mbtn{background:#12405a;border:1px solid #2b86a8;color:#dff4fb;border-radius:6px;padding:4px 10px;font-size:12px}
+.d-legend{display:flex;flex-wrap:wrap;gap:6px}
+.d-legend button{display:flex;align-items:center;gap:6px;padding:3px 9px 3px 6px;border-radius:999px;border:1px solid var(--scr-line);font-size:12px;color:#cfe3ee}
+.d-legend button i{width:10px;height:10px;border-radius:50%}
+.d-legend button.offf{opacity:.4;text-decoration:line-through}
+.d-sim{position:relative;z-index:30;display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:12px 18px;border-top:1px solid var(--scr-line);background:#061420}
+.d-sim .slb{font-size:12.5px;color:#8fb3c6;margin-right:4px}
+.d-sim button{border-radius:6px;padding:6px 12px;font-size:12.5px;border:1px solid}
+.d-sim .a{border-color:rgba(229,72,77,.6);color:#ffb0b2;background:rgba(229,72,77,.12)}
+.d-sim .a:hover{background:rgba(229,72,77,.25)}
+.d-sim .w{border-color:rgba(242,182,50,.55);color:#ffd27a;background:rgba(242,182,50,.08)}
+.d-sim .rs{border-color:var(--scr-line);color:#9fc3d5;margin-left:auto}
+
+.d-search{display:flex;gap:6px}
+.d-search input{flex:1;min-width:0;background:#0b2232;border:1px solid var(--scr-line);border-radius:6px;padding:6px 9px;color:#fff;font-size:12.5px}
+.d-search button{background:#1b7f99;color:#fff;border-radius:6px;padding:6px 10px;font-size:12.5px}
+.d-recall{background:linear-gradient(180deg,#1aa6c0,#11809a);color:#fff;border-radius:7px;padding:8px;font-weight:700;font-size:13.5px;letter-spacing:.1em}
+.pcard{background:var(--scr-2);border:1px solid var(--scr-line);border-radius:10px;overflow:hidden}
+.pcard .pb{padding:12px;display:grid;grid-template-columns:1fr 1fr;gap:7px 10px;font-size:12.5px}
+.pcard .pb .full{grid-column:1/-1}
+.pcard .pb span{color:#7f9fb2}
+.pcard .nm{grid-column:1/-1;display:flex;align-items:center;gap:8px;font-size:15px;font-weight:700;color:#fff}
+.pcard .nm i{width:12px;height:12px;border-radius:50%}
+.pcard .nm em{font-style:normal;margin-left:auto;font-size:11px;font-weight:600;padding:1px 7px;border-radius:4px}
+.bat{display:inline-block;width:46px;height:7px;border-radius:3px;background:#1b3b50;vertical-align:middle;margin-left:4px;overflow:hidden}
+.bat i{display:block;height:100%;background:var(--ok)}
+.pcard .acts{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--scr-line);background:#0f3550}
+.pcard .acts button{padding:7px 0;font-size:12.5px;color:#cfeffa;border-left:1px solid var(--scr-line)}
+.pcard .acts button:first-child{border-left:0}
+.pcard .acts button:hover{background:#15506f}
+.pcard .done{display:block;width:calc(100% - 24px);margin:0 12px 12px;padding:7px;border-radius:6px;background:var(--ok);color:#fff;font-weight:600;font-size:12.5px}
+.ph{font-size:12.5px;color:#7f9fb2;padding:14px;border:1px dashed var(--scr-line);border-radius:10px;line-height:1.6}
+.tl{display:flex;flex-direction:column;gap:2px;margin-top:2px}
+.tl button{display:flex;align-items:center;gap:8px;padding:5px 6px;border-radius:6px;font-family:var(--mono);font-size:12px;color:#cfe3ee;text-align:left}
+.tl button i{width:8px;height:8px;border-radius:50%;background:var(--hblue);flex-shrink:0}
+.tl button.r i{background:var(--red)}
+.tl button.on{background:#12405a}
+.tl button span{font-family:var(--font);color:#8fb3c6;margin-left:auto;font-size:11.5px}
+.trackbar{position:absolute;left:10px;right:10px;bottom:10px;display:flex;align-items:center;gap:10px;background:rgba(6,20,32,.88);border:1px solid var(--scr-line);border-radius:8px;padding:6px 10px}
+.trackbar input{flex:1;min-width:0;accent-color:var(--cyan)}
+.trackbar b{font-family:var(--mono);font-size:12px;color:#7fe3f2;min-width:44px}
+.hz-legend{position:absolute;left:10px;top:10px;display:flex;gap:6px;flex-wrap:wrap}
+.hz-legend span{font-size:11.5px;padding:3px 8px;border-radius:5px;background:rgba(6,20,32,.85);border:1px solid var(--scr-line)}
+.heat-legend{position:absolute;left:10px;bottom:10px;display:flex;align-items:center;gap:8px;font-size:11.5px;color:#cfe3ee;background:rgba(6,20,32,.85);padding:4px 8px;border-radius:6px}
+.heat-legend i{width:90px;height:8px;border-radius:4px;background:linear-gradient(90deg,#0b3cff,#00e0ff,#38e05a,#ffe600,#ff2a1a)}
+
+/* dialog layer inside demo */
+.layer{position:absolute;inset:0;z-index:20;display:grid;place-items:center;padding:16px;background:rgba(3,10,16,.55);backdrop-filter:blur(2px)}
+.dlg{width:min(460px,100%);max-height:calc(100% - 8px);overflow:auto;border-radius:12px;border:1px solid #2b86a8;background:linear-gradient(180deg,#0f2e46,#0a1f30);box-shadow:0 20px 60px rgba(0,0,0,.6);padding:18px 20px 20px;color:#e6f1f7}
+.dlg.alarm{border-color:#c4373c;background:linear-gradient(180deg,#4a1216,#2a0c0f)}
+.dlg.shake{animation:shake .35s}
+@keyframes shake{25%{transform:translateX(-6px)}50%{transform:translateX(6px)}75%{transform:translateX(-3px)}}
+.dlg .dh{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px}
+.dlg .dh b{font-size:16px;letter-spacing:.06em}
+.dlg .dh small{font-family:var(--mono);font-size:12px;padding:2px 8px;border-radius:999px;background:rgba(255,255,255,.12)}
+.dlg .ill{width:118px;height:118px;border-radius:50%;margin:4px auto 12px;background:#fff}
+.dlg .msg{text-align:center;font-size:15px;font-weight:600;line-height:1.5}
+.dlg .meta{text-align:center;font-size:12.5px;color:#f1b9bb;margin-top:6px;font-family:var(--mono)}
+.dlg .btns{display:flex;gap:10px;margin-top:16px}
+.dlg .btns button{flex:1;border-radius:7px;padding:9px;font-weight:700;font-size:13.5px}
+.btn-red{background:linear-gradient(180deg,#d33a40,#a3242a);color:#fff}
+.btn-ghost{background:rgba(255,255,255,.1);color:#fff;border:1px solid rgba(255,255,255,.25)!important}
+.btn-cy{background:linear-gradient(180deg,#1aa6c0,#11809a);color:#fff}
+.btn-grey{background:#5b6b77;color:#fff}
+.fld{display:grid;gap:6px;margin-bottom:12px;font-size:12.5px}
+.fld>span{color:#8fb3c6}
+.fld select{background:#0b2232;border:1px solid var(--scr-line);border-radius:6px;padding:7px 9px;color:#fff;width:100%}
+.radios{display:flex;flex-wrap:wrap;gap:6px}
+.radios label{display:flex;align-items:center;gap:5px;padding:5px 9px;border:1px solid var(--scr-line);border-radius:6px;cursor:pointer;font-size:12.5px}
+.radios input{accent-color:var(--cyan)}
+.radios label:has(input:checked){border-color:#2b86a8;background:#12405a}
+.hint{font-size:12px;color:#ffd27a;margin-top:-4px;margin-bottom:8px}
+.toast{position:absolute;left:50%;bottom:64px;transform:translateX(-50%);z-index:25;background:#0d3a4f;border:1px solid #2b86a8;color:#e9fbff;font-size:13px;padding:8px 14px;border-radius:8px;box-shadow:0 10px 30px rgba(0,0,0,.4);max-width:calc(100% - 32px);text-align:center}
+.queue{position:absolute;right:10px;top:10px;z-index:5;display:flex;flex-direction:column;gap:6px;align-items:flex-end}
+.queue span{font-size:11.5px;padding:3px 9px;border-radius:5px;background:rgba(160,30,36,.85);color:#fff}
+
+/* steps (alarm main line) */
+.rail{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px;position:relative}
+.rail button{text-align:left;padding:14px 12px 14px;border-radius:12px;border:1px solid var(--line);background:var(--card);display:flex;flex-direction:column;gap:6px;min-width:0;transition:border-color .15s,box-shadow .15s}
+.rail button:hover{border-color:#b9cbe0}
+.rail button.on{border-color:var(--blue);box-shadow:0 0 0 3px #e3edfd}
+.rail .n{font-size:12px;font-family:var(--mono);color:var(--ink-3)}
+.rail b{font-size:14.5px;line-height:1.35}
+.rail .lane{font-size:11.5px;font-weight:600;padding:1px 7px;border-radius:4px;align-self:flex-start;white-space:nowrap}
+.lane.hat{background:#fff3dc;color:#9a5b00}
+.lane.sys{background:#e7eef4;color:#405866}
+.lane.scr{background:#e8f0fd;color:var(--blue)}
+.lane.site{background:#e2f5ef;color:#0b7a5e}
+.stepview{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.35fr);gap:28px;margin-top:18px;padding:26px;border-radius:18px;background:var(--card);border:1px solid var(--line);align-items:center}
+.stepview .big{font-size:44px;font-weight:800;color:#d8e4ee;line-height:1;font-family:var(--mono)}
+.stepview h3{font-size:24px;margin:8px 0 10px}
+.stepview p{color:var(--ink-2);font-size:15px}
+.stepview .focus{margin-top:16px;padding:14px 16px;border-radius:12px;background:var(--tint);font-size:14px;color:var(--ink-2)}
+.stepview .focus b{display:block;color:var(--ink);font-size:13px;letter-spacing:.08em;margin-bottom:4px}
+.stepview .nav{display:flex;gap:8px;margin-top:18px}
+.stepview .nav button{padding:7px 14px;border-radius:999px;border:1px solid var(--line);font-size:13px;color:var(--ink-2)}
+.stepview .nav button:hover{border-color:var(--blue);color:var(--blue)}
+.illrow{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;background:#2a0c0f;border-radius:14px;padding:22px}
+.illrow img{width:88px;height:88px;border-radius:50%}
+
+/* alarm types */
+.atypes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.akind{border-radius:18px;border:1px solid var(--line);background:var(--card);overflow:hidden;min-width:0}
+.akind .kh{padding:18px 22px;display:flex;justify-content:space-between;align-items:center;gap:10px;border-bottom:1px solid var(--line)}
+.akind .kh b{font-size:18px}
+.akind .kh span{font-size:13px;color:var(--ink-3)}
+.arow{display:grid;grid-template-columns:64px minmax(0,1fr);gap:14px;padding:14px 22px;border-top:1px solid var(--line);align-items:center}
+.arow:first-of-type{border-top:0}
+.arow img{width:64px;height:64px;border-radius:50%;background:#2a0c0f}
+.arow .wico{width:64px;height:64px;border-radius:50%;display:grid;place-items:center;background:#fff3dc;color:#9a5b00;font-weight:800;font-size:22px}
+.arow b{font-size:15.5px}
+.arow p{font-size:13.5px;color:var(--ink-2)}
+.lvl{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;margin-top:22px}
+.lvl>div{border-radius:16px;padding:20px 22px;min-width:0}
+.lvl .r{background:#fdeced;border:1px solid #f6c5c7}
+.lvl .y{background:#fff7e6;border:1px solid #f6dfa8}
+.lvl h4{font-size:17px;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.lvl h4 i{width:12px;height:12px;border-radius:50%}
+.lvl li{font-size:14px;color:var(--ink-2);padding:4px 0 4px 16px;position:relative}
+.lvl li::before{content:"";position:absolute;left:0;top:13px;width:6px;height:6px;border-radius:50%;background:currentColor;opacity:.4}
+
+/* state diagram */
+.diag{overflow-x:auto;border-radius:18px;border:1px solid var(--line);background:var(--card);padding:18px}
+.diag svg{display:block;min-width:820px;width:100%;height:auto}
+.diag text{font-family:var(--font)}
+.pstates{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;margin-top:22px}
+.pstates div{border-radius:14px;border:1px solid var(--line);background:var(--card);padding:14px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.pstates svg{width:34px;height:40px}
+.pstates b{font-size:15px}
+.pstates span{font-size:13px;color:var(--ink-2)}
+
+/* rules */
+.rules{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
+.rule{border-radius:18px;border:1px solid var(--line);background:var(--card);overflow:hidden;display:flex;flex-direction:column;min-width:0}
+.rule .crop{aspect-ratio:16/8;overflow:hidden;background:#0b1d2c;cursor:zoom-in;display:block;width:100%}
+.rule .crop img{width:100%;height:100%;object-fit:cover}
+.rule .rb{padding:18px 22px 22px}
+.rule h3{font-size:18px;margin-bottom:10px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.rule ol{counter-reset:r;display:grid;gap:8px}
+.rule ol li{counter-increment:r;font-size:14px;color:var(--ink-2);display:grid;grid-template-columns:22px 1fr;gap:6px}
+.rule ol li::before{content:counter(r);font-size:12px;font-family:var(--mono);color:var(--blue);padding-top:2px}
+.rule ol li b{color:var(--ink);font-weight:600}
+
+/* edge table */
+.tbl{overflow-x:auto;border-radius:16px;border:1px solid var(--line);background:var(--card)}
+.tbl table{border-collapse:collapse;width:100%;min-width:720px;font-size:14px}
+.tbl th{text-align:left;font-size:12px;letter-spacing:.08em;color:var(--ink-3);background:var(--tint);padding:10px 18px;font-weight:600}
+.tbl td{padding:13px 18px;border-top:1px solid var(--line);vertical-align:top;color:var(--ink-2)}
+.tbl td:first-child{color:var(--ink);font-weight:600;white-space:nowrap}
+.tbl td .chip{display:inline-block;font-size:12px;padding:1px 8px;border-radius:4px;background:var(--tint);color:var(--ink-2);margin-right:4px}
+
+/* supplement mocks */
+.mock{background:var(--scr);border-radius:16px;padding:16px;border:1px solid #12344a;color:var(--scr-ink);font-size:12.5px;min-width:0}
+.mock .mh{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.mock .mh b{color:#fff;font-size:14.5px}
+.drawer{background:var(--scr-2);border:1px solid var(--scr-line);border-radius:10px;padding:14px}
+.drawer .row{display:flex;justify-content:space-between;gap:10px;padding:5px 0;border-bottom:1px dashed #1d3e53}
+.drawer .row span{color:#7f9fb2}
+.vt{margin:12px 0;display:grid;gap:0}
+.vt div{display:grid;grid-template-columns:14px 1fr auto;gap:10px;align-items:start;padding-bottom:10px;position:relative}
+.vt div::before{content:"";position:absolute;left:6px;top:14px;bottom:0;width:1px;background:#2a5068}
+.vt div:last-child::before{display:none}
+.vt i{width:13px;height:13px;border-radius:50%;border:2px solid #2b86a8;background:var(--scr);margin-top:3px}
+.vt i.on{background:#2b86a8}
+.vt i.r{border-color:var(--red);background:var(--red)}
+.vt i.todo{border-style:dashed}
+.vt em{font-style:normal;font-family:var(--mono);color:#8fb3c6}
+.seg{display:flex;gap:6px;margin:8px 0 10px}
+.seg span{flex:1;text-align:center;padding:6px;border-radius:6px;border:1px solid var(--scr-line)}
+.seg span.on{background:#12405a;border-color:#2b86a8;color:#fff}
+.ta{border:1px solid var(--scr-line);border-radius:6px;padding:8px;color:#7f9fb2;min-height:46px;margin-bottom:10px}
+.stack{position:relative;height:250px}
+.stack .card{position:absolute;left:0;right:0;border-radius:10px;padding:12px 14px;border:1px solid #c4373c;background:linear-gradient(180deg,#4a1216,#2a0c0f)}
+.stack .card b{color:#fff}
+.anno{display:grid;gap:10px;margin-top:16px}
+.anno div{display:grid;grid-template-columns:24px 1fr;gap:10px;font-size:14px;color:var(--ink-2)}
+.anno i{width:22px;height:22px;border-radius:50%;background:var(--amber);color:#3a2500;font-style:normal;font-weight:700;font-size:12px;display:grid;place-items:center}
+
+/* visual */
+.palette{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px}
+.sw{border-radius:14px;overflow:hidden;border:1px solid var(--navy-line);background:rgba(255,255,255,.03);min-width:0}
+.sw i{display:block;height:70px}
+.sw div{padding:10px 12px}
+.sw b{display:block;font-size:14px}
+.sw span{font-size:12px;color:#8fa9ba;font-family:var(--mono)}
+.sw p{font-size:12.5px;color:var(--navy-ink);margin-top:4px}
+.typescale{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.typescale div{border-radius:14px;border:1px solid var(--navy-line);padding:16px;background:rgba(255,255,255,.03);min-width:0}
+.typescale .s{color:#fff;font-weight:700;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.typescale span{display:block;font-size:12px;color:#8fa9ba;margin-top:8px}
+.ills{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px}
+.ills div{text-align:center;padding:18px 10px;border-radius:14px;background:linear-gradient(180deg,#3d1013,#250a0d);border:1px solid #5d1d22}
+.ills img{width:96px;height:96px;margin:0 auto 10px;border-radius:50%}
+.ills b{font-size:14px}
+.ills span{display:block;font-size:12px;color:#d8a7a9}
+
+/* recap */
+.recap{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.recap>div{border-radius:18px;border:1px solid var(--line);background:var(--card);padding:24px;min-width:0}
+.recap h3{font-size:18px;margin-bottom:12px}
+.recap li{font-size:14.5px;color:var(--ink-2);padding:8px 0;border-top:1px solid var(--line)}
+.recap li:first-child{border-top:0;padding-top:0}
+.recap li b{color:var(--ink)}
+.foot{padding-block:40px 56px;border-top:1px solid var(--line);font-size:13px;color:var(--ink-3)}
+.foot .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.foot b{color:var(--ink);letter-spacing:.14em}
+
+/* lightbox */
+.lb{position:fixed;inset:0;z-index:100;background:rgba(5,14,22,.92);display:grid;place-items:center;padding:max(20px,env(safe-area-inset-top,0px)) max(20px,env(safe-area-inset-right,0px)) max(20px,env(safe-area-inset-bottom,0px)) max(20px,env(safe-area-inset-left,0px));cursor:zoom-out}
+.lb img{max-width:100%;max-height:calc(100vh - 90px);border-radius:10px;box-shadow:0 30px 80px rgba(0,0,0,.6)}
+.lb p{color:#cfe0eb;font-size:14px;margin-top:12px;text-align:center}
+.lb button{position:absolute;top:calc(14px + env(safe-area-inset-top,0px));right:calc(18px + env(safe-area-inset-right,0px));color:#fff;font-size:14px;border:1px solid rgba(255,255,255,.3);border-radius:999px;padding:6px 14px}
+
+/* ---------- responsive ---------- */
+.mods{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.mods>div{border-radius:16px;background:var(--card);border:1px solid var(--line);padding:22px;min-width:0}
+.mods h4{font-size:13px;color:var(--blue);letter-spacing:.06em;margin:0 0 6px}
+.mods b{display:block;font-size:18px;margin-bottom:10px}
+.mods ul{margin:0;padding-left:18px;font-size:14px;color:var(--ink-2);line-height:1.8}
+.feats{margin-top:56px;display:grid;gap:56px}
+.feat{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(0,1fr);gap:40px;align-items:center}
+.feat:nth-child(even) figure{order:2}
+.feat .no{font-size:13px;font-weight:700;color:var(--blue);letter-spacing:.08em}
+.feat h3{font-size:22px;line-height:1.35;margin:6px 0 10px}
+.feat p{font-size:15px;color:var(--ink-2);margin:0}
+.feat ul{margin:14px 0 0;padding-left:18px;font-size:14px;color:var(--ink-2);line-height:1.85}
+@media (max-width:860px){.mods,.feat{grid-template-columns:1fr}.feat{gap:18px}.feat:nth-child(even) figure{order:0}.feats{gap:40px}}
+@media (max-width:1080px){
+  .d-body{grid-template-columns:minmax(0,1fr) 240px}
+  .d-body .d-left{grid-column:1/-1;order:3}
+  .d-left .d-list{max-height:none;display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr))}
+  .arch{grid-template-columns:1fr 1fr}
+  .arch .arr{display:none}
+  .rail{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .palette{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+@media (max-width:860px){
+  .sec{padding-block:68px}
+  .pain,.users,.gl,.g3,.recap{grid-template-columns:1fr}
+  .g2,.cmp,.ia,.atypes,.lvl,.rules,.stepview{grid-template-columns:1fr}
+  .legend4{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .pstates{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .typescale{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .ills{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .stage{grid-template-columns:36px 1fr;gap:4px 12px}
+  .stage>*:nth-child(n+3){grid-column:2}
+  .stage.th{display:none}
+  #hfpts,.rail{grid-template-columns:1fr!important}
+  .d-body{grid-template-columns:1fr}
+  .d-top{grid-template-columns:1fr;justify-items:center}
+  .d-top .clock{text-align:center}
+  .d-kpi{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .layer{position:fixed;z-index:90;place-items:start center;padding-top:calc(64px + env(safe-area-inset-top,0px))}
+  .layer .dlg{max-height:calc(100vh - 230px)}
+  .layer .dlg .ill{width:84px;height:84px}
+  .d-sim{position:sticky;bottom:0;z-index:95;gap:6px;padding:8px 12px calc(8px + env(safe-area-inset-bottom,0px))}
+  .d-sim .slb{display:none}
+  .d-sim button{padding:5px 9px;font-size:12px}
+  .toast{position:fixed;bottom:calc(24px + env(safe-area-inset-bottom,0px));z-index:95}
+}
+@media (max-width:560px){
+  .facts{grid-template-columns:1fr}
+  .arch{grid-template-columns:1fr}
+  .rail{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .palette{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .ills{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .legend4,.pstates,.typescale{grid-template-columns:1fr}
+  .bar .brand span{display:none}
+  .hero{padding-block:60px 0}
+  .stepview{padding:18px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation-duration:.01ms!important}}
+[hidden]{display:none!important}
+body{margin:0}
+</style>
+</head>
+<body>
+
+<main>
+<section class="hero" id="top"><div class="wrap">
+  <p class="eyebrow">中建钢构广东厂 · 智能安全帽大屏 · UI 与交互</p>
+  <h1>智能安全帽，<br><em>让现场风险实时可见、即时处置。</em></h1>
+  <p class="lead">基于人员定位与多类传感器，大屏对 SOS、跌落、脱帽、近电等异常第一时间预警，并支撑定位、召回与追溯。</p>
+  <div class="facts">
+    <div><b>5 种报警</b><span>SOS、跌落、脱帽、近电、静默</span></div>
+    <div><b>3 个视图</b><span>预警报警 · 危险源 · 热力图</span></div>
+    <div><b>大屏 + PC 后台</b><span>13 张大屏稿和后台页面</span></div>
+  </div>
+  <figure class="hero-shot"><button class="zoom" type="button" data-src="assets/safety.webp" data-title="安全管理 · 预警报警"><img src="assets/safety.webp" width="1600" height="900" alt="安全帽大屏 · 预警报警"></button></figure>
+</div></section>
+
+<section class="sec" id="bg"><div class="wrap">
+  <header class="head"><p class="tag">背景</p><h2>厂区面积大、人员分散，异常情况难以及时发现。</h2></header>
+  <div class="pain">
+    <div><b>人散</b><span>上千人分布在 6 个工段和堆场</span></div>
+    <div><b>出事晚知道</b><span>跌落、触电、晕倒，旁边常常没人</span></div>
+    <div><b>记录靠纸</b><span>出了事很难查清经过</span></div>
+  </div>
+  <figure class="mt-s"><button class="zoom" type="button" data-src="assets/cad.webp" data-title="广东厂厂区 CAD"><img src="assets/cad.webp" width="1600" height="653" alt="厂区 CAD" loading="lazy"></button><p class="cap">厂区 CAD。大屏中间的地图照着它重画。</p></figure>
+</div></section>
+
+<section class="sec sec--dark" id="product"><div class="wrap">
+  <header class="head"><p class="tag">产品</p><h2>终端感知、信标定位、大屏联动预警。</h2></header>
+  <div class="arch">
+    <div class="col"><h4>端</h4><b>智能安全帽</b><ul><li>定位、跌落、脱帽、近电检测</li><li>SOS 键 + 语音</li></ul></div>
+    <div class="arr"><svg viewBox="0 0 24 24"><path d="M4 12h16M14 6l6 6-6 6"/></svg></div>
+    <div class="col"><h4>网</h4><b>定位信标</b><div class="beacon"><img src="assets/beacon.webp" width="566" height="600" alt="定位信标" loading="lazy"><span>装在厂房立柱上</span></div></div>
+    <div class="arr"><svg viewBox="0 0 24 24"><path d="M4 12h16M14 6l6 6-6 6"/></svg></div>
+    <div class="col"><h4>平台</h4><b>判断与记录</b><ul><li>分出预警和报警</li><li>推送召回语音</li></ul></div>
+    <div class="arr"><svg viewBox="0 0 24 24"><path d="M4 12h16M14 6l6 6-6 6"/></svg></div>
+    <div class="col" style="border-color:#c08a1e;background:rgba(242,182,50,.07)"><h4 style="color:#ffd27a">我负责</h4><b>大屏 + PC 后台</b><ul><li>安全管理 · 劳动力管理</li><li>巡检、安全教育、记录</li></ul></div>
+  </div>
+  <div class="legend4">
+    <div><span class="hat" style="background:rgba(229,72,77,.18)"><svg viewBox="0 0 24 24"><path d="M4 16a8 8 0 0 1 16 0z" fill="#e5484d"/><rect x="2.5" y="15.5" width="19" height="3" rx="1.5" fill="#b8333a"/></svg></span><div><b>红</b><span>安全管理</span></div></div>
+    <div><span class="hat" style="background:rgba(233,238,242,.14)"><svg viewBox="0 0 24 24"><path d="M4 16a8 8 0 0 1 16 0z" fill="#e9eef2"/><rect x="2.5" y="15.5" width="19" height="3" rx="1.5" fill="#b9c6cf"/></svg></span><div><b>白</b><span>管理人员</span></div></div>
+    <div><span class="hat" style="background:rgba(47,143,240,.18)"><svg viewBox="0 0 24 24"><path d="M4 16a8 8 0 0 1 16 0z" fill="#2f8ff0"/><rect x="2.5" y="15.5" width="19" height="3" rx="1.5" fill="#1d6fc4"/></svg></span><div><b>蓝</b><span>特殊工种</span></div></div>
+    <div><span class="hat" style="background:rgba(242,182,50,.18)"><svg viewBox="0 0 24 24"><path d="M4 16a8 8 0 0 1 16 0z" fill="#f2b632"/><rect x="2.5" y="15.5" width="19" height="3" rx="1.5" fill="#d9951c"/></svg></span><div><b>黄</b><span>普通工人</span></div></div>
+  </div>
+  <p class="cap" style="margin-top:12px">地图头像沿用现场真实的帽子颜色。</p>
+</div></section>
+
+<section class="sec" id="process"><div class="wrap">
+  <header class="head"><p class="tag">线框 → 高保真</p><h2>从产品线框到大屏高保真：远距离可读性设计。</h2></header>
+  <div class="cmp">
+    <figure>
+      <p class="lab"><span class="badge o">产品线框</span></p>
+      <button class="zoom" type="button" data-src="assets/lofi-main.webp" data-title="产品线框"><img src="assets/lofi-main.webp" width="1200" height="693" alt="产品线框" loading="lazy"></button>
+    </figure>
+    <figure>
+      <p class="lab"><span class="badge">高保真</span></p>
+      <div class="shot">
+        <button class="zoom" type="button" data-src="assets/safety.webp" data-title="高保真"><img src="assets/safety.webp" width="1600" height="900" alt="高保真大屏" loading="lazy"></button>
+        <span class="pin" style="left:62%;top:58%">1</span>
+        <span class="pin" style="left:11%;top:72%">2</span>
+        <span class="pin" style="left:89%;top:52%">3</span>
+      </div>
+    </figure>
+  </div>
+  <div class="pts" style="grid-template-columns:repeat(3,minmax(0,1fr));gap:18px" id="hfpts">
+    <div class="pt"><i>1</i><div><b>真实厂区地图</b><span>头像按帽子分四色，报警的人变红置顶</span></div></div>
+    <div class="pt"><i>2</i><div><b>报警用红底卡片</b><span>远处一眼能看到</span></div></div>
+    <div class="pt"><i>3</i><div><b>人员按车间折叠</b><span>每人三个操作：定位、召回、轨迹</span></div></div>
+  </div>
+</div></section>
+
+<section class="sec sec--tint" id="demo"><div class="wrap">
+  <header class="head"><p class="tag">交互演示</p><h2>交互原型：可操作的报警处置演示</h2><p class="sub">点击底部按钮模拟报警触发，点击地图人员查看详情。数据为示例。</p></header>
+  <div class="demo" id="dm">
+    <div class="d-top">
+      <div class="d-tabs" role="tablist" aria-label="视图">
+        <button type="button" class="on" data-view="alarm" role="tab" aria-selected="true">预警报警</button>
+        <button type="button" data-view="hazard" role="tab" aria-selected="false">危险源</button>
+        <button type="button" data-view="heat" role="tab" aria-selected="false">安全热力图</button>
+      </div>
+      <div class="t">广东厂安全帽大屏</div>
+      <div class="clock num" id="dmClock">--:--:--</div>
+    </div>
+    <div class="d-kpi">
+      <div><span>在场人数</span><b id="kOn" class="num">0</b></div>
+      <div><span>报警 已确认/总数</span><b id="kAlarm" class="num r">0/0</b></div>
+      <div><span>今日预警</span><b id="kWarn" class="num y">0</b></div>
+      <div><span>低电量</span><b id="kBat" class="num">0</b></div>
+    </div>
+    <div class="d-body">
+      <div class="d-col d-left">
+        <div class="d-h">今日预警报警记录 <small>新的在上</small></div>
+        <div class="d-list" id="dmList"></div>
+      </div>
+      <div class="d-col">
+        <div class="d-h"><span id="dmMapTitle">厂区人员分布</span><div class="d-legend" id="dmLegend"></div></div>
+        <div class="d-mapwrap" id="dmMap">
+          <svg id="dmSvg" viewBox="0 0 960 560" aria-label="厂区地图"></svg>
+          <canvas id="dmHeat" width="960" height="560"></canvas>
+          <div class="queue" id="dmQueue"></div>
+          <div class="d-mapctl" id="dmCtl"></div>
+        </div>
+      </div>
+      <div class="d-col">
+        <div class="d-h">现场人员状态</div>
+        <div class="d-search"><input id="dmQ" type="text" placeholder="输入姓名，如 王强" aria-label="搜索人员"><button type="button" id="dmQb">搜索</button></div>
+        <button type="button" class="d-recall" id="dmRecall">一键召回</button>
+        <div id="dmSide"></div>
+      </div>
+    </div>
+    <div class="d-sim">
+      <span class="slb">模拟帽子触发：</span>
+      <button type="button" class="a" data-sim="sos">一键SOS</button>
+      <button type="button" class="a" data-sim="fall">跌落</button>
+      <button type="button" class="a" data-sim="cap">脱帽</button>
+      <button type="button" class="a" data-sim="elec">近电</button>
+      <button type="button" class="a" data-sim="silent">静默</button>
+      <button type="button" class="w" data-sim="climb">登高预警</button>
+      <button type="button" class="w" data-sim="hit">碰撞预警</button>
+      <button type="button" class="rs" id="dmReset">重置</button>
+    </div>
+    <div id="dmLayer"></div>
+    <div id="dmToast"></div>
+  </div>
+</div></section>
+
+<section class="sec" id="flow"><div class="wrap">
+  <header class="head"><p class="tag">报警流程</p><h2>报警处置闭环：触发、确认、定位、召回、追溯</h2></header>
+  <div class="rail" id="rail" style="grid-template-columns:repeat(5,minmax(0,1fr))"></div>
+  <div class="stepview" id="stepview"></div>
+  <div class="lvl">
+    <div class="r"><h4><i style="background:var(--red)"></i>报警：弹窗，必须确认</h4><p style="font-size:14px;color:var(--ink-2)">SOS、跌落、脱帽、近电、静默</p></div>
+    <div class="y"><h4><i style="background:var(--amber)"></i>预警：只记录，不打断</h4><p style="font-size:14px;color:var(--ink-2)">登高、碰撞、长期滞留、禁入区域</p></div>
+  </div>
+</div></section>
+
+<section class="sec sec--dark" id="visual"><div class="wrap">
+  <header class="head"><p class="tag">视觉</p><h2>视觉规范：深色底板，色彩仅用于状态表达</h2></header>
+  <div class="palette">
+    <div class="sw"><i style="background:#071725"></i><div><b>底色</b><span>#071725</span></div></div>
+    <div class="sw"><i style="background:#13334c"></i><div><b>面板</b><span>#13334C</span></div></div>
+    <div class="sw"><i style="background:#35d0e6"></i><div><b>青 · 可点击</b><span>#35D0E6</span></div></div>
+    <div class="sw"><i style="background:#e5484d"></i><div><b>红 · 报警</b><span>#E5484D</span></div></div>
+    <div class="sw"><i style="background:#f2b632"></i><div><b>黄 · 预警</b><span>#F2B632</span></div></div>
+    <div class="sw"><i style="background:#2f8ff0"></i><div><b>蓝 · 工种</b><span>#2F8FF0</span></div></div>
+  </div>
+  <div class="ills mt-s">
+    <div><img src="assets/ill-sos.webp" width="240" height="240" alt="" loading="lazy"><b>一键 SOS</b></div>
+    <div><img src="assets/ill-fall.webp" width="240" height="240" alt="" loading="lazy"><b>跌落</b></div>
+    <div><img src="assets/ill-cap.webp" width="240" height="240" alt="" loading="lazy"><b>脱帽</b></div>
+    <div><img src="assets/ill-elec.webp" width="240" height="240" alt="" loading="lazy"><b>近电</b></div>
+    <div><img src="assets/ill-silent.webp" width="240" height="240" alt="" loading="lazy"><b>静默</b></div>
+  </div>
+  <p class="cap" style="margin-top:12px">每种报警一张插画，不读字也能分出是什么事。</p>
+</div></section>
+
+<section class="sec sec--tint" id="pages"><div class="wrap">
+  <header class="head"><p class="tag">页面构成</p><h2>两大屏幕模块 + PC 后台，覆盖监控、处置与管理</h2><p class="sub">大屏负责实时监控和报警处置，后台负责配置与记录，两端数据互通。</p></header>
+  <div class="mods">
+    <div><h4>大屏</h4><b>安全管理</b><ul><li>预警报警 · 危险源 · 安全热力图</li><li>报警弹窗、记录、轨迹、召回</li></ul></div>
+    <div><h4>大屏</h4><b>劳动力管理</b><ul><li>工人与管理员考勤</li><li>功效、出勤排名与工种分布</li></ul></div>
+    <div><h4>PC 后台</h4><b>配置与记录</b><ul><li>安全教育统计与列表</li><li>巡检计划、告警通知</li></ul></div>
+  </div>
+  <div class="feats">
+    <div class="feat">
+      <figure><button class="zoom" type="button" data-src="assets/safety.webp" data-title="预警报警"><img src="assets/safety.webp" width="1600" height="900" alt="预警报警" loading="lazy"></button></figure>
+      <div><span class="no">01 · 主屏</span><h3>预警报警：三栏布局，地图为中心</h3><p>值班员的大部分时间停留在这一屏。</p><ul><li>左侧：统计趋势与今日报警记录</li><li>中间：厂区地图，人员实时位置</li><li>右侧：按车间折叠的人员列表与快捷操作</li></ul></div>
+    </div>
+    <div class="feat">
+      <figure><button class="zoom" type="button" data-src="assets/hazard.webp" data-title="危险源"><img src="assets/hazard.webp" width="1600" height="900" alt="危险源" loading="lazy"></button></figure>
+      <div><span class="no">02 · 危险源</span><h3>危险源：从发现到整改的状态追踪</h3><p>把隐患按处理进度拆开，先看还有多少没解决。</p><ul><li>顶部：已发现 / 整改中 / 已整改</li><li>中部：危险源 TOP10 与类型占比</li><li>底部：未制定巡检计划的危险源清单</li></ul></div>
+    </div>
+    <div class="feat">
+      <figure><button class="zoom" type="button" data-src="assets/heat.webp" data-title="安全热力图"><img src="assets/heat.webp" width="1600" height="900" alt="安全热力图" loading="lazy"></button></figure>
+      <div><span class="no">03 · 热力图</span><h3>安全热力图：风险聚集一目了然</h3><p>同一张厂区底图，换成密度着色，辅助判断巡检重点。</p><ul><li>颜色越暖，人员越密集</li><li>两侧统计与人员列表保持不变，只切换中间视图</li></ul></div>
+    </div>
+    <div class="feat">
+      <figure><button class="zoom" type="button" data-src="assets/track.webp" data-title="行动轨迹"><img src="assets/track.webp" width="1600" height="900" alt="行动轨迹" loading="lazy"></button></figure>
+      <div><span class="no">04 · 追溯</span><h3>记录与轨迹：事后可以复盘</h3><p>每条报警都能回到当时的位置和路线。</p><ul><li>报警记录按类型、时间筛选</li><li>轨迹回放，拖动进度条查看移动路径</li></ul></div>
+    </div>
+    <div class="feat">
+      <figure><button class="zoom" type="button" data-src="assets/labor.webp" data-title="劳动力管理"><img src="assets/labor.webp" width="1600" height="900" alt="劳动力管理" loading="lazy"></button></figure>
+      <div><span class="no">05 · 劳动力</span><h3>劳动力管理：考勤与功效一屏掌握</h3><p>顶部五级筛选，全屏数据联动。</p><ul><li>筛选：机构 → 车间 → 工序 → 班组 → 工种</li><li>左：工人与管理员当日考勤</li><li>中：平均功效、通勤达成率及月度趋势</li><li>右：班组排名与工种分布</li></ul></div>
+    </div>
+    <div class="feat">
+      <figure><button class="zoom" type="button" data-src="assets/pc-edu.webp" data-title="安全教育统计看板"><img src="assets/pc-edu.webp" width="1600" height="899" alt="安全教育统计看板" loading="lazy"></button></figure>
+      <div><span class="no">06 · PC 后台</span><h3>PC 后台：日常管理与配置</h3><p>浅色办公界面，多标签页切换，适合长时间录入与查询。</p><ul><li>安全教育：完成率统计与人员列表</li><li>巡检计划与告警通知的配置</li></ul></div>
+    </div>
+  </div>
+</div></section>
+
+<section class="sec" id="all"><div class="wrap">
+  <header class="head"><p class="tag">全部页面</p><h2>设计稿总览</h2><p class="sub">点击图片可放大查看。</p></header>
+  <p class="tag" style="color:var(--ink-3)">大屏 · 安全管理</p>
+  <div class="g2 mt-s">
+    <figure><button class="zoom" type="button" data-src="assets/safety.webp" data-title="预警报警"><img src="assets/safety.webp" width="1600" height="900" alt="预警报警" loading="lazy"></button><p class="cap">预警报警</p></figure>
+    <figure><button class="zoom" type="button" data-src="assets/hazard.webp" data-title="危险源"><img src="assets/hazard.webp" width="1600" height="900" alt="危险源" loading="lazy"></button><p class="cap">危险源</p></figure>
+    <figure><button class="zoom" type="button" data-src="assets/heat.webp" data-title="安全热力图"><img src="assets/heat.webp" width="1600" height="900" alt="安全热力图" loading="lazy"></button><p class="cap">安全热力图</p></figure>
+    <figure><button class="zoom" type="button" data-src="assets/record.webp" data-title="查看记录"><img src="assets/record.webp" width="1600" height="900" alt="查看记录" loading="lazy"></button><p class="cap">查看记录</p></figure>
+    <figure><button class="zoom" type="button" data-src="assets/track.webp" data-title="行动轨迹"><img src="assets/track.webp" width="1600" height="900" alt="行动轨迹" loading="lazy"></button><p class="cap">行动轨迹</p></figure>
+    <figure><button class="zoom" type="button" data-src="assets/recall.webp" data-title="一键召回"><img src="assets/recall.webp" width="1600" height="900" alt="一键召回" loading="lazy"></button><p class="cap">一键召回</p></figure>
+    <figure><button class="zoom" type="button" data-src="assets/recall2.webp" data-title="召回 · 二次确认"><img src="assets/recall2.webp" width="1600" height="900" alt="召回 · 二次确认" loading="lazy"></button><p class="cap">召回 · 二次确认</p></figure>
+    <figure><button class="zoom" type="button" data-src="assets/sos.webp" data-title="一键 SOS 报警"><img src="assets/sos.webp" width="1600" height="900" alt="一键 SOS 报警" loading="lazy"></button><p class="cap">一键 SOS 报警</p></figure>
+    <figure><button class="zoom" type="button" data-src="assets/fall.webp" data-title="跌落报警"><img src="assets/fall.webp" width="1600" height="900" alt="跌落报警" loading="lazy"></button><p class="cap">跌落报警</p></figure>
+    <figure><button class="zoom" type="button" data-src="assets/cap.webp" data-title="脱帽报警"><img src="assets/cap.webp" width="1600" height="900" alt="脱帽报警" loading="lazy"></button><p class="cap">脱帽报警</p></figure>
+    <figure><button class="zoom" type="button" data-src="assets/elec.webp" data-title="近电报警"><img src="assets/elec.webp" width="1600" height="900" alt="近电报警" loading="lazy"></button><p class="cap">近电报警</p></figure>
+    <figure><button class="zoom" type="button" data-src="assets/silent.webp" data-title="静默报警"><img src="assets/silent.webp" width="1600" height="900" alt="静默报警" loading="lazy"></button><p class="cap">静默报警</p></figure>
+  </div>
+  <p class="tag mt" style="color:var(--ink-3)">大屏 · 劳动力管理</p>
+  <div class="g2 mt-s">
+    <figure><button class="zoom" type="button" data-src="assets/labor.webp" data-title="劳动力管理"><img src="assets/labor.webp" width="1600" height="900" alt="劳动力管理" loading="lazy"></button><p class="cap">劳动力管理</p></figure>
+  </div>
+  <p class="tag mt" style="color:var(--ink-3)">PC 后台</p>
+  <div class="g2 mt-s">
+    <figure><button class="zoom" type="button" data-src="assets/pc-edu.webp" data-title="安全教育统计看板"><img src="assets/pc-edu.webp" width="1600" height="899" alt="安全教育统计看板" loading="lazy"></button><p class="cap">安全教育统计看板</p></figure>
+    <figure><button class="zoom" type="button" data-src="assets/pc-list.webp" data-title="安全教育列表"><img src="assets/pc-list.webp" width="1400" height="698" alt="安全教育列表" loading="lazy"></button><p class="cap">安全教育列表</p></figure>
+    <figure><button class="zoom" type="button" data-src="assets/pc-patrol.webp" data-title="巡检计划 · 告警通知"><img src="assets/pc-patrol.webp" width="1400" height="562" alt="巡检计划 · 告警通知" loading="lazy"></button><p class="cap">巡检计划 · 告警通知</p></figure>
+  </div>
+</div></section>
+</main>
+
+<footer class="foot"><div class="wrap"><span><b>LIANG HONG</b> · UI &amp; UX DESIGN</span><a href="#top">回到顶部 ↑</a></div></footer>
+
+<div class="lb" id="lb" hidden><button type="button" id="lbClose">关闭</button><div><img id="lbImg" alt=""><p id="lbCap"></p></div></div>
+
+<script>
+(function(){
+"use strict";
+/* ---------------- lightbox ---------------- */
+var lb=document.getElementById('lb'),lbImg=document.getElementById('lbImg'),lbCap=document.getElementById('lbCap');
+document.addEventListener('click',function(e){
+  var z=e.target.closest('.zoom');
+  if(z&&z.dataset.src){lbImg.src=z.dataset.src;lbImg.alt=z.dataset.title||'';lbCap.textContent=z.dataset.title||'';lb.hidden=false;document.getElementById('lbClose').focus();}
+});
+lb.addEventListener('click',function(){lb.hidden=true;});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!lb.hidden)lb.hidden=true;});
+
+/* ---------------- scroll spy ---------------- */
+
+/* ---------------- alarm main line (rail) ---------------- */
+var STEPS=[
+ {lane:'hat',ln:'安全帽',t:'帽子触发报警',d:'检测到跌落、脱帽、近电、静止，或工人按 SOS。',f:'工人不看屏，报警靠硬件发起。',img:'ill'},
+ {lane:'scr',ln:'大屏',t:'弹窗 + 地图变红',d:'弹窗写清谁、在哪、什么事；地图上这个人变红置顶。',f:'只能点确认关闭，多条报警排队。',img:'assets/sos.webp',cap:'一键 SOS 报警弹窗'},
+ {lane:'scr',ln:'值班员',t:'确认并定位',d:'报警进左侧记录，地图放大到这个人。',f:'定位、召回、轨迹固定在人员卡片底部。',img:'assets/safety.webp',cap:'今日报警记录与人员卡片',pos:'0% 70%'},
+ {lane:'site',ln:'现场',t:'一键召回',d:'按全体、车间、区域或人员推送撤离语音。',f:'推送前二次确认，写清对象。',img:'assets/recall2.webp',cap:'召回 · 二次确认'},
+ {lane:'site',ln:'记录',t:'查记录、看轨迹',d:'按类型筛选报警，回看出事前去过哪。',f:'记录和轨迹互相跳转。',img:'assets/track.webp',cap:'行动轨迹'}
+];
+var rail=document.getElementById('rail'),sv=document.getElementById('stepview'),cur=0;
+var laneCls={hat:'hat',sys:'sys',scr:'scr',site:'site'};
+rail.innerHTML=STEPS.map(function(s,i){return '<button type="button" data-i="'+i+'"><span class="n">0'+(i+1)+'</span><span class="lane '+laneCls[s.lane]+'">'+s.ln+'</span><b>'+s.t+'</b></button>';}).join('');
+function showStep(i){
+  cur=i;[].forEach.call(rail.children,function(b,j){b.classList.toggle('on',j===i);b.setAttribute('aria-pressed',j===i);});
+  var s=STEPS[i],media;
+  if(s.img==='ill'){media='<div class="illrow">'+['sos','fall','cap','elec','silent'].map(function(k){return '<img src="assets/ill-'+k+'.webp" width="240" height="240" alt="">';}).join('')+'</div><p class="cap">5 种报警对应的插画</p>';}
+  else{media='<figure><button class="zoom" type="button" data-src="'+s.img+'" data-title="'+s.cap+'" style="aspect-ratio:16/9"><img src="'+s.img+'" alt="'+s.cap+'" style="width:100%;height:100%;object-fit:cover;object-position:'+(s.pos||'50% 50%')+'"></button><p class="cap">'+s.cap+'</p></figure>';}
+  sv.innerHTML='<div><span class="big">0'+(i+1)+'</span><h3>'+s.t+'</h3><p>'+s.d+'</p><div class="focus"><b>设计关注</b>'+s.f+'</div><div class="nav"><button type="button" data-go="-1"'+(i===0?' disabled style="opacity:.4"':'')+'>上一步</button><button type="button" data-go="1"'+(i===STEPS.length-1?' disabled style="opacity:.4"':'')+'>下一步</button></div></div><div>'+media+'</div>';
+}
+rail.addEventListener('click',function(e){var b=e.target.closest('button');if(b)showStep(+b.dataset.i);});
+sv.addEventListener('click',function(e){var b=e.target.closest('[data-go]');if(b&&!b.disabled)showStep(Math.max(0,Math.min(STEPS.length-1,cur+(+b.dataset.go))));});
+showStep(0);
+
+/* ================= DEMO ================= */
+var NS='http://www.w3.org/2000/svg';
+var svg=document.getElementById('dmSvg'),mapEl=document.getElementById('dmMap'),heatCv=document.getElementById('dmHeat');
+var listEl=document.getElementById('dmList'),sideEl=document.getElementById('dmSide'),layerEl=document.getElementById('dmLayer'),toastEl=document.getElementById('dmToast'),queueEl=document.getElementById('dmQueue'),ctlEl=document.getElementById('dmCtl'),legendEl=document.getElementById('dmLegend');
+var ZONES=[
+ {n:'板材堆场',x:28,y:80,w:50,h:400,v:1},
+ {n:'零部件加工',x:84,y:80,w:88,h:196,v:1},
+ {n:'主件下料',x:84,y:282,w:88,h:198,v:1},
+ {n:'智能仓储',x:178,y:228,w:36,h:120,v:1,alt:1},
+ {n:'桥梁总装',x:222,y:80,w:604,h:58},
+ {n:'成品堆场',x:222,y:144,w:604,h:36,alt:1},
+ {n:'材料堆场',x:222,y:186,w:298,h:36,alt:1},
+ {n:'成品堆场',x:526,y:186,w:300,h:36,alt:1},
+ {n:'5工段',x:222,y:228,w:604,h:58},
+ {n:'4工段',x:222,y:292,w:604,h:58},
+ {n:'2工段',x:222,y:356,w:604,h:58},
+ {n:'3工段',x:222,y:420,w:604,h:60},
+ {n:'6工段·油漆区',x:840,y:80,w:88,h:400,v:1},
+ {n:'临时堆场',x:560,y:20,w:300,h:44,alt:1},
+ {n:'办公楼',x:410,y:496,w:170,h:44,alt:1}
+];
+var TYPES={worker:{n:'工人',c:'#f2b632',jobs:['焊工','铆工','打磨工','油漆工','普工']},special:{n:'特殊工种',c:'#2f8ff0',jobs:['电工','吊车工','叉车工']},manager:{n:'管理人员',c:'#e9eef2',jobs:['班组长','工段长']},safety:{n:'安全管理',c:'#e5484d',jobs:['安全员']}};
+var ALARMS={sos:{n:'一键SOS',kind:'主动报警',lvl:'alarm'},fall:{n:'跌落报警',kind:'被动报警',lvl:'alarm'},cap:{n:'脱帽报警',kind:'被动报警',lvl:'alarm'},elec:{n:'近电报警',kind:'被动报警',lvl:'alarm'},silent:{n:'静默报警',kind:'被动报警',lvl:'alarm'},climb:{n:'登高预警',kind:'预警',lvl:'warn'},hit:{n:'碰撞预警',kind:'预警',lvl:'warn'}};
+var NAMES='王强 李军 刘洋 陈磊 杨帆 赵勇 黄斌 周涛 吴昊 徐亮 孙鹏 马超 朱峰 胡杰 郭庆 何平 高翔 林峰 罗斌 郑凯 梁辉 谢东 宋波 唐明 许刚 韩冰 冯磊 邓超 曹阳 彭飞 曾强 肖鹏 田野 董伟 袁浩 潘龙 蒋涛 蔡军 余斌 杜鹏 叶飞 程亮 魏东 苏杰 吕超 丁勇 任强 沈浩 姜涛 范明 方勇 石磊 廖辉 邹凯 熊伟 金鹏 陆军 郝强 孔亮 白杨'.split(' ');
+var COUNTS=[3,5,5,1,6,2,2,2,5,5,5,5,5,2,3];
+var HAZ=[{n:'油漆库',cat:'危化品',x:884,y:300,s:'整改中'},{n:'行车吊装区',cat:'作业隐患',x:520,y:110,s:'已发现'},{n:'人工打砂房',cat:'作业隐患',x:770,y:322,s:'已发现'},{n:'一车间过道',cat:'作业隐患',x:300,y:257,s:'已整改'},{n:'临时配电箱',cat:'用电隐患',x:128,y:452,s:'已整改'}];
+var HZC={'已发现':'#e5484d','整改中':'#f2b632','已整改':'#14a37f'};
+
+var S; // state
+function rng(seed){return function(){seed|=0;seed=seed+0x6D2B79F5|0;var t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
+function pad(n){return(n<10?'0':'')+n;}
+function nowT(sec){var d=new Date();return pad(d.getHours())+':'+pad(d.getMinutes())+(sec?':'+pad(d.getSeconds()):'');}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+
+function init(){
+  var r=rng(20250617),people=[],k=0;
+  ZONES.forEach(function(z,zi){
+    for(var i=0;i<COUNTS[zi];i++){
+      var t;var q=r();
+      if(z.n==='办公楼')t=q<.6?'manager':'safety';else t=q<.62?'worker':q<.82?'special':q<.93?'manager':'safety';
+      var p={id:k,name:NAMES[k%NAMES.length],type:t,job:TYPES[t].jobs[Math.floor(r()*TYPES[t].jobs.length)],zone:z.n,zi:zi,
+        x:Math.round(z.x+10+r()*(z.w-20)),y:Math.round(z.y+18+r()*(z.h-24)),bat:Math.round(14+r()*84),dev:'WGG-'+(101+k),
+        moving:r()>.35,off:false,alarm:null};
+      people.push(p);k++;
+    }
+  });
+  people[7].off=true;people[23].off=true;people[23].bat=3;
+  S={people:people,sel:null,view:'alarm',hidden:{},records:[],queue:[],modal:null,alarmTotal:0,alarmAck:0,warn:0,vb:[0,0,960,560],track:null,hz:null};
+  // seed handled records
+  var a=people[12],b=people[30],c=people[41];
+  S.records.push({t:'07:36',type:'climb',p:b,lvl:'warn',st:'done'});
+  S.records.push({t:'08:30',type:'hit',p:c,lvl:'warn',st:'done'});
+  S.records.push({t:'09:10',type:'fall',p:a,lvl:'alarm',st:'done'});
+  S.records.reverse();
+  S.alarmTotal=1;S.alarmAck=1;S.warn=2;
+  layerEl.innerHTML='';toastEl.innerHTML='';
+  drawMap();render();
+}
+
+function drawMap(){
+  svg.innerHTML='';
+  var gz=document.createElementNS(NS,'g');gz.id='gZones';
+  ZONES.forEach(function(z){
+    var g=document.createElementNS(NS,'g');g.setAttribute('class','zone'+(z.alt?' alt':''));
+    var rc=document.createElementNS(NS,'rect');['x','y','width','height'].forEach(function(a,i){rc.setAttribute(a,[z.x,z.y,z.w,z.h][i]);});rc.setAttribute('rx',4);g.appendChild(rc);
+    if(z.v){
+      var chars=z.n.replace('·','').split(''),step=Math.min(17,(z.h-20)/chars.length);
+      chars.forEach(function(ch,i){var t=document.createElementNS(NS,'text');t.setAttribute('x',z.x+z.w/2);t.setAttribute('y',z.y+z.h/2-(chars.length-1)*step/2+i*step+5);t.setAttribute('text-anchor','middle');t.textContent=ch;g.appendChild(t);});
+    }else{var t=document.createElementNS(NS,'text');t.setAttribute('x',z.x+14);t.setAttribute('y',z.y+20);t.textContent=z.n;g.appendChild(t);}
+    gz.appendChild(g);
+  });
+  // beacons
+  for(var i=0;i<14;i++){var c=document.createElementNS(NS,'circle');c.setAttribute('cx',222+i*46);c.setAttribute('cy',486);c.setAttribute('r',3);c.setAttribute('fill','#3fb37f');c.setAttribute('opacity','.7');gz.appendChild(c);}
+  svg.appendChild(gz);
+  ['gHaz','gTrack','gPins'].forEach(function(id){var g=document.createElementNS(NS,'g');g.id=id;svg.appendChild(g);});
+}
+
+function pinMarkup(p){
+  var col=p.alarm&&p.alarm.st!=='done'?'#e5484d':(p.off?'#9aa8b2':TYPES[p.type].c);
+  var big=p.alarm&&p.alarm.st!=='done';var s=big?1.35:1;
+  var icon=p.type==='manager'&&!big?'#3c5566':'#ffffff';
+  var h='<g transform="translate('+p.x+','+p.y+') scale('+s+')">'+
+   '<circle class="ring" cx="0" cy="-17" r="10"/>'+
+   '<circle class="selr" cx="0" cy="-17" r="15"/>'+
+   '<path d="M0,0 C-7,-8 -11,-12 -11,-18 A11,11 0 1 1 11,-18 C11,-12 7,-8 0,0Z" fill="'+col+'" stroke="rgba(0,0,0,.35)" stroke-width="1"/>'+
+   '<path d="M-6,-16 a6,6 0 0 1 12,0 z" fill="'+icon+'"/><rect x="-7.5" y="-16.5" width="15" height="2.6" rx="1.2" fill="'+icon+'"/>';
+  if(big)h+='<circle cx="9" cy="-27" r="6" fill="#fff"/><text x="9" y="-23.5" text-anchor="middle" font-size="10" font-weight="800" fill="#e5484d">!</text>';
+  if(p.bat<20&&!big)h+='<rect x="5" y="-32" width="10" height="6" rx="1" fill="#fff" stroke="#e5484d"/><rect x="6" y="-31" width="2" height="4" fill="#e5484d"/>';
+  return h+'</g>';
+}
+function renderPins(){
+  var g=document.getElementById('gPins');
+  var arr=S.people.slice().sort(function(a,b){return (a.alarm&&a.alarm.st!=='done'?1:0)-(b.alarm&&b.alarm.st!=='done'?1:0)||(S.sel===a.id?1:0)-(S.sel===b.id?1:0);});
+  g.innerHTML=arr.map(function(p){
+    var cls='pinG';
+    if(p.alarm&&p.alarm.st!=='done')cls+=' alarm';
+    if(p.off)cls+=' off';
+    if(S.sel===p.id)cls+=' sel';
+    if(S.hidden[p.type]||S.view!=='alarm'||(S.track&&S.track.p!==p))cls+=' dim';
+    if(p._flash)cls+=' '+p._flash;
+    return '<g class="'+cls+'" data-id="'+p.id+'" tabindex="0" role="button" aria-label="'+esc(p.name)+' '+TYPES[p.type].n+'">'+pinMarkup(p)+'</g>';
+  }).join('');
+}
+function renderHaz(){
+  var g=document.getElementById('gHaz');
+  if(S.view!=='hazard'){g.innerHTML='';return;}
+  g.innerHTML=HAZ.map(function(h,i){return '<g class="pinG'+(S.hz===i?' sel':'')+'" data-hz="'+i+'" tabindex="0" role="button" aria-label="危险源 '+h.n+'"><circle cx="'+h.x+'" cy="'+h.y+'" r="26" fill="'+HZC[h.s]+'" opacity=".16"/><path transform="translate('+h.x+','+h.y+')" d="M0,-14 L13,9 L-13,9Z" fill="'+HZC[h.s]+'" stroke="#071725" stroke-width="1.5"/><text x="'+h.x+'" y="'+(h.y+6)+'" text-anchor="middle" font-size="12" font-weight="800" fill="#071725">!</text><text x="'+h.x+'" y="'+(h.y+28)+'" text-anchor="middle" font-size="12" fill="#fff" font-weight="600">'+h.n+'</text></g>';}).join('');
+}
+function drawHeat(){
+  var ctx=heatCv.getContext('2d');ctx.clearRect(0,0,960,560);
+  var r=rng(7),pts=[];
+  S.people.forEach(function(p){if(!p.off)pts.push([p.x,p.y-10,1]);});
+  ZONES.forEach(function(z,zi){if(zi>=8&&zi<=12){for(var i=0;i<40;i++)pts.push([z.x+r()*z.w,z.y+r()*z.h,.6]);}});
+  for(var i=0;i<30;i++)pts.push([84+r()*88,80+r()*400,.6]);
+  ctx.globalCompositeOperation='source-over';
+  pts.forEach(function(p){var g=ctx.createRadialGradient(p[0],p[1],0,p[0],p[1],38);g.addColorStop(0,'rgba(0,0,0,'+(.28*p[2])+')');g.addColorStop(1,'rgba(0,0,0,0)');ctx.fillStyle=g;ctx.fillRect(p[0]-40,p[1]-40,80,80);});
+  var img=ctx.getImageData(0,0,960,560),d=img.data;
+  var stops=[[0,[11,60,255]],[.25,[0,224,255]],[.5,[56,224,90]],[.75,[255,230,0]],[1,[255,42,26]]];
+  for(var j=0;j<d.length;j+=4){var a=d[j+3]/255;if(a<.04){d[j+3]=0;continue;}var v=Math.min(1,a*1.6),c;for(var s=1;s<stops.length;s++){if(v<=stops[s][0]){var t=(v-stops[s-1][0])/(stops[s][0]-stops[s-1][0]);c=stops[s-1][1].map(function(x,ii){return x+(stops[s][1][ii]-x)*t;});break;}}if(!c)c=stops[4][1];d[j]=c[0];d[j+1]=c[1];d[j+2]=c[2];d[j+3]=Math.min(255,60+v*190);}
+  ctx.putImageData(img,0,0);
+}
+function setVB(v,anim){
+  var from=S.vb.slice(),to=v,t0=null,dur=anim?600:0;
+  function step(ts){if(t0===null)t0=ts;var k=dur?Math.min(1,(ts-t0)/dur):1;k=k<.5?2*k*k:1-Math.pow(-2*k+2,2)/2;S.vb=from.map(function(f,i){return f+(to[i]-f)*k;});svg.setAttribute('viewBox',S.vb.join(' '));if(k<1)requestAnimationFrame(step);}
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches)dur=0;
+  requestAnimationFrame(step);
+}
+function locate(p){
+  var w=380,h=w*560/960;var x=Math.max(0,Math.min(960-w,p.x-w/2)),y=Math.max(0,Math.min(560-h,p.y-h/2));
+  setVB([x,y,w,h],true);renderCtl();
+}
+function renderCtl(){
+  var zoomed=S.vb[2]<950;
+  var h='';
+  if(zoomed)h+='<button type="button" data-act="fit">回到全图</button>';
+  ctlEl.innerHTML=h;
+  // overlays
+  var ov=mapEl.querySelector('.trackbar,.hz-legend,.heat-legend');
+  [].forEach.call(mapEl.querySelectorAll('.trackbar,.hz-legend,.heat-legend'),function(n){n.remove();});
+  if(S.view==='hazard'){var c={};HAZ.forEach(function(h){c[h.s]=(c[h.s]||0)+1;});var el=document.createElement('div');el.className='hz-legend';el.innerHTML=['已发现','整改中','已整改'].map(function(k){return '<span style="color:'+HZC[k]+'">'+k+' '+(c[k]||0)+'</span>';}).join('');mapEl.appendChild(el);}
+  if(S.view==='heat'){var el2=document.createElement('div');el2.className='heat-legend';el2.innerHTML='少<i></i>多 · 今日人员停留';mapEl.appendChild(el2);}
+  if(S.track){var tb=document.createElement('div');tb.className='trackbar';tb.innerHTML='<b id="tbT">'+S.track.pts[0].t+'</b><input type="range" id="tbR" min="0" max="1000" value="0" aria-label="轨迹时间轴"><button type="button" class="mbtn" data-act="closetrack">关闭轨迹</button>';mapEl.appendChild(tb);
+    var rg=tb.querySelector('#tbR');rg.value=S.track.pos;rg.addEventListener('input',function(){S.track.pos=+rg.value;moveTrack();});moveTrack();}
+}
+function renderLegend(){
+  legendEl.innerHTML=Object.keys(TYPES).map(function(k){return '<button type="button" data-type="'+k+'" class="'+(S.hidden[k]?'offf':'')+'" aria-pressed="'+!S.hidden[k]+'"><i style="background:'+TYPES[k].c+'"></i>'+TYPES[k].n+'</button>';}).join('');
+  legendEl.hidden=S.view!=='alarm';
+  document.getElementById('dmMapTitle').textContent={alarm:'厂区人员分布',hazard:'危险源分布',heat:'人员停留热力'}[S.view];
+}
+function renderKPI(){
+  var on=S.people.filter(function(p){return !p.off;}).length;
+  document.getElementById('kOn').textContent=on;
+  document.getElementById('kAlarm').textContent=S.alarmAck+'/'+S.alarmTotal;
+  document.getElementById('kWarn').textContent=S.warn;
+  document.getElementById('kBat').textContent=S.people.filter(function(p){return p.bat<20;}).length;
+}
+function renderList(){
+  if(!S.records.length){listEl.innerHTML='<div class="d-empty">今天还没有报警</div>';return;}
+  listEl.innerHTML=S.records.map(function(r,i){
+    var A=ALARMS[r.type];var st=r.lvl==='alarm'?(r.st==='done'?'<span class="st">已处置</span>':(r.st==='ing'?'<span class="st ing">处置中</span>':'<span class="st ing">待确认</span>')):'';
+    return '<button type="button" class="rec '+r.lvl+(r.st==='done'?' done':'')+'" data-rec="'+i+'"><span class="tm">'+r.t+'<small>'+A.n.replace('报警','').replace('预警','预警')+'</small></span><span><span class="who">'+esc(r.p.name)+' · '+r.p.job+'</span>'+st+'<br><span class="where">'+r.p.zone+'</span></span></button>';
+  }).join('');
+}
+function renderSide(){
+  if(S.view==='hazard'){
+    if(S.hz===null){sideEl.innerHTML='<div class="ph">点地图上的三角形，看危险源详情。<br>红 = 已发现，黄 = 整改中，绿 = 已整改。</div>';return;}
+    var h=HAZ[S.hz];sideEl.innerHTML='<div class="pcard"><div class="pb"><div class="nm"><i style="background:'+HZC[h.s]+'"></i>'+h.n+'<em style="background:'+HZC[h.s]+';color:#071725">'+h.s+'</em></div><span>类别</span><b>'+h.cat+'</b><span>是否巡检</span><b>'+(h.s==='已整改'?'是':'否')+'</b><span class="full">位置：'+h.n+' 附近信标 GWX-1'+(11+S.hz)+'</span></div></div><div class="ph">“未制定巡检计划的危险源”会在后台提醒安全员补计划。</div>';return;
+  }
+  if(S.view==='heat'){sideEl.innerHTML='<div class="ph">热力图看的是“人在哪里扎堆、停得久”。<br><br>颜色越红，今天在这里停留的人越多。工段中间和下料区最密，安全员巡检时优先走这几块。</div>';return;}
+  var p=S.sel===null?null:S.people[S.sel];
+  if(!p){sideEl.innerHTML='<div class="ph">点地图上任意一个人，这里显示他的卡片：姓名、工种、电量、位置，以及<b style="color:#cfeffa">定位 / 召回 / 轨迹</b>三个操作。</div>';return;}
+  var al=p.alarm&&p.alarm.st!=='done';
+  var stTxt=p.off?'离线 · 最后上报 08:12':al?(p.alarm.st==='pending'?'报警 · 待确认':'报警 · 处置中'):(p.moving?'运动':'静止 12 分钟');
+  var stCol=p.off?'#9aa8b2':al?'#ff8a8d':'#e6f1f7';
+  var h='<div class="pcard"><div class="pb"><div class="nm"><i style="background:'+TYPES[p.type].c+'"></i>'+esc(p.name)+(al?'<em style="background:#e5484d;color:#fff">'+ALARMS[p.alarm.type].n+'</em>':'<em style="background:#12405a;color:#9fe7f5">'+TYPES[p.type].n+'</em>')+'</div>'+
+   '<span>工种</span><b>'+p.job+'</b><span>设备编号</span><b class="num">'+p.dev+'</b>'+
+   '<span>电量</span><b class="num">'+p.bat+'%<span class="bat"><i style="width:'+p.bat+'%;background:'+(p.bat<20?'#e5484d':'#14a37f')+'"></i></span></b><span>状态</span><b style="color:'+stCol+'">'+stTxt+'</b>'+
+   '<span class="full">位置：<b style="color:#e6f1f7">广东厂 '+p.zone+(p.off?'（最后位置）':' 附近')+'</b></span></div>'+
+   '<div class="acts"><button type="button" data-act="locate">定位</button><button type="button" data-act="recallp">召回</button><button type="button" data-act="track">轨迹</button></div>';
+  if(al&&p.alarm.st==='ing')h+='<button type="button" class="done" data-act="resolve">标记已处置</button>';
+  h+='</div>';
+  if(S.track&&S.track.p===p){h+='<div class="d-h" style="margin-top:4px">轨迹 · 今天 <small>点时间点跳转</small></div><div class="tl">'+S.track.pts.map(function(t,i){return '<button type="button" data-tp="'+i+'" class="'+(t.al?'r ':'')+(S.track.idx===i?'on':'')+'"><i></i>'+t.t+'<span>'+t.z+'</span></button>';}).join('')+'</div>';}
+  sideEl.innerHTML=h;
+}
+function render(){renderPins();renderHaz();renderLegend();renderKPI();renderList();renderSide();renderCtl();renderQueue();
+  [].forEach.call(document.querySelectorAll('.d-tabs button'),function(b){var on=b.dataset.view===S.view;b.classList.toggle('on',on);b.setAttribute('aria-selected',on);});
+  mapEl.classList.toggle('heat',S.view==='heat');
+}
+function toast(msg){toastEl.innerHTML='<div class="toast" role="status">'+msg+'</div>';clearTimeout(toast._t);toast._t=setTimeout(function(){toastEl.innerHTML='';},3200);}
+function flash(p,cls,ms){p._flash=cls;renderPins();setTimeout(function(){p._flash=null;renderPins();},ms||3000);}
+
+/* -------- alarms -------- */
+function pickTarget(){
+  var p=S.sel!==null?S.people[S.sel]:null;
+  if(p&&!p.off&&!(p.alarm&&p.alarm.st!=='done'))return p;
+  var pool=S.people.filter(function(x){return !x.off&&!(x.alarm&&x.alarm.st!=='done')&&x.zone!=='办公楼';});
+  return pool[Math.floor(Math.random()*pool.length)];
+}
+function trigger(type){
+  var A=ALARMS[type],p=pickTarget();if(!p)return;
+  if(S.view!=='alarm'){S.view='alarm';}
+  if(A.lvl==='warn'){
+    S.warn++;S.records.unshift({t:nowT(),type:type,p:p,lvl:'warn',st:'done'});render();flash(p,'warnflash',3000);
+    toast('<b>'+A.n+'</b> · '+esc(p.name)+'：已记入列表，不弹窗打断值班员');return;
+  }
+  var rec={t:nowT(),type:type,p:p,lvl:'alarm',st:'pending'};
+  p.alarm={type:type,st:'pending',rec:rec,at:nowT(true)};
+  S.records.unshift(rec);S.alarmTotal++;
+  if(type==='sos'){if(S.modal)S.queue.splice(1,0,p);else S.queue.unshift(p);}else S.queue.push(p);
+  render();
+  if(!S.modal)nextModal();else{renderModal();}
+}
+function nextModal(){
+  if(!S.queue.length){S.modal=null;layerEl.innerHTML='';renderQueue();return;}
+  S.modal=S.queue[0];renderModal();
+}
+function renderQueue(){
+  var rest=S.queue.slice(1);
+  queueEl.innerHTML=rest.map(function(p){return '<span>待确认 · '+ALARMS[p.alarm.type].n+' · '+esc(p.name)+'</span>';}).join('');
+}
+function renderModal(){
+  var p=S.modal;if(!p){layerEl.innerHTML='';return;}
+  var A=ALARMS[p.alarm.type],tot=S.queue.length;
+  var near=S.queue.filter(function(q){return q!==p&&Math.abs(q.x-p.x)+Math.abs(q.y-p.y)<160;}).length;
+  layerEl.innerHTML='<div class="layer" data-bg="1"><div class="dlg alarm" role="alertdialog" aria-modal="true" aria-labelledby="dlgT" id="dlg">'+
+   '<div class="dh"><b id="dlgT">'+A.n+'</b>'+(tot>1?'<small>1 / '+tot+'</small>':'<small>'+A.kind+'</small>')+'</div>'+
+   '<img class="ill" src="assets/ill-'+p.alarm.type+'.webp" width="240" height="240" alt="">'+
+   '<p class="msg">'+(p.type==='worker'?'工人':TYPES[p.type].n)+' '+esc(p.name)+'，在 '+p.zone+' 附近触发'+A.n+'</p>'+
+   '<p class="meta">'+p.alarm.at+' · '+p.dev+' · 电量 '+p.bat+'%</p>'+
+   (near?'<p class="meta" style="color:#ffd27a">附近还有 '+near+' 人报警</p>':'')+
+   '<div class="btns"><button type="button" class="btn-ghost" data-act="ack">确认</button><button type="button" class="btn-red" data-act="acklocate">确认并定位</button></div></div></div>';
+  renderQueue();
+  var b=layerEl.querySelector('[data-act="acklocate"]');if(b)b.focus({preventScroll:true});
+}
+function ack(locateIt){
+  var p=S.modal;if(!p)return;
+  p.alarm.st='ing';p.alarm.rec.st='ing';S.alarmAck++;S.queue.shift();
+  S.sel=p.id;S.modal=null;layerEl.innerHTML='';
+  render();
+  if(locateIt)locate(p);
+  if(S.queue.length)setTimeout(nextModal,350);
+  else toast('已确认：<b>'+esc(p.name)+'</b> 进入“处置中”，处置完在卡片里点“标记已处置”');
+}
+
+/* -------- track -------- */
+function openTrack(p){
+  var r=rng(p.id*97+3),pts=[],hours=[7,8,9,10,11,12];
+  var zs=[1,8,9,4,10,p.zi];
+  for(var i=0;i<6;i++){var z=ZONES[zs[i]];var last=i===5;pts.push({x:last?p.x:Math.round(z.x+12+r()*(z.w-24)),y:last?p.y-6:Math.round(z.y+14+r()*(z.h-20)),t:pad(hours[i])+':'+pad(Math.floor(r()*59)),z:z.n,al:last&&!!(p.alarm&&p.alarm.st!=='done')});}
+  S.track={p:p,pts:pts,pos:0,idx:0};
+  var g=document.getElementById('gTrack');
+  g.innerHTML='<polyline points="'+pts.map(function(q){return q.x+','+q.y;}).join(' ')+'" fill="none" stroke="#7ff0ff" stroke-width="2.5" stroke-dasharray="6 5" opacity=".9"/>'+
+   pts.map(function(q,i){return '<circle cx="'+q.x+'" cy="'+q.y+'" r="6" fill="'+(q.al?'#e5484d':'#2f8ff0')+'" stroke="#fff" stroke-width="1.5"/>';}).join('')+
+   '<circle id="tMark" r="9" fill="#ffe27a" stroke="#071725" stroke-width="2"/>';
+  setVB([0,0,960,560],true);render();
+}
+function moveTrack(){
+  var T=S.track;if(!T)return;var pts=T.pts,n=pts.length-1,f=T.pos/1000*n,i=Math.min(n-1,Math.floor(f)),k=f-i;
+  var x=pts[i].x+(pts[i+1].x-pts[i].x)*k,y=pts[i].y+(pts[i+1].y-pts[i].y)*k;
+  var m=document.getElementById('tMark');if(m){m.setAttribute('cx',x);m.setAttribute('cy',y);}
+  var idx=Math.round(f);var tb=document.getElementById('tbT');if(tb)tb.textContent=pts[idx].t;
+  if(idx!==T.idx){T.idx=idx;[].forEach.call(sideEl.querySelectorAll('.tl button'),function(b,j){b.classList.toggle('on',j===idx);});}
+}
+function closeTrack(){S.track=null;document.getElementById('gTrack').innerHTML='';render();}
+
+/* -------- recall -------- */
+function openRecall(preset){
+  var p=S.sel!==null?S.people[S.sel]:null;
+  var scope=preset||'all';
+  var zoneOpts=ZONES.filter(function(z){return z.n!=='办公楼';}).map(function(z,i){return '<option>'+z.n+'</option>';}).join('');
+  layerEl.innerHTML='<div class="layer"><div class="dlg" role="dialog" aria-modal="true" aria-labelledby="rcT">'+
+   '<div class="dh"><b id="rcT">一键召回</b><button type="button" class="mbtn" data-act="close">关闭</button></div>'+
+   '<label class="fld"><span>语音模板</span><select id="rcTpl"><option>气体泄漏撤离</option><option>火警撤离</option><option>集合点名</option><option>恶劣天气停工</option></select></label>'+
+   '<div class="fld"><span>推送范围</span><div class="radios" id="rcScope">'+
+    [['all','全体人员'],['zone','按区域'],['person','按人员']].map(function(o){return '<label><input type="radio" name="rcs" value="'+o[0]+'"'+(o[0]===scope?' checked':'')+'>'+o[1]+'</label>';}).join('')+'</div></div>'+
+   '<label class="fld" id="rcZoneF"'+(scope==='zone'?'':' hidden')+'><span>区域</span><select id="rcZone">'+zoneOpts+'</select></label>'+
+   '<div class="hint" id="rcHint"></div>'+
+   '<div class="btns"><button type="button" class="btn-cy" data-act="rcnext">推送</button></div></div></div>';
+  var upd=function(){var v=layerEl.querySelector('input[name=rcs]:checked').value;layerEl.querySelector('#rcZoneF').hidden=v!=='zone';
+    layerEl.querySelector('#rcHint').textContent=v==='person'?(p?'将推送给：'+p.name+'（当前选中）':'先在地图上点一个人，或选择其他范围'):'';};
+  layerEl.querySelector('#rcScope').addEventListener('change',upd);upd();
+}
+function recallTargets(){
+  var v=layerEl.querySelector('input[name=rcs]:checked').value;
+  if(v==='all')return{label:'全体人员',list:S.people};
+  if(v==='zone'){var z=layerEl.querySelector('#rcZone').value;return{label:z,list:S.people.filter(function(p){return p.zone===z;})};}
+  var p=S.sel!==null?S.people[S.sel]:null;return p?{label:p.name,list:[p]}:null;
+}
+function recallConfirm(){
+  var tg=recallTargets(),tpl=layerEl.querySelector('#rcTpl').value;
+  if(!tg){var d=layerEl.querySelector('.dlg');d.classList.remove('shake');void d.offsetWidth;d.classList.add('shake');return;}
+  S._rc={tg:tg,tpl:tpl};
+  layerEl.innerHTML='<div class="layer"><div class="dlg" role="alertdialog" aria-modal="true" aria-labelledby="rc2">'+
+   '<div class="dh"><b id="rc2">确认推送</b></div>'+
+   '<p class="msg" style="font-weight:500">确认向 <b style="color:#7fe3f2">'+esc(tg.label)+'（'+tg.list.length+' 人）</b> 推送<br>「'+esc(tpl)+'」语音吗？</p>'+
+   '<p class="meta" style="color:#8fb3c6">推送后会在每个人的安全帽上播报，无法撤回</p>'+
+   '<div class="btns"><button type="button" class="btn-grey" data-act="close">取消</button><button type="button" class="btn-cy" data-act="rcsend">确定推送</button></div></div></div>';
+  layerEl.querySelector('[data-act="rcsend"]').focus({preventScroll:true});
+}
+function recallSend(){
+  var rc=S._rc;layerEl.innerHTML='';
+  var ok=rc.tg.list.filter(function(p){return !p.off;}),miss=rc.tg.list.length-ok.length;
+  ok.forEach(function(p){p._flash='flash';});renderPins();setTimeout(function(){ok.forEach(function(p){p._flash=null;});renderPins();},2200);
+  toast('已向 <b>'+esc(rc.tg.label)+'</b> 推送「'+esc(rc.tpl)+'」：送达 '+ok.length+' 人'+(miss?'，<b style="color:#ffd27a">'+miss+' 人离线未送达</b>':''));
+}
+
+/* -------- events -------- */
+document.getElementById('dm').addEventListener('click',function(e){
+  var t=e.target;
+  var sim=t.closest('[data-sim]');if(sim){trigger(sim.dataset.sim);return;}
+  var tab=t.closest('[data-view]');if(tab){S.view=tab.dataset.view;S.hz=null;if(S.track)closeTrack();setVB([0,0,960,560],true);if(S.view==='heat')drawHeat();render();return;}
+  var lg=t.closest('[data-type]');if(lg){S.hidden[lg.dataset.type]=!S.hidden[lg.dataset.type];render();return;}
+  var pin=t.closest('[data-id]');if(pin){S.sel=+pin.dataset.id;if(S.track&&S.track.p.id!==S.sel)closeTrack();render();return;}
+  var hz=t.closest('[data-hz]');if(hz){S.hz=+hz.dataset.hz;render();return;}
+  var rec=t.closest('[data-rec]');if(rec){var r=S.records[+rec.dataset.rec];S.view='alarm';S.sel=r.p.id;render();locate(r.p);return;}
+  var tp=t.closest('[data-tp]');if(tp&&S.track){var i=+tp.dataset.tp;S.track.pos=Math.round(i/(S.track.pts.length-1)*1000);var rg=document.getElementById('tbR');if(rg)rg.value=S.track.pos;moveTrack();return;}
+  var bg=t.closest('[data-bg]');var act=t.closest('[data-act]');
+  if(act){
+    var a=act.dataset.act,p=S.sel!==null?S.people[S.sel]:null;
+    if(a==='ack')ack(false);
+    else if(a==='acklocate')ack(true);
+    else if(a==='locate'&&p){locate(p);flash(p,'flash',2000);}
+    else if(a==='track'&&p){openTrack(p);}
+    else if(a==='recallp'){openRecall('person');}
+    else if(a==='resolve'&&p){p.alarm.st='done';p.alarm.rec.st='done';render();toast('已处置：'+esc(p.name)+' 的'+ALARMS[p.alarm.type].n+'已归档');}
+    else if(a==='fit'){setVB([0,0,960,560],true);setTimeout(renderCtl,650);}
+    else if(a==='closetrack'){closeTrack();}
+    else if(a==='close'){layerEl.innerHTML='';if(S.queue.length&&!S.modal)nextModal();}
+    else if(a==='rcnext'){recallConfirm();}
+    else if(a==='rcsend'){recallSend();}
+    return;
+  }
+  if(bg&&t===bg){var d=document.getElementById('dlg');if(d){d.classList.remove('shake');void d.offsetWidth;d.classList.add('shake');}}
+});
+document.getElementById('dm').addEventListener('keydown',function(e){
+  if((e.key==='Enter'||e.key===' ')&&e.target.matches('[data-id],[data-hz]')){e.preventDefault();e.target.dispatchEvent(new MouseEvent('click',{bubbles:true}));}
+});
+document.getElementById('dmRecall').addEventListener('click',function(){if(S.modal){toast('先确认当前报警，再发召回');return;}openRecall('all');});
+document.getElementById('dmReset').addEventListener('click',function(){S.track=null;setVB([0,0,960,560],false);init();toast('已重置演示');});
+function doSearch(){var q=document.getElementById('dmQ').value.trim();if(!q){toast('输入一个姓名，比如 王强');return;}
+  var p=S.people.filter(function(x){return x.name.indexOf(q)>=0;})[0];
+  if(!p){toast('没有找到「'+esc(q)+'」，换个名字试试，比如 王强');return;}
+  S.view='alarm';S.sel=p.id;render();locate(p);flash(p,'flash',2000);}
+document.getElementById('dmQb').addEventListener('click',doSearch);
+document.getElementById('dmQ').addEventListener('keydown',function(e){if(e.key==='Enter')doSearch();});
+setInterval(function(){document.getElementById('dmClock').textContent='2025/06/17 '+nowT(true);},1000);
+document.getElementById('dmClock').textContent='2025/06/17 '+nowT(true);
+
+init();
+})();
+</script>
+
+</body>
+</html>
