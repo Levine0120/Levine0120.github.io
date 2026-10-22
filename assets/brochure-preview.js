@@ -63,6 +63,8 @@ function openBrochure(trigger,spec=brochureDefault){
   document.querySelector('#brochure-eyebrow').textContent=spec.eyebrow;
   document.querySelector('#brochure-footer-label').textContent=spec.footer;
   document.querySelector('#brochure-back').hidden=!spec.showBack;
+  document.querySelector('#brochure-close').setAttribute('aria-label',spec.showBack?'返回目录':'关闭画册');
+  document.querySelector('#brochure-close').title=spec.showBack?'返回目录':'关闭画册';
   brochureBook.style.setProperty('--book-ratio',spec.ratios?.[0]||spec.ratio);
   brochureTrigger=trigger;brochureIndex=1;brochureBusy=false;brochureGeneration++;
   brochureViewer.classList.add('open');brochureViewer.setAttribute('aria-hidden','false');
@@ -71,10 +73,15 @@ function openBrochure(trigger,spec=brochureDefault){
   if(brochureTotal>1){const next=new Image();next.src=brochureSrc(2)}
 }
 function closeBrochure(){
+  if(!brochureViewer.classList.contains('open'))return;
+  const returnToCollection=brochureCurrent.showBack?brochureCurrent.onBack:null;
   brochureGeneration++;
   brochureViewer.classList.remove('open');brochureViewer.setAttribute('aria-hidden','true');
   document.body.classList.remove('modal-open');brochureTurn.className='brochure-turn';
-  brochureBusy=false;brochureTrigger?.focus();brochureTrigger=null;
+  brochureBusy=false;
+  const trigger=brochureTrigger;brochureTrigger=null;
+  if(typeof returnToCollection==='function')returnToCollection();
+  else trigger?.focus();
 }
 async function brochureFlip(step){
   if(brochureBusy||!brochureViewer.classList.contains('open'))return;
@@ -121,7 +128,7 @@ brochureBook.addEventListener('pointerup',e=>{
 brochureBook.addEventListener('pointercancel',()=>{brochureDrag=null;brochureBook.classList.remove('is-dragging')});
 document.addEventListener('keydown',e=>{
   if(!brochureViewer.classList.contains('open'))return;
-  if(e.key==='Escape')closeBrochure();
+  if(e.key==='Escape'){e.preventDefault();e.stopImmediatePropagation();closeBrochure();}
   else if(e.key==='ArrowRight')brochureFlip(1);
   else if(e.key==='ArrowLeft')brochureFlip(-1);
   else if(e.key==='+'||e.key==='=')brochureZoomStep(1);

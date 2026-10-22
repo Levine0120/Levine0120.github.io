@@ -52,7 +52,8 @@ const flyerGrid=document.querySelector('#flyer-collection-grid');
 let collectionTrigger=null,currentCollection='flyers';
 const collectionLastItem={};
 function renderCollection(){
-  const group=printCollections[currentCollection];
+  const type=currentCollection,trigger=collectionTrigger;
+  const group=printCollections[type];
   flyerCollection.setAttribute('aria-label',`${group.title}目录`);
   document.querySelector('#flyer-collection-close').setAttribute('aria-label',`关闭${group.title}目录`);
   document.querySelector('#flyer-collection-eyebrow').textContent=group.eyebrow;
@@ -73,7 +74,7 @@ function renderCollection(){
     button.onclick=()=>{
       collectionLastItem[currentCollection]=item.id||item.slug;
       flyerCollection.classList.remove('open');flyerCollection.setAttribute('aria-hidden','true');
-      openBrochure(collectionTrigger,{title:item.title,eyebrow:`${group.eyebrow} / ${String(index+1).padStart(2,'0')}`,footer:group.footer,total:item.pages,ratio:item.ratio,ratios:item.ratios,sources:item.sources,base:pageBase,digits:item.digits||1,startPage:item.startPage||1,showBack:true,initialZoom:item.initialZoom,initialAlign:item.initialAlign,longPage:item.longPage});
+      openBrochure(collectionTrigger,{title:item.title,eyebrow:`${group.eyebrow} / ${String(index+1).padStart(2,'0')}`,footer:group.footer,total:item.pages,ratio:item.ratio,ratios:item.ratios,sources:item.sources,base:pageBase,digits:item.digits||1,startPage:item.startPage||1,showBack:true,onBack:()=>openCollection(type,trigger),initialZoom:item.initialZoom,initialAlign:item.initialAlign,longPage:item.longPage});
     };
     flyerGrid.append(button);
   });
@@ -99,11 +100,8 @@ function closeCollection(){
 }
 document.querySelector('#flyer-collection-close').onclick=closeCollection;
 flyerCollection.addEventListener('click',e=>{if(e.target===flyerCollection)closeCollection()});
-document.querySelector('#brochure-back').onclick=()=>{
-  const trigger=collectionTrigger,type=currentCollection;
-  closeBrochure();
-  openCollection(type,trigger);
-};
+document.querySelector('#brochure-back').setAttribute('aria-label','返回目录');
+document.querySelector('#brochure-back').onclick=closeBrochure;
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&flyerCollection.classList.contains('open'))closeCollection()});
 
 function openIpanelCollection(trigger){openCollection('ipanel',trigger)}
