@@ -352,7 +352,7 @@ ul,ol{list-style:none}
 .steps .tool,.pipe .who{font-style:normal}
 @media (max-width:700px){.tree{overflow-x:auto;padding:16px}.tree svg{min-width:760px}}
 .facts .ar{font-style:normal;font-size:.6em;font-weight:500;opacity:.6;margin:0 .35em;vertical-align:.12em}
-.evo .zoomable img{width:100%;aspect-ratio:16/10;object-fit:cover;display:block}
+.evo .zoomable img{width:100%;aspect-ratio:16/10;object-fit:cover;display:block}.evo .zoomable.phone{background:none;border:0;padding:0;border-radius:30px;overflow:hidden;box-shadow:0 14px 34px rgba(20,40,70,.18)}.evo .zoomable.phone img{aspect-ratio:auto;height:auto;object-fit:contain}
 .hand .r{grid-template-columns:1fr 1.5fr 1.5fr}
 .hand .r>:first-child i{background:var(--blue)}
 .pc.eng .y i,.pc.eng .n i{background:var(--blue)}
@@ -511,7 +511,7 @@ ul,ol{list-style:none}
 .head.center{text-align:center;margin-bottom:56px}
 .head.center .sub{margin-left:auto;margin-right:auto}
 .facts{max-width:640px}
-.hero .lead{max-width:560px}
+.hero .lead{max-width:none}.hero .lead .ln{display:block}@media (max-width:700px){.hero .lead .ln{display:inline}}
 
 /* ---------- 01 光谱 ---------- */
 .spec{position:relative;max-width:1040px;margin:0 auto}
@@ -956,11 +956,11 @@ ul,ol{list-style:none}
 <section class="hero" id="top"><div class="wrap">
 <p class="eyebrow">各行各业 → 四层 → MES → 钢结构</p>
 <h1>工业互联网，<br><em>从大往小</em>拆开看。</h1>
-<p class="lead">从各行各业讲起，找到它们共通的四层，再拆到核心的 MES，最后落到一个钢结构平台：六类系统、一条业务主线、车间里的一块屏。</p>
+<p class="lead"><span class="ln">从各行各业讲起，找到它们共通的四层，再拆到核心的 MES，</span><span class="ln">最后落到钢结构平台：六类系统、一条业务主线、车间里的一块屏。</span></p>
 </div></section>
 
 <!-- 01 各行各业 -->
-<section class="band" id="ind"><div class="wrap"><span class="no">01</span><div><p class="k">从最大的地方说起</p><h2>各行各业怎么做</h2><p>造车、造手机、炼钢、造钢构，工厂长得完全不一样。</p></div></div></section>
+<section class="band" id="ind"><div class="wrap"><span class="no">01</span><div><h2>各行各业怎么做</h2><p>造车、造手机、炼钢、造钢构，生产方式各不相同。</p></div></div></section>
 <section class="sec sec--tint"><div class="wrap">
   <header class="head center"><h2>先看“造什么”和“怎么造”。</h2><p class="sub">横轴是批量，纵轴是生产方式。点一个行业，看它最在意什么、通常怎么解决。</p></header>
   <div class="ind-wrap mt">
