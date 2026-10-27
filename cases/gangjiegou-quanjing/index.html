@@ -409,7 +409,7 @@ ul,ol{list-style:none}
 .tall figure{margin:0}
 .tall .zoomable{display:block;max-height:760px;overflow:hidden;border-radius:16px;border:1px solid var(--line);background:#fff;width:100%}
 .tall .zoomable img{width:100%;height:auto;display:block}
-.tall::after{content:"";position:absolute;left:1px;right:1px;bottom:34px;height:120px;background:linear-gradient(transparent,#fff);border-radius:0 0 16px 16px;pointer-events:none}
+.tall:not(.pic)::after{content:"";position:absolute;left:1px;right:1px;bottom:34px;height:120px;background:linear-gradient(transparent,#fff);border-radius:0 0 16px 16px;pointer-events:none}
 .tall .more{position:absolute;left:50%;bottom:52px;transform:translateX(-50%);z-index:2;pointer-events:none;font-size:13px;font-weight:600;color:#fff;background:var(--navy);padding:7px 16px;border-radius:999px;white-space:nowrap}
 
 /* 表单清单 */
@@ -602,10 +602,10 @@ ul,ol{list-style:none}
 .ex-main{display:flex;justify-content:center}
 .ex-cap{font-size:13px;color:var(--ink-3);margin-top:10px;text-align:center}
 .ex-thumbs{display:grid;grid-template-columns:repeat(auto-fill,minmax(92px,1fr));gap:8px;margin-top:18px}
-.ex-thumbs button{border-radius:10px;border:1px solid var(--line);background:#fff;padding:5px;text-align:left;opacity:.72;transition:all .2s;min-width:0}
+.ex-thumbs button{display:block;width:100%;overflow:hidden;border-radius:10px;border:1px solid var(--line);background:#fff;padding:5px;text-align:left;opacity:.72;transition:all .2s;min-width:0}
 .ex-thumbs button:hover{opacity:1}
 .ex-thumbs button.on{opacity:1;border-color:var(--gc);box-shadow:0 0 0 2px color-mix(in srgb,var(--gc) 25%,transparent)}
-.ex-thumbs img{width:100%;height:66px;object-fit:contain;border-radius:6px;background:#EEF2F7}
+.ex-thumbs img{display:block;max-width:100%;width:100%;height:66px;object-fit:contain;border-radius:6px;background:#EEF2F7}
 .ex-thumbs span{display:block;font-size:11px;color:var(--ink-2);line-height:1.35;margin-top:5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .ex-info{position:sticky;top:96px;animation:fade .35s ease}
 .ex-no{font:700 12px ui-monospace,Menlo,monospace;color:var(--gc,var(--blue));letter-spacing:.08em}
@@ -669,6 +669,7 @@ ul,ol{list-style:none}
 .end-c .pic{border-radius:0;height:230px;background:linear-gradient(180deg,#EEF3F9,#E3EAF3);box-shadow:none;display:flex;align-items:center;justify-content:center;padding:16px}.end-c .pic:hover{transform:none}
 .end-c .pic img{width:100%;height:100%;object-fit:contain}
 .end-c .pic.tall{width:100%;border-radius:0;padding:14px}
+.end-c .pic.tall::after{display:none}.end-c .pic.tall img[src*="k-hand-1"]{box-shadow:none;border-radius:0}.end-c .pic{cursor:default}
 .end-c .pic.tall img{width:auto;height:198px;border-radius:12px;box-shadow:0 8px 20px rgba(16,43,62,.16)}
 .end-c .bd{padding:20px 20px 22px;border-top:3px solid var(--gc)}
 .end-c b{font-size:19px}
@@ -832,7 +833,7 @@ function chips(a,c){return '<ul class="chips'+(c?' '+c:'')+'">'+a.map(function(x
 var proxy=document.getElementById('zoom-proxy');
 document.addEventListener('click',function(e){var t=e.target.closest('[data-zoom]');if(!t)return;proxy.dataset.src=t.dataset.zoom;proxy.dataset.title=t.dataset.title||'';proxy.click()});
 
-var SZ={"o-A04": [1206, 2622], "o-01": [1206, 2622], "o-A03": [1206, 2622], "o-08": [1206, 2622], "o-A12": [1206, 2622], "o-02": [1206, 2622], "o-A02": [1206, 2622], "o-03-latest": [1206, 2622], "o-stocktake": [1206, 2622], "o-04": [1206, 2622], "o-A11": [1206, 2622], "o-A07": [1206, 2622], "o-A09": [1206, 2622], "o-06": [1206, 2622], "o-07": [1206, 2622], "o-A01": [1206, 2622], "o-09": [1206, 2622], "o-03": [1206, 2622], "o-A10": [1206, 2622], "o-A05": [1206, 2622], "o-production-alert": [1206, 2622], "o-10": [1206, 2622], "o-07-latest": [1206, 2622], "o-stocktake-latest": [1206, 2622], "m-lljy": [1206, 2622], "m-fyjy": [1206, 2622], "m-db": [1206, 2622], "m-wls": [1206, 2622], "m-bzkq": [1206, 2622], "m-ythjh": [1206, 2622], "m-pm": [1206, 2622], "m-bgtj": [1206, 2622], "m-sjrw": [1206, 2622], "m-spxq": [1206, 2622], "m-gjrk": [1206, 2622], "m-wxgd": [1206, 2622], "m-sbxq": [1206, 2622], "m-kq": [1206, 2622], "m-zjmx": [1206, 2622], "m-fcxj": [1206, 2622], "m-ysxc": [1206, 2622], "m-zjjh": [1206, 2622], "m-sbhome": [1206, 2622], "m-gxjy": [1206, 2622], "m-bgsp": [1206, 2622], "m-fclj": [1206, 2622], "m-cpjj": [1206, 2622], "m-scjj": [1206, 2622], "p-fb": [2400, 1422], "p-whhome": [2400, 1287], "p-ltd": [2400, 1392], "p-gbtl": [2400, 1392], "p-smes": [2400, 1287], "p-qmx": [2400, 1287], "p-res": [2400, 1392], "p-route": [2400, 1422], "p-fckc": [2400, 1392], "p-jjd": [2400, 1422], "p-stat": [2400, 1287], "p-gjzt": [2400, 1392], "p-qgx": [2400, 1465], "p-fcbz": [2400, 1392], "p-tpl": [2400, 1287], "p-fbda": [2400, 1363], "p-eq": [2400, 1392], "p-shl": [2400, 1495], "p-alltask": [2400, 1402], "p-xh": [2400, 1363], "p-fcgr": [2400, 1392], "p-price": [2400, 1363], "p-gyjh": [2400, 1392], "p-enana": [2400, 1672], "p-task": [2400, 1392], "p-plan": [2400, 1465], "p-comb": [2400, 1287], "p-pbwt": [2400, 1392], "p-bom": [2400, 1547], "p-bomc": [2400, 1392], "p-rate": [2400, 1360], "p-eqhome": [2400, 1287], "b-yard-tj": [2544, 1440], "b-cut-board": [2534, 1414], "b-yard-board": [2560, 1368], "b-flex-board": [2560, 1440], "b-yard-wh": [2544, 1440], "b-lx-ring": [1925, 1493], "b-qj-2": [2560, 960], "b-lx-1": [1920, 1080], "b-lx-dev": [1354, 740], "b-pw-v1": [2560, 1440], "b-mfg-board": [2530, 1416], "b-ck-park": [2492, 916], "b-cut-room": [2560, 1920], "b-lx-map": [2136, 1080], "b-cut-ctrl": [2531, 1440], "b-lx-equip": [1391, 761], "b-lx-2": [1879, 1004], "b-yard-js": [2544, 1440], "b-ck-fac": [2560, 917], "b-pdm-board": [1896, 1060], "b-ck-mgmt": [1652, 876], "b-pf-screen": [1857, 1040], "b-datacol": [1920, 911], "b-pw-v3": [2560, 1440], "b-kpi-1": [1920, 1080], "b-kpi-2": [1920, 1080], "b-q-screen": [1867, 1589], "k-dd-screen2": [1630, 920], "k-dd-screen": [1547, 857], "k-lifecycle": [2560, 1638], "k-platform-entry": [1714, 939], "k-hand-1": [1653, 1188], "k-m-fyflow": [1484, 1049], "k-yd5-pc": [1598, 906], "k-yd5-plan": [1598, 870], "k-xb-pc": [1563, 944], "k-hd-all": [1367, 855], "k-hd-eq": [1346, 830], "k-smes-bim": [620, 340], "k-af-1": [1585, 896], "k-af-2": [1600, 897], "k-ph-early": [506, 890], "h-yd5-pc": [2560, 1450], "h-yd5-plan": [2560, 1395], "h-xb-pc": [2560, 1547], "h-af-1": [2535, 1432], "h-af-2": [2560, 1434], "h-hd-all": [2392, 1496], "h-hd-eq": [2355, 31]};
+var SZ={"o-A04": [1206, 2622], "o-01": [1206, 2622], "o-A03": [1206, 2622], "o-08": [1206, 2622], "o-A12": [1206, 2622], "o-02": [1206, 2622], "o-A02": [1206, 2622], "o-03-latest": [1206, 2622], "o-stocktake": [1206, 2622], "o-04": [1206, 2622], "o-A11": [1206, 2622], "o-A07": [1206, 2622], "o-A09": [1206, 2622], "o-06": [1206, 2622], "o-07": [1206, 2622], "o-A01": [1206, 2622], "o-09": [1206, 2622], "o-03": [1206, 2622], "o-A10": [1206, 2622], "o-A05": [1206, 2622], "o-production-alert": [1206, 2622], "o-10": [1206, 2622], "o-07-latest": [1206, 2622], "o-stocktake-latest": [1206, 2622], "m-lljy": [1206, 2622], "m-fyjy": [1206, 2622], "m-db": [1206, 2622], "m-wls": [1206, 2622], "m-bzkq": [1206, 2622], "m-ythjh": [1206, 2622], "m-pm": [1206, 2622], "m-bgtj": [1206, 2622], "m-sjrw": [1206, 2622], "m-spxq": [1206, 2622], "m-gjrk": [1206, 2622], "m-wxgd": [1206, 2622], "m-sbxq": [1206, 2622], "m-kq": [1206, 2622], "m-zjmx": [1206, 2622], "m-fcxj": [1206, 2622], "m-ysxc": [1206, 2622], "m-zjjh": [1206, 2622], "m-sbhome": [1206, 2622], "m-gxjy": [1206, 2622], "m-bgsp": [1206, 2622], "m-fclj": [1206, 2622], "m-cpjj": [1206, 2622], "m-scjj": [1206, 2622], "p-fb": [2400, 1422], "p-whhome": [2400, 1287], "p-ltd": [2400, 1392], "p-gbtl": [2400, 1392], "p-smes": [2400, 1287], "p-qmx": [2400, 1287], "p-res": [2400, 1392], "p-route": [2400, 1422], "p-fckc": [2400, 1392], "p-jjd": [2400, 1422], "p-stat": [2400, 1287], "p-gjzt": [2400, 1392], "p-qgx": [2400, 1465], "p-fcbz": [2400, 1392], "p-tpl": [2400, 1287], "p-fbda": [2400, 1363], "p-eq": [2400, 1392], "p-shl": [2400, 1495], "p-alltask": [2400, 1402], "p-xh": [2400, 1363], "p-fcgr": [2400, 1392], "p-price": [2400, 1363], "p-gyjh": [2400, 1392], "p-enana": [2400, 1672], "p-task": [2400, 1392], "p-plan": [2400, 1465], "p-comb": [2400, 1287], "p-pbwt": [2400, 1392], "p-bom": [2400, 1547], "p-bomc": [2400, 1392], "p-rate": [2400, 1360], "p-eqhome": [2400, 1287], "b-yard-tj": [2544, 1440], "b-cut-board": [2534, 1414], "b-yard-board": [2560, 1368], "b-flex-board": [2560, 1440], "b-yard-wh": [2544, 1440], "b-lx-ring": [1925, 1493], "b-qj-2": [2560, 960], "b-lx-1": [1920, 1080], "b-lx-dev": [1354, 740], "b-pw-v1": [2560, 1440], "b-mfg-board": [2530, 1416], "b-ck-park": [2492, 916], "b-cut-room": [2560, 1920], "b-lx-map": [2136, 1080], "b-cut-ctrl": [3840, 2184], "b-lx-equip": [1391, 761], "b-lx-2": [1879, 1004], "b-yard-js": [2544, 1440], "b-ck-fac": [2560, 917], "b-pdm-board": [3840, 2158], "b-ck-mgmt": [3840, 2044], "b-pf-screen": [1857, 1040], "b-datacol": [1920, 911], "b-pw-v3": [2560, 1440], "b-kpi-1": [1920, 1080], "b-kpi-2": [1920, 1080], "b-q-screen": [1867, 1589], "k-dd-screen2": [1630, 920], "k-dd-screen": [1547, 857], "k-dd-cj": [3840, 2200], "k-dd-fy": [3840, 2200], "k-lifecycle": [2560, 1638], "k-platform-entry": [1714, 939], "k-hand-1": [1376, 2996], "k-m-fyflow": [1484, 1049], "k-yd5-pc": [1598, 906], "k-yd5-plan": [1598, 870], "k-xb-pc": [1563, 944], "k-hd-all": [1367, 855], "k-hd-eq": [1346, 830], "k-smes-bim": [1920, 1080], "k-af-1": [1585, 896], "k-af-2": [1600, 897], "k-ph-early": [1441, 2560], "h-yd5-pc": [2560, 1450], "h-yd5-plan": [2560, 1395], "h-xb-pc": [2560, 1547], "h-af-1": [2535, 1432], "h-af-2": [2560, 1434], "h-hd-all": [2392, 1496], "h-hd-eq": [2355, 31]};
 function pic(src,title,cls){var s=SZ[src]||[16,9],tall=s[1]>s[0]*1.15;
   return '<button type="button" class="pic'+(tall?' tall':'')+(cls?' '+cls:'')+'" data-zoom="assets/'+src+'.webp" data-title="'+title+'"><img src="assets/'+src+'.webp" alt="'+title+'" loading="lazy" width="'+s[0]+'" height="'+s[1]+'"></button>'}
 
@@ -929,7 +930,7 @@ var G=[
   why:'生产之前的技术准备，不算 MES。它决定造什么、用什么料、按什么顺序造，MES 才有活可派。',
   k:'对应主线：深化设计 → 工艺策划 → 采购提料',
   mods:[
-   {n:'深化设计',d:'设计任务申请、内控计划、质检计划、设计创效都在手机上走流程；设计研究院有一块管理驾驶舱，看产值、产量、计划和项目分布。',pts:['设计任务申请单','内控计划','质检计划','设计创效','待办审批','管理驾驶舱'],who:'深化设计师 · 技术负责人',ends:['移动端','网页端','大屏'],imgs:[['k-dd-screen2','设计研究院管理驾驶舱'],['m-sjrw','设计任务申请 · 移动端'],['m-zjjh','质检计划 · 移动端'],['m-db','待办任务 · 移动端'],['k-dd-screen','深化设计管理看板']]},
+   {n:'深化设计',d:'设计任务申请、内控计划、质检计划、设计创效都在手机上走流程；设计研究院有一块管理驾驶舱，看产值、产量、计划和项目分布。',pts:['设计任务申请单','内控计划','质检计划','设计创效','待办审批','管理驾驶舱'],who:'深化设计师 · 技术负责人',ends:['移动端','网页端','大屏'],imgs:[['k-dd-screen2','设计研究院管理驾驶舱'],['m-sjrw','设计任务申请 · 移动端'],['m-zjjh','质检计划 · 移动端'],['m-db','待办任务 · 移动端'],['k-dd-cj','设计研究院管理驾驶舱 · 产值'],['k-dd-fy','发运看板']]},
    {n:'BOM 清单',d:'设计清单进来后变成工艺清单：零件可以批量组合、拆分；预备清单从 Excel 导入解析；清单变更走审批，并记下每个构件改了什么。',pts:['设计清单','工艺清单','预备清单','变更审批','变更清单','摘料清单'],who:'工艺工程师',ends:['网页端'],imgs:[['p-bom','设计清单 · 网页端'],['p-comb','零件批量组合 · 网页端'],['p-bomc','变更审批 · 网页端']]},
    {n:'来图与工艺计划',d:'登记每个项目的来图，排工艺工作计划和分包计划，盯住还没完成的工艺任务。',pts:['来图登记','工艺工作计划','工艺分包计划','工艺技术变更'],who:'工艺工程师',ends:['网页端'],imgs:[['p-ltd','来图登记 · 网页端'],['p-gyjh','工艺工作计划 · 网页端']]},
    {n:'放样与排版',d:'深化放样后的排版问题走流程处理；排版量、放样量、算量和损耗按项目统计，控制材料损耗。',pts:['放样排版问题','算量与损耗','项目损耗录入','材料创效'],who:'放样员 · 工艺工程师',ends:['网页端'],imgs:[['p-pbwt','深化放样排版问题 · 网页端'],['p-shl','算量与损耗 · 网页端']]},
@@ -1091,11 +1092,11 @@ var ST=[
  {n:'拆系统',t:'按三条规则分出六类',d:'数据在哪发生就归哪、按离现场远近排、把边界写清楚。最后落成一个统一入口，按岗位进入各子系统。',img:['k-platform-entry','统一入口']},
  {n:'拆功能',t:'每个角色拆到字段',d:'以发运为例：先分发运管理员、司机、物流商、现场管理员四个角色，再拆页面、字段和逻辑，状态从待审批一路走到已完成。',img:['k-m-fyflow','发运四个角色的功能拆解']},
  {n:'设计',t:'先统一，再展开',d:'统一入口、统一导航、同一套状态色和组件；同一个功能在网页端、移动端、大屏上保持同样的说法和字段。',img:['p-alltask','同一套字段 · 网页端'],more:[['o-03-latest','构件任务 · 移动端'],['o-04','新建报工 · 移动端'],['m-gxjy','工序检验 · 移动端'],['m-sbxq','设备详情 · 移动端']]},
- {n:'上线迭代',t:'用起来，再改',d:'手持机列表做了多版方案，让现场的人试用后按满意度选；工作台从早期稿改成按任务组织；大屏从 1.0 改到 3.0。',img:['k-hand-1','手持机方案对比与满意度'],more:[['k-ph-early','移动端早期稿'],['o-01','移动端改版后'],['b-pw-v1','喷涂看板 1.0'],['b-pw-v3','喷涂看板 3.0']]}
+ {n:'上线迭代',t:'用起来，再改',d:'手持机列表做了多版方案，让现场的人试用后按满意度选；工作台从早期稿改成按任务组织；大屏从 1.0 改到 3.0。',more:[['k-ph-early','移动端早期稿'],['o-01','移动端改版后'],['b-pw-v1','喷涂看板 1.0'],['b-pw-v3','喷涂看板 3.0']]}
 ];
 var tb=$('#stTabs'),sg=$('#stStage');
 function stShow(i){var s=ST[i];[].forEach.call(tb.children,function(x,k){x.classList.toggle('on',k===i)});
-  var v=s.v||pic(s.img[0],s.img[1]);
+  var v=s.v||(s.img?pic(s.img[0],s.img[1]):'');
   if(s.more)v+='<div class="st-more">'+s.more.map(function(x){return '<figure>'+pic(x[0],x[1])+'<figcaption>'+x[1]+'</figcaption></figure>'}).join('')+'</div>';
   sg.innerHTML='<div class="st-txt"><span class="ex-no">'+('0'+(i+1)).slice(-2)+' · '+s.n+'</span><h3>'+s.t+'</h3><p>'+s.d+'</p><div class="st-nav"><button type="button" data-d="-1"'+(i?'':' disabled')+'>← 上一步</button><button type="button" data-d="1"'+(i<ST.length-1?'':' disabled')+'>下一步 →</button></div></div><div class="st-vis">'+v+'</div>';
   [].forEach.call(sg.querySelectorAll('.st-nav button'),function(b){b.onclick=function(){stShow(i+ +b.dataset.d)}});
@@ -1111,6 +1112,7 @@ var E=[
  {n:'大屏',who:'车间主任 · 厂长 · 公司领导',d:'不用操作、只要一眼看到的事：车间看板、堆场、驾驶舱。',img:'b-flex-board',c:'#7c5cff'}
 ];
 $('#ends').innerHTML=E.map(function(e){return '<div class="end-c" style="--gc:'+e.c+'">'+pic(e.img,e.n)+'<div class="bd"><b>'+e.n+'</b><small>'+e.who+'</small><p>'+e.d+'</p></div></div>'}).join('');
+[].forEach.call(document.querySelectorAll('#ends .pic'),function(b){b.removeAttribute('data-zoom');b.setAttribute('tabindex','-1')});
 })();
 
 </script>
