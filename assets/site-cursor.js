@@ -33,13 +33,17 @@
     while(node instanceof Element){const c=getComputedStyle(node).backgroundColor.match(/[\d.]+/g);if(c&&Number(c[3]??1)>.75){lum=(+c[0]*.2126 + +c[1]*.7152 + +c[2]*.0722)/255;break;}node=node.parentElement;}
     pointer.classList.toggle('is-dark',lum<.48);
   };
+  let frame=0,pendingTarget=null,lastTarget=null;
+  const schedule=()=>{if(frame)return;frame=requestAnimationFrame(()=>{frame=0;if(!last)return;
+    pointer.style.transform=`translate3d(${last.x-4.5}px,${last.y-6.55}px,0)`;
+    if(pendingTarget!==lastTarget){updateTarget(pendingTarget);lastTarget=pendingTarget;}
+    if(!pointer.classList.contains('is-visible')){pointer.classList.add('is-visible');document.documentElement.classList.add('portfolio-cursor');}
+  })};
   document.addEventListener('pointermove',e=>{
     if(e.pointerType==='touch')return;
-    last={x:e.clientX,y:e.clientY};
-    pointer.style.transform=`translate3d(${e.clientX-4.5}px,${e.clientY-6.55}px,0)`;
-    updateTarget(e.target);pointer.classList.add('is-visible');document.documentElement.classList.add('portfolio-cursor');
+    last={x:e.clientX,y:e.clientY};pendingTarget=e.target;schedule();
   },{passive:true});
-  document.addEventListener('scroll',()=>{if(last)updateTarget(document.elementFromPoint(last.x,last.y))},{passive:true,capture:true});
+  document.addEventListener('scroll',()=>{if(last){lastTarget=null;pendingTarget=document.elementFromPoint(last.x,last.y);schedule()}},{passive:true,capture:true});
   document.documentElement.addEventListener('pointerleave',hide);window.addEventListener('blur',hide);
   document.addEventListener('visibilitychange',()=>{if(document.hidden)hide()});
 })();
